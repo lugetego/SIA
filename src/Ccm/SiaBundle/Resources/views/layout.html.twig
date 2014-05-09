@@ -1,0 +1,76 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+    <title>{% block title %}SIA{% endblock %}</title>
+
+    <!-- mobile viewport optimisation -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- stylesheets -->
+    <link rel="stylesheet" href="{{ asset('bundles/ccmesver14esver/css/bootstrap.css') }}" type="text/css"/>
+    <link rel="stylesheet" href="{{ asset('bundles/ccmesver14esver/css/grid.css') }}" type="text/css"/>
+    <link rel="shortcut icon" href="{{ asset('bundles/ccmesver14esver/images/favicon.ico') }}" />
+
+
+
+</head>
+<body>
+
+
+
+<div class="navbar navbar-default">
+    <div class="navbar-header">
+
+        <a class="navbar-brand" href="#"> {% block navtitle %} <span class="glyphicon glyphicon-list-alt"></span> Sistema de Información Académica {% endblock %}</a>
+
+    </div>
+    <ul class="nav navbar-nav navbar-right">
+
+
+
+
+
+
+    </ul>
+
+
+
+    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+
+        <div class="navbar-collapse collapse navbar-inverse-collapse">
+            <ul class="nav navbar-nav">
+              {# <li><a href="{{ path('mails') }}"><span class="glyphicon glyphicon-envelope"></span> Lista de correos</a></li> #}
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                {% block navright %}
+                    <li><a href="#"><b><span class="glyphicon glyphicon-user"></span> {{ app.user.username }}</b></a></li>
+                    <li><a href="{{ path('fos_user_security_logout') }}"><span class="glyphicon glyphicon-off"></span> Cerrar sesión</a></li>
+                {% endblock %}
+
+            </ul>
+
+        </div>
+    {% endif %}
+
+</div>
+<div class="container">
+    {% block header %}{% endblock %}
+</div>
+<div class="container">
+    <div>{% block info %} {% endblock %}</div>
+</div>
+{% block col3 %} {% endblock %}
+
+
+{% block footer %}
+
+{% endblock %}
+
+
+
+</body>
+</html>
+
+
+

@@ -1,0 +1,49 @@
+{% extends 'CcmSiaBundle::layout.html.twig' %}
+
+{% block title %}Sistema de Información Académica {% endblock %}
+{% block navtitle %}Sistema de Información Académica{% endblock %}
+
+
+
+{% block col3 %}
+
+
+    <div class="container">
+
+
+
+    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+
+
+        <div class="row">
+            <div class="col-md-12"><img src="{{ asset('bundles/ccmsia/images/Web2.jpg') }}" ></div>
+            <div class="col-md-12"><span class="glyphicon glyphicon-user"></span> Sesión iniciada como usuario  <b>{{ app.user.username }}</b></div>
+            <div class="col-md-12"><span class="glyphicon glyphicon-remove-circle"></span><a href="{{ path('fos_user_security_logout') }}"> Cerrar sesión</a></div>
+        </div>
+
+
+    {% else %}
+
+        <div class="col-md-4" >
+
+
+        <H1>Iniciar sesión</H1>
+        <!--<a href="{{ path('fos_user_security_login') }}">{{ 'Login'|trans({}, 'FOSUserBundle') }}</a>-->
+
+        <form action="{{ path("fos_user_security_check") }}" method="post">
+            <label for="username">Usuario</label>
+            <input type="text" id="username" name="_username"  class='form-control'/><br>
+            <label for="password">Contraseña</label>
+            <input type="password" id="password" name="_password"  class='form-control' /><br>
+            <input type="checkbox" id="remember_me" name="_remember_me" value="off" />
+            <label for="remember_me">Recordarme</label><br><br>
+            <button type="submit"  class="btn btn-default">Login</button>
+
+        </form>
+
+    {% endif %}
+</div>
+    </div>
+
+{% endblock %}
+
