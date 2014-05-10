@@ -46,14 +46,10 @@ class SolicitudController extends Controller
     public function createAction(Request $request)
     {
         $entity = new Solicitud();
-        $tag1 = new Financiamiento();
-        $tag1->fuente = 'ccm';
-        $tag1->cantidad = '123';
-        $entity->setFinanciamiento(array($tag1));
-
 
         $form = $this->createCreateForm($entity);
         //$form = $this->createForm(new SolicitudType(), $entity);
+
         $form->handleRequest($request);
 
         if ($form->isValid()) {
@@ -99,6 +95,31 @@ class SolicitudController extends Controller
     public function newAction()
     {
         $entity = new Solicitud();
+
+        $viaticos = new Financiamiento();
+        $viaticos->setNombre("Viaticos");
+        $viaticos->setCcm(0);
+        $viaticos->setPapiit(0);
+        $viaticos->setConacyt(0);
+        $viaticos->setOtro(0);
+        $entity->getFinanciamiento()->add($viaticos);
+
+        $pasaje = new Financiamiento();
+        $pasaje->setNombre("Pasaje");
+        $pasaje->setCcm(0);
+        $pasaje->setPapiit(0);
+        $pasaje->setConacyt(0);
+        $pasaje->setOtro(0);
+        $entity->getFinanciamiento()->add($pasaje);
+
+        $inscripciones = new Financiamiento();
+        $inscripciones->setNombre("Inscripciones");
+        $inscripciones->setCcm(0);
+        $inscripciones->setPapiit(0);
+        $inscripciones->setConacyt(0);
+        $inscripciones->setOtro(0);
+        $entity->getFinanciamiento()->add($inscripciones);
+
         $form   = $this->createCreateForm($entity);
 
         return array(

@@ -4,19 +4,19 @@
     <h1>Solicitud creation</h1>
 
     {{ form(form) }}
-    <h3>Tags</h3>
-    <ul class="financiamiento">
+    <h3>Financiamiento</h3>
+    <ul>
         {# itera sobre cada etiqueta existente y reproduce su único campo: name #}
-        {% for tag in form.financiamiento %}
-            <li>{{ form_row(tag.name) }}</li>
+        {% for fin in form.financiamiento %}
+            <li>{{ form(fin) }}</li>
         {% endfor %}
     </ul>
 
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('solicitud') }}">
-            Back to the list
-        </a>
-    </li>
-</ul>
+    <ul>
+        <li>
+            <a href="{{ path('solicitud') }}">
+                Back to the list
+            </a>
+        </li>
+    </ul>
 {% endblock %}

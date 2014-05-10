@@ -16,13 +16,12 @@ class FinanciamientoType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('fuente')
-            ->add('cantidad')
-
-
+            ->add('nombre')
+            ->add('ccm')
+            ->add('conacyt')
+            ->add('papiit')
+            ->add('otro')
         ;
-
-
     }
 
     /**

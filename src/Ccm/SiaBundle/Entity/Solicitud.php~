@@ -115,7 +115,7 @@ class Solicitud
      *
      * @ORM\Column(type="array")
      */
-    private $financiamiento;
+    private $financiamiento = array();
 
     /**
      * Constructor
@@ -124,7 +124,9 @@ class Solicitud
     {
         $this->academico = new \Doctrine\Common\Collections\ArrayCollection();
         $this->sesion = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->financiamiento = new \Doctrine\Common\Collections\ArrayCollection();
+
+        $viaticos = new Financiamiento();
+
 
     }
 
@@ -458,6 +460,20 @@ class Solicitud
     public function getTrabajo()
     {
         return $this->trabajo;
+    }
+
+
+    /**
+     * Set financiamiento
+     *
+     * @param array $financiamiento
+     * @return Solicitud
+     */
+    public function setFinanciamiento(array $financiamiento)
+    {
+        $this->financiamiento = $financiamiento;
+
+        return $this;
     }
 
     /**

@@ -30,12 +30,12 @@ class SolicitudType extends AbstractType
             ->add('inicio')
             ->add('fin')
             ->add('trabajo')
-            ->add('financiamiento', 'collection', array('type' => new FinanciamientoType()));
+            ->add('financiamiento', 'collection', array(
+                'type' => new FinanciamientoType(),
+                'allow_add'    => true,
+            ));
 
-
-
-
-            //   ->add('sesion', 'entity', array(
+         //   ->add('sesion', 'entity', array(
          //       'class' => 'CcmSiaBundle:Sesiones',
          //       'query_builder' => function(\Doctrine\ORM\EntityRepository  $er) {
          //               return $er->createQueryBuilder('u')
