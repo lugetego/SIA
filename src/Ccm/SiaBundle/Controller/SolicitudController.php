@@ -209,6 +209,8 @@ class SolicitudController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
+        $logger = $this->get('logger');
+
         $entity = $em->getRepository('CcmSiaBundle:Solicitud')->find($id);
 
         if (!$entity) {
@@ -220,7 +222,17 @@ class SolicitudController extends Controller
         $editForm->handleRequest($request);
 
         if ($editForm->isValid()) {
+
+
+            //http://stackoverflow.com/questions/11084209/how-to-force-doctrine-to-update-array-type-fields
+
+            $financiamiento = $entity->getFinanciamiento();
+            $financiamiento[0] = clone $financiamiento[0];
+            $entity->setFinanciamiento($financiamiento);
+
             $em->flush();
+
+            $logger->notice('Solicitud Edit persist', array('id' => $id));
 
             return $this->redirect($this->generateUrl('solicitud_edit', array('id' => $id)));
         }

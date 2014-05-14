@@ -469,4 +469,14 @@ class Solicitud
     {
         return $this->financiamiento;
     }
+
+    /**
+     * Set financiamiento
+     *
+     * @param array
+     */
+    public function setFinanciamiento($financiamiento)
+    {
+        $this->financiamiento = $financiamiento;
+    }
 }
