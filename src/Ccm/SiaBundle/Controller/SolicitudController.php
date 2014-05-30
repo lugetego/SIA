@@ -11,6 +11,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Ccm\SiaBundle\Entity\Solicitud;
 use Ccm\SiaBundle\Form\SolicitudType;
 
+
+
 /**
  * Solicitud controller.
  *
@@ -57,7 +59,10 @@ class SolicitudController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('solicitud_show', array('id' => $entity->getId())));
+            //return $this->redirect($this->generateUrl('solicitud_show', array('id' => $entity->getId())));
+
+            return $content = $this->render('CcmSiaBundle:Solicitud:confirm.html.twig', array('id' => $entity->getId(),'entity'=>$entity));
+
         }
 
         return array(
@@ -104,13 +109,21 @@ class SolicitudController extends Controller
         $viaticos->setOtro(0);
         $entity->getFinanciamiento()->add($viaticos);
 
-        $pasaje = new Financiamiento();
-        $pasaje->setNombre("Pasaje");
-        $pasaje->setCcm(0);
-        $pasaje->setPapiit(0);
-        $pasaje->setConacyt(0);
-        $pasaje->setOtro(0);
-        $entity->getFinanciamiento()->add($pasaje);
+        $aereo = new Financiamiento();
+        $aereo->setNombre("Pasaje aéreo");
+        $aereo->setCcm(0);
+        $aereo->setPapiit(0);
+        $aereo->setConacyt(0);
+        $aereo->setOtro(0);
+        $entity->getFinanciamiento()->add($aereo);
+
+        $terrestre = new Financiamiento();
+        $terrestre->setNombre("Pasaje terrestre");
+        $terrestre->setCcm(0);
+        $terrestre->setPapiit(0);
+        $terrestre->setConacyt(0);
+        $terrestre->setOtro(0);
+        $entity->getFinanciamiento()->add($terrestre);
 
         $inscripciones = new Financiamiento();
         $inscripciones->setNombre("Inscripciones");
@@ -226,15 +239,22 @@ class SolicitudController extends Controller
 
             //http://stackoverflow.com/questions/11084209/how-to-force-doctrine-to-update-array-type-fields
 
-            $financiamiento = $entity->getFinanciamiento();
-            $financiamiento[0] = clone $financiamiento[0];
+            $financiamientos = $entity->getFinanciamiento();
+            $financiamiento[0] = clone $financiamientos[0];
+            $financiamiento[1] = clone $financiamientos[1];
+            $financiamiento[2] = clone $financiamientos[2];
+            $financiamiento[3] = clone $financiamientos[3];
+
+
             $entity->setFinanciamiento($financiamiento);
 
             $em->flush();
 
             $logger->notice('Solicitud Edit persist', array('id' => $id));
 
-            return $this->redirect($this->generateUrl('solicitud_edit', array('id' => $id)));
+            //return $this->redirect($this->generateUrl('solicitud_edit', array('id' => $id)));
+            return $content = $this->render('CcmSiaBundle:Solicitud:confirm.html.twig', array('id' => $entity->getId(),'entity'=>$entity));
+
         }
 
         return array(
@@ -284,5 +304,37 @@ class SolicitudController extends Controller
             ->add('submit', 'submit', array('label' => 'Delete'))
             ->getForm()
         ;
+    }
+
+
+    /**
+     * Envía la solicitud a la Secretaría Académica
+     *
+     * @Route("/{id}/send", name="solicitud_send")
+     * @Method("GET")
+     * @Template()
+     */
+    public function sendAction(Request $request, $id)
+    {
+
+        $em = $this->getDoctrine()->getManager();
+
+        $entity = $em->getRepository('CcmSiaBundle:Solicitud')->find($id);
+
+        if (!$entity) {
+            throw $this->createNotFoundException('Unable to find Solicitud entity.');
+        }
+
+        $entity->setEnviada(1);
+
+        $em->persist($entity);
+        $em->flush();
+        $this->get('session')->getFlashBag()->add('info',
+            'Tu solicitud se ha enviado correctamente'
+        );
+
+
+        return $content = $this->render('CcmSiaBundle:Solicitud:confirm.html.twig', array('id' => $entity->getId(),'entity'=>$entity));
+
     }
 }

@@ -54,6 +54,11 @@ class Academico
     private $solicitudes;
 
 
+    /**
+     * @ORM\Column(type="integer", length=3, nullable=true)
+     * @Assert\NotBlank()
+     */
+    private $dias;
 
 
     /**
@@ -136,6 +141,21 @@ class Academico
     }
 
     /**
+     * @param mixed $dias
+     */
+    public function setDias($dias)
+    {
+        $this->dias = $dias;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDias()
+    {
+        return $this->dias;
+    }
+    /**
      * Set user
      *
      * @param \Ccm\SiaBundle\Entity\User $user
@@ -203,4 +223,6 @@ class Academico
     {
         return $this->solicitudes;
     }
+
+
 }

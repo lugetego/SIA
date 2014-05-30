@@ -3,14 +3,62 @@
 {% block body -%}
     <h1>Solicitud edit</h1>
 
-    {{ form(edit_form) }}
+    {{ form_start(edit_form) }}
 
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('solicitud') }}">
-            Back to the list
-        </a>
-    </li>
-    <li>{{ form(delete_form) }}</li>
-</ul>
+
+    <div ng-controller="DatepickerDemoCtrl" ng-init="inicio='{{ entity.inicio|date("Y-m-d") }}';">
+
+
+        {{ form_label(edit_form.inicio) }}
+        {{ form_errors(edit_form.inicio) }}
+
+        {{ form_widget(edit_form.inicio, { 'attr': {
+            'datepicker-popup': 'yyyy-MM-dd',
+            'ng-model':'inicio',
+            'is-open':'opened',
+            'min-date':'minDate',
+            'max-date':"'2015-06-22'",
+            'datepicker-options':'dateOptions',
+            'ng-required':'true',
+            'close-text':'Close'  } } ) }}
+
+        <span class="input-group-btn">
+            <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+        </span>
+
+
+    </div>
+
+    <div ng-controller="DatepickerDemoCtrl" ng-init="fin='{{ entity.fin|date("Y-m-d") }}';">
+
+        {{ form_label(edit_form.fin) }}
+        {{ form_errors(edit_form.fin) }}
+
+        {{ form_widget(edit_form.fin, { 'attr': {
+            'datepicker-popup': 'yyyy-MM-dd',
+            'ng-model':'fin',
+            'is-open':'opened',
+            'min-date':'minDate',
+            'max-date':"'2015-06-22'",
+            'datepicker-options':'dateOptions',
+            'ng-required':'true',
+            'close-text':'Close'  } } ) }}
+        <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+              </span>
+        <b id='days'> </b>
+    </div>
+
+
+    {{ form_rest(edit_form) }}
+
+    {{ form_end(edit_form) }}
+    <ul class="record_actions">
+        <li>
+            <a href="{{ path('solicitud') }}">
+                Back to the list
+            </a>
+        </li>
+        <li>{{ form(delete_form) }}</li>
+    </ul>
 {% endblock %}

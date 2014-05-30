@@ -19,6 +19,7 @@ class AcademicoType extends AbstractType
             ->add('nacimiento')
             ->add('rfc')
             ->add('user')
+            ->add('dias')
         ;
     }
     

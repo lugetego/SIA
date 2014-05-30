@@ -10,6 +10,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @ORM\Entity
  * @ORM\Table(name="solicitud")
+ * @ORM\HasLifecycleCallbacks
  */
 class Solicitud
 {
@@ -116,6 +117,80 @@ class Solicitud
      * @ORM\Column(type="array")
      */
     private $financiamiento;
+
+    /**
+     * @var boolean $enviada
+     *
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $enviada;
+
+   /**
+     * @var boolean $aprobada
+     *
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $aprobada;
+
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $created;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $modified;
+
+    /**
+     * @ORM\PrePersist
+     */
+    public function prePersist()
+    {
+        $this->setCreated(new \DateTime());
+        $this->setModified(new \DateTime());
+    }
+
+    /**
+     * @ORM\PreUpdate
+     */
+    public function preUpdate()
+    {
+        $this->setModified(new \DateTime());
+    }
+
+    /**
+     * Set created
+     *
+     * @param datetime $created
+     */
+    public function setCreated($created)
+    {
+        $this->created = $created;
+    }
+
+    /**
+     * Set modified
+     *
+     * @param datetime $modified
+     */
+    public function setModified($modified)
+    {
+        $this->modified = $modified;
+    }
+
+    /**
+     * Get modified
+     *
+     * @return string
+     */
+    public function getModified()
+    {
+        return $this->modified;
+
+    }
+
 
     /**
      * Constructor
@@ -479,4 +554,37 @@ class Solicitud
     {
         $this->financiamiento = $financiamiento;
     }
+
+    /**
+     * @param boolean $enviada
+     */
+    public function setEnviada($enviada)
+    {
+        $this->enviada = $enviada;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function getEnviada()
+    {
+        return $this->enviada;
+    }
+
+    /**
+     * @param boolean $aprobada
+     */
+    public function setAprobada($aprobada)
+    {
+        $this->aprobada = $aprobada;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function getAprobada()
+    {
+        return $this->aprobada;
+    }
+
 }

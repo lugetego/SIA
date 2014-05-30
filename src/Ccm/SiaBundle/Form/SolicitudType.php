@@ -10,7 +10,7 @@ use Ccm\SiaBundle\Form\FinanciamientoType;
 
 class SolicitudType extends AbstractType
 {
-        /**
+    /**
      * @param FormBuilderInterface $builder
      * @param array $options
      */
@@ -27,24 +27,28 @@ class SolicitudType extends AbstractType
             ->add('actividad')
             ->add('proposito')
             ->add('proyecto')
-            ->add('inicio')
-            ->add('fin')
+            ->add('inicio', 'date',array('widget' => 'single_text', 'format' => 'yyyy-MM-dd'))
+            ->add('fin', 'date',array('widget' => 'single_text', 'format' => 'yyyy-MM-dd'))
+            // ->add('inicio','date',array('widget' => 'single_text','format' => 'yyyy-MM-dd', 'attr' => array('class'=>'form-control', 'datepicker-popup'=> 'yyyy-MM-dd','ng-model'=>'dt',
+            //'is-open'=>'opened', 'min-date'=>'minDate', 'max-date'=>"'2014-12-31'", 'datepicker-options'=>'dateOptions', 'ng-required'=>'true', 'close-text'=>'Close' )))
+            //->add('fin','date',array('widget' => 'single_text','format' => 'yyyy-MM-dd', 'attr' => array('class'=>'form-control', 'datepicker-popup'=> 'yyyy-MM-dd','ng-model'=>'dt',
+            //          'is-open'=>'opened', 'min-date'=>'minDate', 'max-date'=>"'2014-12-31'", 'datepicker-options'=>'dateOptions', 'ng-required'=>'true', 'close-text'=>'Close' )))
             ->add('trabajo')
             ->add('financiamiento', 'collection', array(
                 'type' => new FinanciamientoType(),
                 'allow_add'    => true,
             ));
 
-         //   ->add('sesion', 'entity', array(
-         //       'class' => 'CcmSiaBundle:Sesiones',
-         //       'query_builder' => function(\Doctrine\ORM\EntityRepository  $er) {
-         //               return $er->createQueryBuilder('u')
-         //                   ->orderBy('u.id', 'DESC');},))
+        //   ->add('sesion', 'entity', array(
+        //       'class' => 'CcmSiaBundle:Sesiones',
+        //       'query_builder' => function(\Doctrine\ORM\EntityRepository  $er) {
+        //               return $er->createQueryBuilder('u')
+        //                   ->orderBy('u.id', 'DESC');},))
 
 
         ;
     }
-    
+
     /**
      * @param OptionsResolverInterface $resolver
      */

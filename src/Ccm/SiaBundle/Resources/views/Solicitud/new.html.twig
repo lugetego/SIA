@@ -1,22 +1,60 @@
 {% extends '::base.html.twig' %}
 
-{% block body -%}
-    <h1>Solicitud creation</h1>
+{% block body %}
 
-    {{ form(form) }}
-    <h3>Financiamiento</h3>
-    <ul>
-        {# itera sobre cada etiqueta existente y reproduce su único campo: name #}
-        {% for fin in form.financiamiento %}
-            <li>{{ form(fin) }}</li>
-        {% endfor %}
-    </ul>
+    <form action="{{ path('solicitud_create') }}" method="post" {{ form_enctype(form)  }}>
 
-    <ul>
-        <li>
-            <a href="{{ path('solicitud') }}">
-                Back to the list
-            </a>
-        </li>
-    </ul>
+        <h1>Solicitud creation</h1>
+
+        <div ng-controller="DatepickerDemoCtrl">
+
+            {{ form_label(form.inicio) }}
+            {{ form_errors(form.inicio) }}
+            {{ form_widget(form.inicio, { 'attr': {
+                'class': 'form-control',
+                'datepicker-popup': 'yyyy-MM-dd',
+                'ng-model':'dt',
+                'is-open':'opened',
+                'min-date':'minDate',
+                'max-date':"'2015-06-22'",
+                'datepicker-options':'dateOptions',
+                'ng-required':'true',
+                'close-text':'Close'  }}) }}
+            <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+            </span>
+        </div>
+
+        <div ng-controller="DatepickerDemoCtrl" >
+
+            {{ form_label(form.fin) }}
+            {{ form_errors(form.fin) }}
+            {{ form_widget(form.fin, { 'attr': {
+                'class': 'form-control',
+                'datepicker-popup': 'yyyy-MM-dd',
+                'ng-model':'dt',
+                'is-open':'opened',
+                'min-date':'minDate',
+                'max-date':"'2015-06-22'",
+                'datepicker-options':'dateOptions',
+                'ng-required':'true',
+                'close-text':'Close'  }}) }}
+            <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+            </span>
+            <b id='days'> </b>
+        </div>
+
+        {{ form_rest(form) }}
+
+        <ul>
+            <li>
+                <a href="{{ path('solicitud') }}">
+                    Back to the list
+                </a>
+            </li>
+        </ul>
+
+    </form>
+
 {% endblock %}
