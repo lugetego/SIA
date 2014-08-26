@@ -1,14 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="26c7d346-91b0-4915-8a90-fd6c46ec766c" name="Default" comment="Creación de entidad proyecto&#10;Problemas relación académico-proyecto en solicitud">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Ccm/SiaBundle/Entity/Proyecto.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Ccm/SiaBundle/Resources/config/validation.yml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Ccm/SiaBundle/Entity/Academico.php" afterPath="$PROJECT_DIR$/src/Ccm/SiaBundle/Entity/Academico.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Ccm/SiaBundle/Form/AcademicoType.php" afterPath="$PROJECT_DIR$/src/Ccm/SiaBundle/Form/AcademicoType.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Ccm/SiaBundle/Entity/Solicitud.php" afterPath="$PROJECT_DIR$/src/Ccm/SiaBundle/Entity/Solicitud.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Ccm/SiaBundle/Form/SolicitudType.php" afterPath="$PROJECT_DIR$/src/Ccm/SiaBundle/Form/SolicitudType.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Ccm/SiaBundle/Resources/public/js/dates.js" afterPath="$PROJECT_DIR$/src/Ccm/SiaBundle/Resources/public/js/dates.js" />
+    <list default="true" id="26c7d346-91b0-4915-8a90-fd6c46ec766c" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="SIA.iws" />
@@ -705,21 +698,25 @@
       <created>1401488140079</created>
       <updated>1401488140079</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Creación de entidad proyecto&#10;Problemas relación académico-proyecto en solicitud">
+      <created>1409011457078</created>
+      <updated>1409011457078</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="121" y="52" width="1783" height="1027" extended-state="0" />
     <editor active="false" />
     <layout>
-      <window_info id="Messages" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3295099" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3295099" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.30865484" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Framework" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20134604" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20134604" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
