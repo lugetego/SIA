@@ -85,9 +85,9 @@ class Solicitud
     private $proposito;
 
     /**
-     * @var string $proyecto
+     * @var array $proyecto
      *
-     * @ORM\Column(name="proyecto", type="string", length=30)
+     * @ORM\Column(name="proyecto", type="array")
      */
     private $proyecto;
 
@@ -461,7 +461,7 @@ class Solicitud
     /**
      * Get proyecto
      *
-     * @return string 
+     * @return string
      */
     public function getProyecto()
     {

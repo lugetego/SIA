@@ -28,22 +28,22 @@ class SolicitudType extends AbstractType
             ->add('actividad')
             ->add('proposito')
             //->add('proyecto')
-           /* ->add('proyecto', 'entity', array('class' => 'Ccm\SiaBundle\Entity\Academico','query_builder'=> function(\Doctrine\ORM\EntityRepository  $er) {
+            ->add('proyecto', 'entity', array('class' => 'Ccm\SiaBundle\Entity\Proyecto','query_builder'=> function(\Doctrine\ORM\EntityRepository  $er) {
                     return $er->createQueryBuilder('q')
-                               ->select('r.proyectos')
-                               ->from('Ccm\SiaBundle\Entity\Academico', 'r')
-                               ->leftjoin('r.proyectos','a')
+                               ->select('r')
+                               ->from('Ccm\SiaBundle\Entity\Proyecto', 'r')
+                               ->leftjoin('r.academico','a')
                                ->where('a.id = :id')
-                               ->setParameter('id', 1)
+                               ->setParameter('id', 22)
 
 
 
-                        ;},  ))*/
-            ->add('proyecto', 'entity', array(
-                'class' => 'CcmSiaBundle:Academico',
-                'property' => 'proyectos',
+                        ;}, 'mapped'=>false ))
+            /*->add('proyecto', 'entity', array(
+                'class' => 'CcmSiaBundle:Proyecto',
 
-            ))
+
+            ))*/
 
                         ->add('inicio', 'date',array('widget' => 'single_text', 'format' => 'yyyy-MM-dd'))
             ->add('fin', 'date',array('widget' => 'single_text', 'format' => 'yyyy-MM-dd'))

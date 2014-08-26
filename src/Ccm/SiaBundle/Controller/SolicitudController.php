@@ -248,7 +248,10 @@ class SolicitudController extends Controller
 
             $entity->setFinanciamiento($financiamiento);
 
+
+           
             $em->flush();
+
 
             $logger->notice('Solicitud Edit persist', array('id' => $id));
 
