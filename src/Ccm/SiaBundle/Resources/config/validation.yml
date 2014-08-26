@@ -1,0 +1,4 @@
+Ccm\SiaBundle\Entity\Solicitud:
+    getters:
+        datesValid:
+            - "True": { message: "The start date must be before the end date" }

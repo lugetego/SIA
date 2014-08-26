@@ -7,6 +7,8 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 
+
+
 /**
  * @ORM\Entity
  * @ORM\Table(name="solicitud")
@@ -585,6 +587,18 @@ class Solicitud
     public function getAprobada()
     {
         return $this->aprobada;
+    }
+
+    public function isDatesValid()
+    {
+        if($this->inicio < $this->fin ){
+
+            $interval = $this->inicio->diff($this->fin);
+            return $interval->days <= 45;
+        }
+        else {
+            return false;
+        }
     }
 
 }

@@ -6,6 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Ccm\SiaBundle\Form\FinanciamientoType;
+use Ccm\SiaBundle\Entity\Academico;
 
 
 class SolicitudType extends AbstractType
@@ -26,8 +27,25 @@ class SolicitudType extends AbstractType
             ->add('profesor')
             ->add('actividad')
             ->add('proposito')
-            ->add('proyecto')
-            ->add('inicio', 'date',array('widget' => 'single_text', 'format' => 'yyyy-MM-dd'))
+            //->add('proyecto')
+           /* ->add('proyecto', 'entity', array('class' => 'Ccm\SiaBundle\Entity\Academico','query_builder'=> function(\Doctrine\ORM\EntityRepository  $er) {
+                    return $er->createQueryBuilder('q')
+                               ->select('r.proyectos')
+                               ->from('Ccm\SiaBundle\Entity\Academico', 'r')
+                               ->leftjoin('r.proyectos','a')
+                               ->where('a.id = :id')
+                               ->setParameter('id', 1)
+
+
+
+                        ;},  ))*/
+            ->add('proyecto', 'entity', array(
+                'class' => 'CcmSiaBundle:Academico',
+                'property' => 'proyectos',
+
+            ))
+
+                        ->add('inicio', 'date',array('widget' => 'single_text', 'format' => 'yyyy-MM-dd'))
             ->add('fin', 'date',array('widget' => 'single_text', 'format' => 'yyyy-MM-dd'))
             // ->add('inicio','date',array('widget' => 'single_text','format' => 'yyyy-MM-dd', 'attr' => array('class'=>'form-control', 'datepicker-popup'=> 'yyyy-MM-dd','ng-model'=>'dt',
             //'is-open'=>'opened', 'min-date'=>'minDate', 'max-date'=>"'2014-12-31'", 'datepicker-options'=>'dateOptions', 'ng-required'=>'true', 'close-text'=>'Close' )))

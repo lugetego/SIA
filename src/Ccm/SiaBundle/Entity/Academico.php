@@ -53,12 +53,22 @@ class Academico
      */
     private $solicitudes;
 
+    /**
+     * @var array $proyectos
+     *
+     * @ORM\ManyToMany(targetEntity="Ccm\SiaBundle\Entity\Proyecto", mappedBy="academico")
+     *
+     * The mappedBy attribute designates the field in the entity that is the owner of the relationship.
+     */
+    private $proyectos;
 
     /**
      * @ORM\Column(type="integer", length=3, nullable=true)
      * @Assert\NotBlank()
      */
     private $dias;
+
+
 
 
     /**
@@ -181,6 +191,7 @@ class Academico
     public function __toString()
     {
         return $this->name;
+
     }
 
     /**
@@ -189,6 +200,7 @@ class Academico
     public function __construct()
     {
         $this->solicitudes = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->proyectos = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -217,12 +229,46 @@ class Academico
     /**
      * Get solicitudes
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getSolicitudes()
     {
         return $this->solicitudes;
     }
+
+    /**
+     * Add proyectos
+     *
+     * @param \Ccm\SiaBundle\Entity\Proyecto $proyectos
+     * @return Academico
+     */
+    public function addProyecto(\Ccm\SiaBundle\Entity\Proyecto $proyectos)
+    {
+        $this->proyectos[] = $proyectos;
+
+        return $this;
+    }
+
+    /**
+     * Remove proyectos
+     *
+     * @param \Ccm\SiaBundle\Entity\Proyecto $proyectos
+     */
+    public function removeProyecto(\Ccm\SiaBundle\Entity\Proyecto $proyectos)
+    {
+        $this->proyectos->removeElement($proyectos);
+    }
+
+    /**
+     * Get proyectos
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getProyectos()
+    {
+        return $this->proyectos;
+    }
+
 
 
 }
