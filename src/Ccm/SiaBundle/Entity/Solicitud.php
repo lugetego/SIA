@@ -27,7 +27,7 @@ class Solicitud
      * @var academico
      * @ORM\ManyToMany(targetEntity="Academico", inversedBy="solicitudes")
      */
-    private $academico;
+    public $academico;
 
     /**
      * @var sesion
@@ -85,9 +85,9 @@ class Solicitud
     private $proposito;
 
     /**
-     * @var array $proyecto
+     * @var string $proyecto
      *
-     * @ORM\Column(name="proyecto", type="array")
+     * @ORM\Column(name="proyecto", type="string")
      */
     private $proyecto;
 
@@ -247,6 +247,8 @@ class Solicitud
     {
         return $this->academico;
     }
+
+
 
     /**
      * Add sesion

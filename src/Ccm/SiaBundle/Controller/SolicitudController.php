@@ -9,6 +9,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Ccm\SiaBundle\Entity\Solicitud;
+use Ccm\SiaBundle\Entity\Proyecto;
 use Ccm\SiaBundle\Form\SolicitudType;
 
 
@@ -47,7 +48,9 @@ class SolicitudController extends Controller
      */
     public function createAction(Request $request)
     {
-        $entity = new Solicitud();
+        $securityContext = $this->container->get('security.context');
+
+        $entity = new Solicitud($securityContext);
 
         $form = $this->createCreateForm($entity);
         //$form = $this->createForm(new SolicitudType(), $entity);
@@ -56,6 +59,9 @@ class SolicitudController extends Controller
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            $proyecto = $form->get('proyecto')->getData();
+            $entity->getProyecto($proyecto);
+
             $em->persist($entity);
             $em->flush();
 
@@ -80,7 +86,9 @@ class SolicitudController extends Controller
     */
     private function createCreateForm(Solicitud $entity)
     {
-        $form = $this->createForm(new SolicitudType(), $entity, array(
+        $securityContext = $this->container->get('security.context');
+
+        $form = $this->createForm(new SolicitudType($securityContext), $entity, array(
             'action' => $this->generateUrl('solicitud_create'),
             'method' => 'POST',
         ));
@@ -202,7 +210,9 @@ class SolicitudController extends Controller
     */
     private function createEditForm(Solicitud $entity)
     {
-        $form = $this->createForm(new SolicitudType(), $entity, array(
+        $securityContext = $this->container->get('security.context');
+
+        $form = $this->createForm(new SolicitudType($securityContext), $entity, array(
             'action' => $this->generateUrl('solicitud_update', array('id' => $entity->getId())),
             'method' => 'PUT',
         ));
@@ -249,7 +259,7 @@ class SolicitudController extends Controller
             $entity->setFinanciamiento($financiamiento);
 
 
-           
+
             $em->flush();
 
 
