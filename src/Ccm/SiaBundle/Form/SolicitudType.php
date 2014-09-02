@@ -67,10 +67,8 @@ class SolicitudType extends AbstractType
             else {
 
                 $builder
-                    ->add('academico', 'entity', array('class' => 'Ccm\SiaBundle\Entity\Academico','query_builder'=> function(\Doctrine\ORM\EntityRepository  $er) use ($user) {
-                            return $er->createQueryBuilder('q')
-                                ->select('r')
-                                ->from('Ccm\SiaBundle\Entity\Academico', 'r');}, ))
+                    ->add('academico')
+
 
                     ->add('proyecto', 'entity', array('class' => 'Ccm\SiaBundle\Entity\Proyecto','query_builder'=> function(\Doctrine\ORM\EntityRepository  $er) use ($user) {
                         return $er->createQueryBuilder('q')
