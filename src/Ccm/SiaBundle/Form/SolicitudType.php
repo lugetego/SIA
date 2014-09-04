@@ -50,7 +50,7 @@ class SolicitudType extends AbstractType
                             ->setParameter('id', $user->getId())
 
 
-                            ;}, ))
+                            ;}, 'multiple' => true))
 
                         ->add('proyecto', 'entity', array('class' => 'Ccm\SiaBundle\Entity\Proyecto','query_builder'=> function(\Doctrine\ORM\EntityRepository  $er) use ($user) {
                         return $er->createQueryBuilder('q')
