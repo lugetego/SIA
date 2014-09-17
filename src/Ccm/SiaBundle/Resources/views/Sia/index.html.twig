@@ -1,0 +1,13 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+{{ 'SIA options' }}
+<ul>
+<li><a href="{{ path('academico') }}">Academicos</a></li>
+<li><a href="{{ path('proyecto') }}">Proyectos</a></li>
+<li><a href="{{ path('sesiones') }}">Sesiones de consejo</a></li>
+<li><a href="{{ path('solicitud') }}">Solicitudes</a></li>
+
+</ul>
+
+{% endblock %}

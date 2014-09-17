@@ -24,11 +24,14 @@ security:
                     target: /login
                 anonymous:    true
 
+                switch_user: { role: ROLE_ADMIN }
+
     access_control:
             - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
             - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
             - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
             - { path: ^/, role: ROLE_USER }
+
 
 
 

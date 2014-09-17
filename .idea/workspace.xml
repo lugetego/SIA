@@ -2,7 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="26c7d346-91b0-4915-8a90-fd6c46ec766c" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Ccm/SiaBundle/Controller/SiaController.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Ccm/SiaBundle/Resources/views/Sia/index.html.twig" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Ccm/SiaBundle/Controller/SolicitudController.php" afterPath="$PROJECT_DIR$/src/Ccm/SiaBundle/Controller/SolicitudController.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Ccm/SiaBundle/Form/SolicitudType.php" afterPath="$PROJECT_DIR$/src/Ccm/SiaBundle/Form/SolicitudType.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Ccm/SiaBundle/Resources/views/Academico/index.html.twig" afterPath="$PROJECT_DIR$/src/Ccm/SiaBundle/Resources/views/Academico/index.html.twig" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Ccm/SiaBundle/Resources/views/Solicitud/new.html.twig" afterPath="$PROJECT_DIR$/src/Ccm/SiaBundle/Resources/views/Solicitud/new.html.twig" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/config/security.yml" afterPath="$PROJECT_DIR$/app/config/security.yml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Ccm/SiaBundle/Resources/views/Academico/show.html.twig" afterPath="$PROJECT_DIR$/src/Ccm/SiaBundle/Resources/views/Academico/show.html.twig" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="SIA.iws" />
@@ -30,13 +37,31 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="SolicitudType.php" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/Ccm/SiaBundle/Form/SolicitudType.php">
+      <file leaf-file-name="security.yml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/config/security.yml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="52" column="42" selection-start="1783" selection-end="1783" vertical-scroll-proportion="0.7118644" vertical-offset="360" max-vertical-offset="2160">
+            <state line="26" column="40" selection-start="715" selection-end="715" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="720">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SolicitudController.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Ccm/SiaBundle/Controller/SolicitudController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="42" column="0" selection-start="1086" selection-end="1086" vertical-scroll-proportion="-21.458334" vertical-offset="115" max-vertical-offset="5520">
               <folding>
-                <element signature="e#38#78#0" expanded="true" />
+                <element signature="e#44#84#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="new.html.twig" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/Ccm/SiaBundle/Resources/views/Solicitud/new.html.twig">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="34" column="32" selection-start="1265" selection-end="1265" vertical-scroll-proportion="0.40677965" vertical-offset="270" max-vertical-offset="1065">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -50,57 +75,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SolicitudController.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Ccm/SiaBundle/Controller/SolicitudController.php">
+      <file leaf-file-name="layout.html.twig" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Ccm/SiaBundle/Resources/views/layout.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="90" column="68" selection-start="2508" selection-end="2508" vertical-scroll-proportion="-15.0" vertical-offset="990" max-vertical-offset="5385">
-              <folding>
-                <element signature="e#44#84#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="new.html.twig" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Ccm/SiaBundle/Resources/views/Solicitud/new.html.twig">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="46" column="0" selection-start="1767" selection-end="1767" vertical-scroll-proportion="-23.125" vertical-offset="135" max-vertical-offset="990">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SesionesType.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Ccm/SiaBundle/Form/SesionesType.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="675">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AcademicoType.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Ccm/SiaBundle/Form/AcademicoType.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="22" column="23" selection-start="587" selection-end="587" vertical-scroll-proportion="-7.9583335" vertical-offset="109" max-vertical-offset="720">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="new.html.twig" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Ccm/SiaBundle/Resources/views/Academico/new.html.twig">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="8" column="8" selection-start="151" selection-end="151" vertical-scroll-proportion="-5.0" vertical-offset="0" max-vertical-offset="315">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Proyecto.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Ccm/SiaBundle/Entity/Proyecto.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="133" column="28" selection-start="2398" selection-end="2398" vertical-scroll-proportion="-50.291668" vertical-offset="773" max-vertical-offset="2130">
+            <state line="0" column="43" selection-start="6" selection-end="43" vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="1230">
               <folding />
             </state>
           </provider>
@@ -109,7 +87,47 @@
       <file leaf-file-name="Academico.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Ccm/SiaBundle/Entity/Academico.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="53" column="16" selection-start="1073" selection-end="1073" vertical-scroll-proportion="-13.75" vertical-offset="450" max-vertical-offset="4185">
+            <state line="53" column="16" selection-start="1073" selection-end="1073" vertical-scroll-proportion="93.125" vertical-offset="3015" max-vertical-offset="4185">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SiaController.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Ccm/SiaBundle/Controller/SiaController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="33" column="42" selection-start="783" selection-end="783" vertical-scroll-proportion="-18.625" vertical-offset="48" max-vertical-offset="660">
+              <folding>
+                <element signature="e#44#84#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.html.twig" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Ccm/SiaBundle/Resources/views/Sia/index.html.twig">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="8" column="31" selection-start="287" selection-end="287" vertical-scroll-proportion="-5.0" vertical-offset="0" max-vertical-offset="270">
+              <folding>
+                <marker date="1409873217490" expanded="true" signature="34:337" placeholder="{% block body ...%}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ProyectoController.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Ccm/SiaBundle/Controller/ProyectoController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="3705">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.html.twig" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Ccm/SiaBundle/Resources/views/Academico/index.html.twig">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="31" column="105" selection-start="1163" selection-end="1163" vertical-scroll-proportion="-11.125" vertical-offset="198" max-vertical-offset="900">
               <folding />
             </state>
           </provider>
@@ -141,8 +159,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/Ccm/SiaBundle/Resources/views/Academico/show.html.twig" />
-        <option value="$PROJECT_DIR$/src/Ccm/SiaBundle/Resources/views/Academico/index.html.twig" />
         <option value="$PROJECT_DIR$/src/Ccm/SiaBundle/Resources/views/Solicitud/index.html.twig" />
         <option value="$PROJECT_DIR$/src/Ccm/SiaBundle/Form/SesionesType.php" />
         <option value="$PROJECT_DIR$/app/config/parameters.yml" />
@@ -164,15 +180,20 @@
         <option value="$PROJECT_DIR$/app/Resources/views/base.html.twig" />
         <option value="$PROJECT_DIR$/src/Ccm/SiaBundle/Resources/public/js/datepicker.js" />
         <option value="$PROJECT_DIR$/src/Ccm/SiaBundle/Resources/views/Solicitud/edit.html.twig" />
-        <option value="$PROJECT_DIR$/src/Ccm/SiaBundle/Resources/views/Solicitud/new.html.twig" />
         <option value="$PROJECT_DIR$/src/Ccm/SiaBundle/Resources/config/validation.yml" />
         <option value="$PROJECT_DIR$/src/Ccm/SiaBundle/Resources/public/js/dates.js" />
         <option value="$PROJECT_DIR$/src/Ccm/SiaBundle/Form/AcademicoType.php" />
         <option value="$PROJECT_DIR$/src/Ccm/SiaBundle/Entity/Proyecto.php" />
         <option value="$PROJECT_DIR$/src/Ccm/SiaBundle/Entity/Academico.php" />
-        <option value="$PROJECT_DIR$/src/Ccm/SiaBundle/Controller/SolicitudController.php" />
         <option value="$PROJECT_DIR$/src/Ccm/SiaBundle/Entity/Solicitud.php" />
+        <option value="$PROJECT_DIR$/app/config/security.yml" />
+        <option value="$PROJECT_DIR$/src/Ccm/SiaBundle/Resources/views/Solicitud/new.html.twig" />
+        <option value="$PROJECT_DIR$/src/Ccm/SiaBundle/Resources/views/Academico/show.html.twig" />
         <option value="$PROJECT_DIR$/src/Ccm/SiaBundle/Form/SolicitudType.php" />
+        <option value="$PROJECT_DIR$/src/Ccm/SiaBundle/Controller/SiaController.php" />
+        <option value="$PROJECT_DIR$/src/Ccm/SiaBundle/Resources/views/Sia/index.html.twig" />
+        <option value="$PROJECT_DIR$/src/Ccm/SiaBundle/Resources/views/Academico/index.html.twig" />
+        <option value="$PROJECT_DIR$/src/Ccm/SiaBundle/Controller/SolicitudController.php" />
       </list>
     </option>
   </component>
@@ -398,6 +419,74 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="Solicitud" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SIA" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SIA" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Ccm" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SiaBundle" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Sia" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SIA" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SIA" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Ccm" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SiaBundle" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Proyecto" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -739,7 +828,11 @@
       <created>1409681890900</created>
       <updated>1409681890900</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Funcionamiento completo de la generación de solicitudes">
+      <created>1409849266599</created>
+      <updated>1409849266599</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -753,7 +846,7 @@
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Framework" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20134604" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20134604" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3295099" sideWeight="0.50028044" order="9" side_tool="true" content_ui="tabs" />
@@ -790,41 +883,13 @@
     <MESSAGE value="Problema de Formulario de solicitud cuando se es un académico debido al tipo de dato que se recibe y que difiere del de la entidad" />
     <MESSAGE value="Problema de Formulario de solicitud cuando se es un académico debido al tipo de dato que se recibe y que difiere del de la entidad&#10;&#10;Modificación a formulario, con usuario admin si funciona" />
     <MESSAGE value="Problema de Formulario de solicitud cuando se es un académico debido al tipo de dato que se recibe y que difiere del de la entidad&#10;&#10;Modificación a formulario, con usuario admin si funciona&#10;" />
-    <option name="LAST_COMMIT_MESSAGE" value="Problema de Formulario de solicitud cuando se es un académico debido al tipo de dato que se recibe y que difiere del de la entidad&#10;&#10;Modificación a formulario, con usuario admin si funciona&#10;" />
+    <MESSAGE value="Funcionamiento completo de la generación de solicitudes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Funcionamiento completo de la generación de solicitudes" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/Ccm/SiaBundle/Form/FinanciamientoType.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="0" selection-start="577" selection-end="577" vertical-scroll-proportion="0.0" vertical-offset="360" max-vertical-offset="735" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Ccm/SiaBundle/Form/SolicitudType.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="34" column="39" selection-start="1140" selection-end="1140" vertical-scroll-proportion="0.0" vertical-offset="510" max-vertical-offset="1080">
-          <folding>
-            <element signature="e#38#78#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Ccm/SiaBundle/Entity/Financiamiento.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="0" selection-start="39" selection-end="39" vertical-scroll-proportion="0.0" vertical-offset="45" max-vertical-offset="1110" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Ccm/SiaBundle/Controller/SolicitudController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="120" column="0" selection-start="3278" selection-end="3278" vertical-scroll-proportion="0.0" vertical-offset="1800" max-vertical-offset="4125" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Ccm/SiaBundle/Resources/views/Solicitud/new.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="27" selection-start="298" selection-end="298" vertical-scroll-proportion="0.0" vertical-offset="150" max-vertical-offset="420" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Ccm/SiaBundle/Form/FinanciamientoType.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="24" column="0" selection-start="577" selection-end="577" vertical-scroll-proportion="0.0" vertical-offset="360" max-vertical-offset="735" />
@@ -887,11 +952,6 @@
     <entry file="file://$PROJECT_DIR$/src/Ccm/SiaBundle/Entity/Sesiones.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="95" column="0" selection-start="1650" selection-end="1650" vertical-scroll-proportion="0.53231937" vertical-offset="0" max-vertical-offset="0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/config/security.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="675" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/composer.json">
@@ -959,24 +1019,9 @@
         <state line="23" column="9" selection-start="512" selection-end="512" vertical-scroll-proportion="-14.375" vertical-offset="0" max-vertical-offset="570" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Ccm/SiaBundle/Resources/views/Default/index.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="546" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Ccm/SiaBundle/Resources/views/layout.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="43" selection-start="6" selection-end="43" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1230" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Ccm/SiaBundle/Resources/public/js/angular.min.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="210" column="0" selection-start="113249" selection-end="113249" vertical-scroll-proportion="0.0" vertical-offset="2634" max-vertical-offset="3240" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Ccm/SiaBundle/Resources/views/Solicitud/index.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="705" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Resources/views/base.html.twig">
@@ -1013,23 +1058,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Ccm/SiaBundle/Form/AcademicoType.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="23" selection-start="587" selection-end="587" vertical-scroll-proportion="-7.9583335" vertical-offset="109" max-vertical-offset="720">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Ccm/SiaBundle/Resources/views/Academico/new.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="8" selection-start="151" selection-end="151" vertical-scroll-proportion="-5.0" vertical-offset="0" max-vertical-offset="315">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Ccm/SiaBundle/Resources/views/Solicitud/edit.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state line="44" column="12" selection-start="1373" selection-end="1373" vertical-scroll-proportion="0.91525424" vertical-offset="120" max-vertical-offset="1050">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Ccm/SiaBundle/Resources/views/Academico/show.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="37" column="0" selection-start="868" selection-end="868" vertical-scroll-proportion="0.7881356" vertical-offset="90" max-vertical-offset="705">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Ccm/SiaBundle/Resources/views/Solicitud/index.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="705">
           <folding />
         </state>
       </provider>
@@ -1041,33 +1086,63 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Ccm/SiaBundle/Resources/views/Solicitud/new.html.twig">
+    <entry file="file://$PROJECT_DIR$/src/Ccm/SiaBundle/Form/AcademicoType.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="46" column="0" selection-start="1767" selection-end="1767" vertical-scroll-proportion="-23.125" vertical-offset="135" max-vertical-offset="990">
+        <state line="22" column="23" selection-start="587" selection-end="587" vertical-scroll-proportion="0.3137255" vertical-offset="108" max-vertical-offset="720">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Ccm/SiaBundle/Resources/views/Academico/new.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="8" column="8" selection-start="151" selection-end="151" vertical-scroll-proportion="0.19607843" vertical-offset="0" max-vertical-offset="612">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Ccm/SiaBundle/Entity/Proyecto.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="133" column="28" selection-start="2398" selection-end="2398" vertical-scroll-proportion="-50.291668" vertical-offset="773" max-vertical-offset="2130">
+        <state line="133" column="28" selection-start="2398" selection-end="2398" vertical-scroll-proportion="1.9722222" vertical-offset="773" max-vertical-offset="2130">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Ccm/SiaBundle/Controller/SolicitudController.php">
+    <entry file="file://$PROJECT_DIR$/src/Ccm/SiaBundle/Resources/views/Default/index.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="90" column="68" selection-start="2508" selection-end="2508" vertical-scroll-proportion="-15.0" vertical-offset="990" max-vertical-offset="5385">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="612">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Ccm/SiaBundle/Resources/views/layout.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="43" selection-start="6" selection-end="43" vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="1230">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Ccm/SiaBundle/Controller/ProyectoController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3705">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Ccm/SiaBundle/Controller/SiaController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="33" column="42" selection-start="783" selection-end="783" vertical-scroll-proportion="-18.625" vertical-offset="48" max-vertical-offset="660">
           <folding>
             <element signature="e#44#84#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Ccm/SiaBundle/Entity/Academico.php">
+    <entry file="file://$PROJECT_DIR$/src/Ccm/SiaBundle/Resources/views/Sia/index.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="53" column="16" selection-start="1073" selection-end="1073" vertical-scroll-proportion="-13.75" vertical-offset="450" max-vertical-offset="4185">
-          <folding />
+        <state line="8" column="31" selection-start="287" selection-end="287" vertical-scroll-proportion="-5.0" vertical-offset="0" max-vertical-offset="270">
+          <folding>
+            <marker date="1409873217490" expanded="true" signature="34:337" placeholder="{% block body ...%}" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1078,12 +1153,49 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/Ccm/SiaBundle/Resources/views/Academico/index.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="31" column="105" selection-start="1163" selection-end="1163" vertical-scroll-proportion="-11.125" vertical-offset="198" max-vertical-offset="900">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Ccm/SiaBundle/Entity/Academico.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="53" column="16" selection-start="1073" selection-end="1073" vertical-scroll-proportion="93.125" vertical-offset="3015" max-vertical-offset="4185">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Ccm/SiaBundle/Form/SolicitudType.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="52" column="42" selection-start="1783" selection-end="1783" vertical-scroll-proportion="0.7118644" vertical-offset="360" max-vertical-offset="2160">
+        <state line="59" column="45" selection-start="2271" selection-end="2271" vertical-scroll-proportion="-12.5" vertical-offset="585" max-vertical-offset="2160">
           <folding>
             <element signature="e#38#78#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/config/security.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="26" column="40" selection-start="715" selection-end="715" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="720">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Ccm/SiaBundle/Controller/SolicitudController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="42" column="0" selection-start="1086" selection-end="1086" vertical-scroll-proportion="-21.458334" vertical-offset="115" max-vertical-offset="5520">
+          <folding>
+            <element signature="e#44#84#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Ccm/SiaBundle/Resources/views/Solicitud/new.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="34" column="32" selection-start="1265" selection-end="1265" vertical-scroll-proportion="0.40677965" vertical-offset="270" max-vertical-offset="1065">
+          <folding />
         </state>
       </provider>
     </entry>

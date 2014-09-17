@@ -31,9 +31,18 @@ class SolicitudController extends Controller
      */
     public function indexAction()
     {
-        $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('CcmSiaBundle:Solicitud')->findAll();
+
+        if ($this->get('security.context')->isGranted('ROLE_ADMIN'))
+        {
+            $em = $this->getDoctrine()->getManager();
+            $entities = $em->getRepository('CcmSiaBundle:Solicitud')->findAll();
+        }
+        else{
+            $user = $this->get('security.context')->getToken()->getUser();
+            $entities = $user->getAcademico()->getSolicitudes();
+        }
+
 
         return array(
             'entities' => $entities,
