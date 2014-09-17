@@ -2,14 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="26c7d346-91b0-4915-8a90-fd6c46ec766c" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Ccm/SiaBundle/Controller/SiaController.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Ccm/SiaBundle/Resources/views/Sia/index.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Ccm/SiaBundle/Controller/SolicitudController.php" afterPath="$PROJECT_DIR$/src/Ccm/SiaBundle/Controller/SolicitudController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Ccm/SiaBundle/Form/SolicitudType.php" afterPath="$PROJECT_DIR$/src/Ccm/SiaBundle/Form/SolicitudType.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Ccm/SiaBundle/Resources/views/Academico/index.html.twig" afterPath="$PROJECT_DIR$/src/Ccm/SiaBundle/Resources/views/Academico/index.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Ccm/SiaBundle/Resources/views/Solicitud/new.html.twig" afterPath="$PROJECT_DIR$/src/Ccm/SiaBundle/Resources/views/Solicitud/new.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/config/security.yml" afterPath="$PROJECT_DIR$/app/config/security.yml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Ccm/SiaBundle/Resources/views/Academico/show.html.twig" afterPath="$PROJECT_DIR$/src/Ccm/SiaBundle/Resources/views/Academico/show.html.twig" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="SIA.iws" />
@@ -832,7 +824,11 @@
       <created>1409849266599</created>
       <updated>1409849266599</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Creación de CRUD para proyectos &#10;Switch user">
+      <created>1410995420766</created>
+      <updated>1410995420766</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -884,7 +880,9 @@
     <MESSAGE value="Problema de Formulario de solicitud cuando se es un académico debido al tipo de dato que se recibe y que difiere del de la entidad&#10;&#10;Modificación a formulario, con usuario admin si funciona" />
     <MESSAGE value="Problema de Formulario de solicitud cuando se es un académico debido al tipo de dato que se recibe y que difiere del de la entidad&#10;&#10;Modificación a formulario, con usuario admin si funciona&#10;" />
     <MESSAGE value="Funcionamiento completo de la generación de solicitudes" />
-    <option name="LAST_COMMIT_MESSAGE" value="Funcionamiento completo de la generación de solicitudes" />
+    <MESSAGE value="Creación de CRUD para proyectos" />
+    <MESSAGE value="Creación de CRUD para proyectos &#10;Switch user" />
+    <option name="LAST_COMMIT_MESSAGE" value="Creación de CRUD para proyectos &#10;Switch user" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
