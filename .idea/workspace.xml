@@ -2,6 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="26c7d346-91b0-4915-8a90-fd6c46ec766c" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Ccm/SiaBundle/Controller/ProyectoController.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Ccm/SiaBundle/Form/ProyectoType.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Ccm/SiaBundle/Resources/views/Proyecto/edit.html.twig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Ccm/SiaBundle/Resources/views/Proyecto/index.html.twig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Ccm/SiaBundle/Resources/views/Proyecto/new.html.twig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Ccm/SiaBundle/Resources/views/Proyecto/show.html.twig" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="SIA.iws" />
@@ -828,7 +834,11 @@
       <created>1410995420766</created>
       <updated>1410995420766</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Creación de CRUD para proyectos&#10;Switch user&#10;">
+      <created>1410995702296</created>
+      <updated>1410995702296</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -882,7 +892,8 @@
     <MESSAGE value="Funcionamiento completo de la generación de solicitudes" />
     <MESSAGE value="Creación de CRUD para proyectos" />
     <MESSAGE value="Creación de CRUD para proyectos &#10;Switch user" />
-    <option name="LAST_COMMIT_MESSAGE" value="Creación de CRUD para proyectos &#10;Switch user" />
+    <MESSAGE value="Creación de CRUD para proyectos&#10;Switch user&#10;" />
+    <option name="LAST_COMMIT_MESSAGE" value="Creación de CRUD para proyectos&#10;Switch user&#10;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
