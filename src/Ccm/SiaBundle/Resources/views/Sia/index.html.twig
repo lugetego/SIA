@@ -3,18 +3,47 @@
 
 
 {% block wrapper %}
-
-    <!-- Page Content -->
-    <div id="page-wrapper">
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">Blank</h1>
+                <h1 class="page-header">Solicitudes</h1>
             </div>
-            <!-- /.col-lg-12 -->
-        </div>
+            <div class="col-lg-8">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <i class="fa fa-bell fa-fw"></i> Últimas solicitudes
+                    </div>
+
+
+                    <!-- /.panel-heading -->
+                    <div class="panel-body">
+                        <div class="list-group">
+
+
+                            {% for entity in entities %}
+
+
+                                <a href="{{ path('solicitud_show', { 'id': entity.id }) }}" class="list-group-item">
+                                    <button type="button" class="btn btn-primary btn-circle">{{ entity.id }} </button>
+                                    {{ entity.actividad }}
+                                    <span class="pull-right text-muted small"><em>Inicia: {{ entity.inicio|date('y-m-d')}}</em>
+                                    </span>
+                                </a>
+
+
+                            {% endfor %}
+
+
+
+                        </div>
+                        <!-- /.list-group -->
+                        <button type="button" class="btn btn-outline btn-primary btn-lg">Nueva Solicitud</button>
+                    </div>
+                    <!-- /.panel-body -->
+                </div>
+                <!-- /.panel -->
+            </div>
         <!-- /.row -->
     </div>
-    <!-- /#page-wrapper -->
 
 {% endblock %}
 
