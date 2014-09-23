@@ -1,49 +1,105 @@
-{% extends 'CcmSiaBundle::layout.html.twig' %}
+<!DOCTYPE html>
+<html lang="en">
 
-{% block title %}Sistema de Información Académica {% endblock %}
-{% block navtitle %}Sistema de Información Académica{% endblock %}
+<head>
 
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
+    <title>SIA - Login</title>
 
-{% block col3 %}
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="{{ asset('bundles/ccmsia/css/bootstrap.min.css') }}" type="text/css"/>
 
+    <!-- MetisMenu CSS -->
+    <link rel="stylesheet" href="{{ asset('bundles/ccmsia/css/plugins/metisMenu/metisMenu.min.css') }}" type="text/css"/>
 
-    <div class="container">
+    <!-- Timeline CSS -->
+    <link rel="stylesheet" href="{{ asset('bundles/ccmsia/css/plugins/timeline.css') }}" type="text/css"/>
 
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ asset('bundles/ccmsia/css/sb-admin-2.css') }}" type="text/css"/>
 
+    <!-- Morris Charts CSS -->
+    <link rel="stylesheet" href="{{ asset('bundles/ccmsia/css/plugins/morris.css') }}" type="text/css"/>
 
-    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+    <!-- Custom Fonts -->
+    <link rel="stylesheet" href="{{ asset('bundles/ccmsia/font-awesome-4.1.0/css/font-awesome.min.css') }}" type="text/css"/>
 
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
 
-        <div class="row">
-            <div class="col-md-12"><img src="{{ asset('bundles/ccmsia/images/Web2.jpg') }}" ></div>
-            <div class="col-md-12"><span class="glyphicon glyphicon-user"></span> Sesión iniciada como usuario  <b>{{ app.user.username }}</b></div>
-            <div class="col-md-12"><span class="glyphicon glyphicon-remove-circle"></span><a href="{{ path('fos_user_security_logout') }}"> Cerrar sesión</a></div>
+</head>
+
+<body>
+
+<div class="container">
+    <div class="row">
+
+        <div class="col-md-4 col-md-offset-4">
+            <div class="login-panel panel panel-default">
+                <div class="panel-heading">
+                    {% block paneltitle %}
+                        <h3 class="panel-title">SIA</h3>
+                    {% endblock %}
+                </div>
+                <div class="panel-body">
+                    {% block content %}
+
+{#
+                        <div>
+                            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                                {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |
+                                <a href="{{ path('fos_user_security_logout') }}">
+                                    {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+                                </a>
+                            {% else %}
+                                <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
+                            {% endif %}
+                        </div>
+#}
+
+                        {% for type, messages in app.session.flashBag.all %}
+                            {% for message in messages %}
+                                <div class="{{ type }}">
+                                    {{ message|trans({}, 'FOSUserBundle') }}
+                                </div>
+                            {% endfor %}
+                        {% endfor %}
+
+                        <div>
+                            {% block fos_user_content %}
+                            {% endblock fos_user_content %}
+                        </div>
+                    {% endblock %}
+                </div>
+            </div>
         </div>
-
-
-    {% else %}
-
-        <div class="col-md-4" >
-
-
-        <H1>Iniciar sesión</H1>
-        <!--<a href="{{ path('fos_user_security_login') }}">{{ 'Login'|trans({}, 'FOSUserBundle') }}</a>-->
-
-        <form action="{{ path("fos_user_security_check") }}" method="post">
-            <label for="username">Usuario</label>
-            <input type="text" id="username" name="_username"  class='form-control'/><br>
-            <label for="password">Contraseña</label>
-            <input type="password" id="password" name="_password"  class='form-control' /><br>
-            <input type="checkbox" id="remember_me" name="_remember_me" value="off" />
-            <label for="remember_me">Recordarme</label><br><br>
-            <button type="submit"  class="btn btn-default">Login</button>
-
-        </form>
-
-    {% endif %}
-</div>
     </div>
+</div>
 
-{% endblock %}
+<!-- jQuery Version 1.11.0 -->
+<script src="{{ asset('bundles/ccmsia/js/jquery-1.11.0.js') }}"> </script>
 
+<!-- Bootstrap Core JavaScript -->
+<script src="{{ asset('bundles/ccmsia/js/bootstrap.min.js') }}" ></script>
+
+<!-- Metis Menu Plugin JavaScript -->
+<script src="{{ asset('bundles/ccmsia/js/plugins/metisMenu/metisMenu.min.js')}}"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="{{ asset('bundles/ccmsia/js/sb-admin-2.js')}}"></script>
+
+</body>
+
+</html>
+
+{#http://symfony.com/doc/current/book/security.html#book-security-form-login#}
+{#http://symfony.com/doc/current/cookbook/security/form_login.html#}

@@ -43,6 +43,8 @@ class SolicitudController extends Controller
             $entities = $user->getAcademico()->getSolicitudes();
         }
 
+        //TODO: Caso no es ADMIN y no es Académico
+
 
         return array(
             'entities' => $entities,

@@ -3,6 +3,9 @@ ccm_sia:
     type:     annotation
     prefix:   /
 
+login_check:
+    path: /login_check
+
 fos_user_security:
     resource: "@FOSUserBundle/Resources/config/routing/security.xml"
 
