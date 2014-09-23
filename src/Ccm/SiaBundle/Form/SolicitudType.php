@@ -34,69 +34,51 @@ class SolicitudType extends AbstractType
             );
         }
 
-
         $builder
             ->add('tipo', 'choice', array('empty_value' => 'Choose an option','choices'=>array('licencia'=>'Licencia','comision'=>'Comision','visitante'=>'Visitante')));
 
+        if ( false === $this->securityContext->isGranted('ROLE_ADMIN') ) {
 
-            if ( false === $this->securityContext->isGranted('ROLE_ADMIN') ) {
-
-                $builder->add('academico', 'entity', array('class' => 'Ccm\SiaBundle\Entity\Academico','query_builder'=> function(\Doctrine\ORM\EntityRepository  $er) use ($user) {
-                        return $er->createQueryBuilder('q')
-                            ->select('r')
-                            ->from('Ccm\SiaBundle\Entity\Academico', 'r')
-                            ->leftjoin('r.user','a')
-                            ->where('a.id = :id')
-                            ->setParameter('id', $user->getId())
-
-
-                            ;}, 'multiple' => true, 'expanded'=>false))
-
-                        ->add('proyecto', 'entity', array('class' => 'Ccm\SiaBundle\Entity\Proyecto','query_builder'=> function(\Doctrine\ORM\EntityRepository  $er) use ($user) {
-                        return $er->createQueryBuilder('q')
-                            ->select('r')
-                            ->from('Ccm\SiaBundle\Entity\Proyecto', 'r')
-                            ->leftjoin('r.academico','a')
-                            ->where('a.id = :id')
-                            ->setParameter('id', $user->getAcademico())
-
-                            ;}, ));
-
-            }
-
-            else {
-
-                $builder
-                    ->add('academico')
-
+            $builder->add('academico', 'entity', array('class' => 'Ccm\SiaBundle\Entity\Academico','query_builder'=> function(\Doctrine\ORM\EntityRepository  $er) use ($user) {
+                      return $er->createQueryBuilder('q')
+                                ->select('r')
+                                ->from('Ccm\SiaBundle\Entity\Academico', 'r')
+                                ->leftjoin('r.user','a')
+                                ->where('a.id = :id')
+                                ->setParameter('id', $user->getId())
+                                ;}, 'multiple' => true, 'expanded'=>false))
 
                     ->add('proyecto', 'entity', array('class' => 'Ccm\SiaBundle\Entity\Proyecto','query_builder'=> function(\Doctrine\ORM\EntityRepository  $er) use ($user) {
-                        return $er->createQueryBuilder('q')
+                      return $er->createQueryBuilder('q')
+                                ->select('r')
+                                ->from('Ccm\SiaBundle\Entity\Proyecto', 'r')
+                                ->leftjoin('r.academico','a')
+                                ->where('a.id = :id')
+                                ->setParameter('id', $user->getAcademico())
+                                ;}, ));
+        }
+
+        else {
+
+            $builder
+                ->add('academico')
+                ->add('proyecto', 'entity', array('class' => 'Ccm\SiaBundle\Entity\Proyecto','query_builder'=> function(\Doctrine\ORM\EntityRepository  $er) use ($user) {
+                  return $er->createQueryBuilder('q')
                             ->select('r')
                             ->from('Ccm\SiaBundle\Entity\Proyecto', 'r')
-
-
                             ;}, ));
+        }
 
-            }
-
-            $builder->add('sesion')
-
-
+        $builder->add('sesion')
                 ->add('pais')
-            ->add('ciudad')
-            ->add('universidad')
-            ->add('profesor')
-            ->add('actividad')
-            ->add('proposito')
+                ->add('ciudad')
+                ->add('universidad')
+                ->add('profesor')
+                ->add('actividad')
+                ->add('proposito')
             //->add('proyecto')
-
-
-
-
-
-                        ->add('inicio', 'date',array('widget' => 'single_text', 'format' => 'yyyy-MM-dd'))
-            ->add('fin', 'date',array('widget' => 'single_text', 'format' => 'yyyy-MM-dd'))
+                ->add('inicio', 'date',array('widget' => 'single_text', 'format' => 'yyyy-MM-dd'))
+                ->add('fin', 'date',array('widget' => 'single_text', 'format' => 'yyyy-MM-dd'))
             // ->add('inicio','date',array('widget' => 'single_text','format' => 'yyyy-MM-dd', 'attr' => array('class'=>'form-control', 'datepicker-popup'=> 'yyyy-MM-dd','ng-model'=>'dt',
             //'is-open'=>'opened', 'min-date'=>'minDate', 'max-date'=>"'2014-12-31'", 'datepicker-options'=>'dateOptions', 'ng-required'=>'true', 'close-text'=>'Close' )))
             //->add('fin','date',array('widget' => 'single_text','format' => 'yyyy-MM-dd', 'attr' => array('class'=>'form-control', 'datepicker-popup'=> 'yyyy-MM-dd','ng-model'=>'dt',

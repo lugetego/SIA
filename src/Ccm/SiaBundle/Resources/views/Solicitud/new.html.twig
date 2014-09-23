@@ -1,16 +1,25 @@
-{% extends '::base.html.twig' %}
+{% extends 'CcmSiaBundle::layout.html.twig' %}
 
-{% block body %}
+
+{% block wrapper %}
 
     <form action="{{ path('solicitud_create') }}" method="post" {{ form_enctype(form)  }}>
 
-        <h1>Solicitud creation</h1>
 
-        <div ng-controller="DatepickerDemoCtrl">
+        <div class="row">
 
-            {{ form_label(form.inicio) }}
-            {{ form_errors(form.inicio) }}
-            {{ form_widget(form.inicio, { 'attr': {
+            <div class="col-lg-12">
+                <h1 class="page-header">Solicitudes</h1>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-8">
+            <div ng-controller="DatepickerDemoCtrl">
+
+                {{ form_label(form.inicio) }}
+                {{ form_errors(form.inicio) }}
+                {{ form_widget(form.inicio, { 'attr': {
                 'class': 'form-control',
                 'datepicker-popup': 'yyyy-MM-dd',
                 'ng-model':'dt',
@@ -23,13 +32,13 @@
             <span class="input-group-btn">
                 <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
             </span>
-        </div>
+            </div>
 
-        <div ng-controller="DatepickerDemoCtrl" >
+            <div ng-controller="DatepickerDemoCtrl" >
 
-            {{ form_label(form.fin) }}
-            {{ form_errors(form.fin) }}
-            {{ form_widget(form.fin, { 'attr': {
+                {{ form_label(form.fin) }}
+                {{ form_errors(form.fin) }}
+                {{ form_widget(form.fin, { 'attr': {
                 'class': 'form-control',
                 'datepicker-popup': 'yyyy-MM-dd',
                 'ng-model':'dt',
@@ -42,24 +51,25 @@
             <span class="input-group-btn">
                 <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
             </span>
-            <b id='days'> </b>
+                <b id='days'> </b>
+            </div>
+
+            {{ form_rest(form) }}
+
+            <ul>
+                <li>
+                    <a href="{{ path('solicitud') }}">
+                        Back to the list
+                    </a>
+                </li>
+                <li>
+                    {% if is_granted('ROLE_PREVIOUS_ADMIN') %}
+                        <a href="{{ path('solicitud', {'_switch_user': '_exit'}) }}">Exit impersonation</a>
+                    {% endif %}
+                </li>
+            </ul>
         </div>
-
-        {{ form_rest(form) }}
-
-        <ul>
-            <li>
-                <a href="{{ path('solicitud') }}">
-                    Back to the list
-                </a>
-            </li>
-            <li>
-                {% if is_granted('ROLE_PREVIOUS_ADMIN') %}
-                    <a href="{{ path('solicitud', {'_switch_user': '_exit'}) }}">Exit impersonation</a>
-                {% endif %}
-            </li>
-        </ul>
-
+</div>
     </form>
 
 {% endblock %}

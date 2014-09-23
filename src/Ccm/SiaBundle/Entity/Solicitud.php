@@ -173,6 +173,16 @@ class Solicitud
     }
 
     /**
+     * Get created
+     *
+     * @return string
+     */
+    public function getCreated()
+    {
+        return $this->created;
+
+    }
+    /**
      * Set modified
      *
      * @param datetime $modified
