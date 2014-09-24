@@ -7,46 +7,128 @@
         <div class="row">
 
             <div class="col-lg-12">
-                <h1 class="page-header">Solicitudes</h1>
+                <p></p>
+{#                <h1 class="page-header">Solicitudes </h1>#}
             </div>
+        </div>
 
-            <div class="col-lg-8">
+        <div class="row">
+            <div class="col-lg-6">
                  <div class="panel panel-default">
                     <div class="panel-heading">
-                        <i class="fa fa-bell fa-fw"></i> Últimas solicitudes
+                        <i class="fa fa-tags"></i> Solicitudes <span class="badge">5</span>
+                            <div class="pull-right">
+                                <a href="{{ path('solicitud_new') }}"><button type="button" class="btn btn-primary btn-xs"><i class="fa fa-plus"></i> Crear Solicitud</button></a>
+                            </div>
                     </div>
-
-
                     <!-- /.panel-heading -->
                     <div class="panel-body">
-                        <div class="list-group">
-
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Tipo / fecha</th>
+                                <th>Estatus</th>
+                            </tr>
+                            </thead>
+                            <tbody>
 
                             {% for entity in entities %}
-
-
-                                <a href="{{ path('solicitud_show', { 'id': entity.id }) }}" class="list-group-item">
-                                    <button type="button" class="btn btn-primary btn-circle">{{ entity.id }} </button>
-                                    {{ entity.actividad }}
-                                    <span class="pull-right text-muted small"><em>Inicia: {{ entity.inicio|date('y-m-d')}}</em>
+                                <tr>
+                                    <td>
+                                        <a href="{{ path('solicitud_show', { 'id': entity.id }) }}"> {{ entity.id }}</a>
+                                    </td>
+                                    <td>
+                                        {{ entity.actividad }} {{ entity.tipo }}
+                                        <span class="pull-right text-muted small"><em>Inicia: {{ entity.inicio|date('y-m-d')}}</em>
                                     </span>
-                                </a>
+                                    </td>
 
+                                    <td>
+                                        <div class="pull-right"><span class="label label-success">Aprobada</span></div>
+                                    </td>
 
+                                </tr>
                             {% endfor %}
 
-
-
-                        </div>
-                        <!-- /.list-group -->
-                        <a href="{{ path('solicitud_new') }}"><button type="button" class="btn btn-outline btn-primary btn-lg">Nueva Solicitud</button></a>
-
+                            </tbody>
+                        </table>
+                        <!-- /.table -->
                     </div>
                     <!-- /.panel-body -->
                 </div>
                 <!-- /.panel -->
             </div>
+
+            <div class="col-lg-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading"><i class="fa fa-university"></i> Sesiones de Consejo </div>
+                        <div class="panel-body">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan. Aliquam ornare lacus adipiscing, posuere lectus et, fringilla augue.</p>
+                        </div>
+                    <div class="panel-footer"> Panel Footer </div>
+                </div>
+            </div>
+
+            </div>
         <!-- /.row -->
+
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <i class="fa fa-users fa-fw"></i> Académicos
+                </div>
+                <!-- /.panel-heading -->
+                <div class="panel-body">
+
+                       <table class="table">
+                            <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Nombre</th>
+                                <th>Solicitudes</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+
+                            {% for entity in entities %}
+                                <tr>
+                                    <td>
+                                        <img src="http://placekitten.com/g/150/150" alt="..." class="img-circle" style="width: 50px; height: 50px;">
+                                    </td>
+                                    <td>
+                                        {{ entity.actividad }} {{ entity.tipo }}
+                                    </td>
+
+                                    <td>
+                                        <a href="#"><span class="badge pull-right">42</span>Home</a>
+                                    </td>
+
+                                </tr>
+                            {% endfor %}
+
+                            </tbody>
+                        </table>
+                        <!-- /.table -->
+                </div>
+                <!-- /.panel-body -->
+            </div>
+            <!-- /.panel -->
+        </div>
+
+        <div class="col-lg-6">
+            <div class="panel panel-default">
+                <div class="panel-heading"><i class="fa fa-file-text-o"></i> Proyectos </div>
+                <div class="panel-body">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan. Aliquam ornare lacus adipiscing, posuere lectus et, fringilla augue.</p>
+                </div>
+                <div class="panel-footer"> Panel Footer </div>
+            </div>
+        </div>
+
+    </div>
+    <!-- /.row -->
     </div>
 
 {% endblock %}
