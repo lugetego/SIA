@@ -1,6 +1,6 @@
-{% extends '::base.html.twig' %}
+{% extends 'CcmSiaBundle::layout.html.twig' %}
 
-{% block body -%}
+{% block wrapper %}
     <h1>Solicitud confirmacion</h1>
 
     {% for mensaje in app.session.flashbag.get('info') %}

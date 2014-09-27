@@ -78,6 +78,7 @@
                         </tr>
                         </tbody>
                     </table>
+                </div>
 
                 <p>Enviada: {{ entity.enviada}}</p>
                 <p>Aprobada: {{ entity.aprobada}}</p>
@@ -89,7 +90,6 @@
 
 
 
-            </div>
             <div class="panel-footer">
 
                 <a href="{{ path('solicitud_edit', { 'id': entity.id }) }}"><button type="button" class="btn btn-outline btn-primary btn-lg">Edit</button></a>

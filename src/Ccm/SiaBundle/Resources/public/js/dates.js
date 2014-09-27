@@ -21,13 +21,13 @@ fin.onfocus = function(){
 
     else {
         if( a.isValid == false ){
-            document.getElementById('days').innerHTML= 'fecha de inicio inválida';
+            document.getElementById('days').innerHTML= 'Fecha de inicio inválida';
             inicio.value = '';}
         if( b.isValid == false ){
             fin.value = '';
         }
 
-        document.getElementById('days').innerHTML= 'fechas inválidas';
+        document.getElementById('days').innerHTML= 'Fechas inválidas';
         inicio.value = '';
         fin.value = '';
 
