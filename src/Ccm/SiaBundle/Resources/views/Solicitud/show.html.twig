@@ -29,7 +29,7 @@
             </div>
             <div class="panel-body">
                 <p>Inicio de la solicitud: {{ entity.inicio |date ('y-m-d')}}</p>
-                <p>Fin de la solicitud : {{ entity.inicio |date ('y-m-d')}}</p>
+                <p>Fin de la solicitud : {{ entity.fin |date ('y-m-d')}}</p>
                 <p>Proyecto: {{ entity.proyecto}}</p>
                 <p>País: {{ entity.pais}}</p>
                 <p>Ciudad: {{ entity.ciudad}}</p>
@@ -89,12 +89,19 @@
 
 
 
-
+{% block footer %}
             <div class="panel-footer">
+                <div class="row">
+                    <div class="col-lg-8">
+                        <div class="col-lg-12">
+                            <a href="{{ path('solicitud_edit', { 'id': entity.id }) }}" type="button" class="btn btn-primary">Edit</a>
+                            <a href="{{ path('solicitud') }}" type="button"  class="btn btn-danger">Cancelar</a>
+                            <a href="{{ path('solicitud_delete', { 'id': entity.id }) }}" type="button" class="btn btn-primary">Eliminar</a>
+                        </div>
+                    </div>
+                </div>
+{% endblock %}
 
-                <a href="{{ path('solicitud_edit', { 'id': entity.id }) }}"><button type="button" class="btn btn-outline btn-primary btn-lg">Edit</button></a>
-
-                {{ form_widget(delete_form) }}
 
 
 

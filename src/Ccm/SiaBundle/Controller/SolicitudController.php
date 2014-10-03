@@ -76,9 +76,18 @@ class SolicitudController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            //return $this->redirect($this->generateUrl('solicitud_show', array('id' => $entity->getId())));
 
-            return $content = $this->render('CcmSiaBundle:Solicitud:confirm.html.twig', array('id' => $entity->getId(),'entity'=>$entity));
+
+
+        //return $this->redirect($this->generateUrl('solicitud_show', array('id' => $entity->getId())));
+
+            $nextAction = $form->get('saveAndAdd')->isClicked()
+                ? 'solicitud_send'
+                : 'solicitud_show';
+
+            return $this->redirect($this->generateUrl($nextAction, array('id' => $entity->getId())));
+
+        //    return $content = $this->render('CcmSiaBundle:Solicitud:confirm.html.twig', array('id' => $entity->getId(),'entity'=>$entity));
 
         }
 
@@ -102,6 +111,7 @@ class SolicitudController extends Controller
         $form = $this->createForm(new SolicitudType($securityContext), $entity, array(
             'action' => $this->generateUrl('solicitud_create'),
             'method' => 'POST',
+
         ));
 
         //$form->add('submit', 'submit', array('label' => 'Create'));
@@ -228,7 +238,7 @@ class SolicitudController extends Controller
             'method' => 'PUT',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Update'));
+        //$form->add('submit', 'submit', array('label' => 'Update'));
 
         return $form;
     }
@@ -273,6 +283,11 @@ class SolicitudController extends Controller
 
             $em->flush();
 
+            $nextAction = $editForm->get('saveAndAdd')->isClicked()
+                ? 'solicitud_send'
+                : 'solicitud_show';
+
+            return $this->redirect($this->generateUrl($nextAction, array('id' => $entity->getId())));
 
             $logger->notice('Solicitud Edit persist', array('id' => $id));
 
@@ -325,7 +340,7 @@ class SolicitudController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('solicitud_delete', array('id' => $id)))
             ->setMethod('DELETE')
-            ->add('submit', 'submit', array('label' => 'Delete'))
+            //->add('submit', 'submit', array('label' => 'Delete'))
             ->getForm()
         ;
     }

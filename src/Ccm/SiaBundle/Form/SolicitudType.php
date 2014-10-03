@@ -76,7 +76,7 @@ class SolicitudType extends AbstractType
                     ->add('actividad')
                     ->add('proposito')
                     //->add('proyecto')
-                    ->add('inicio', 'date',array('widget' => 'single_text', 'format' => 'yyyy-MM-dd','label'=>'Fecha inicial'))
+                    ->add('inicio', 'date',array('widget' => 'single_text', 'format' => 'yyyy-MM-dd','label'=>'Fecha inicial','required'=>false))
                     ->add('fin', 'date',array('widget' => 'single_text', 'format' => 'yyyy-MM-dd','label'=>'Fecha final'))
                     //->add('inicio','date',array('widget' => 'single_text','format' => 'yyyy-MM-dd', 'attr' => array('class'=>'form-control', 'datepicker-popup'=> 'yyyy-MM-dd','ng-model'=>'dt',
                     //'is-open'=>'opened', 'min-date'=>'minDate', 'max-date'=>"'2014-12-31'", 'datepicker-options'=>'dateOptions', 'ng-required'=>'true', 'close-text'=>'Close' )))
@@ -86,7 +86,8 @@ class SolicitudType extends AbstractType
                     ->add('financiamiento', 'collection', array(
                           'type' => new FinanciamientoType(),
                           'allow_add'    => true,))
-                    ->add('save', 'submit', array('label' => 'Nueva Solicitud'))
+                    ->add('save', 'submit', array('label' => 'Guardar','validation_groups' => false,))
+                    ->add('saveAndAdd', 'submit', array('label' => 'Guardar y enviar'))
         ;
     }
 
@@ -95,9 +96,14 @@ class SolicitudType extends AbstractType
      */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
+
         $resolver->setDefaults(array(
-            'data_class' => 'Ccm\SiaBundle\Entity\Solicitud',
-            'cascade_validation' => true,
+            'validation_groups' => array(
+                'solicitud'),
+
+
+
+
         ));
     }
 

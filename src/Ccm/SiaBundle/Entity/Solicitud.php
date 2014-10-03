@@ -95,6 +95,7 @@ class Solicitud
      * @var string $inicio
      *
      * @ORM\Column(name="inicio", type="date")
+     * @Assert\NotBlank(groups={"solicitud"})
      */
     private $inicio;
 
