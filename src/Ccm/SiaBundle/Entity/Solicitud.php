@@ -26,75 +26,87 @@ class Solicitud
     /**
      * @var academico
      * @ORM\ManyToMany(targetEntity="Academico", inversedBy="solicitudes")
+     * @Assert\NotBlank(groups={"solicitud"})
      */
     public $academico;
 
     /**
      * @var sesion
      * @ORM\ManyToMany(targetEntity="Sesiones", inversedBy="solicitudes")
+     * @Assert\NotBlank(groups={"solicitud"})
      */
     private $sesion;
 
     /**
      * @var string $tipo
      *
-     * @ORM\Column(name="tipo", type="string", length=30)
+     * @ORM\Column(name="tipo", type="string", length=30, nullable=true)
+     * @Assert\Choice(choices = {"licencia", "comision"}, message = "Choose a valid option.")
+     * @Assert\NotBlank(groups={"solicitud"})
      */
     private $tipo;
 
     /**
      * @var string $pais
      *
-     * @ORM\Column(name="pais", type="string", length=30)
+     * @ORM\Column(name="pais", type="string", length=30, nullable=true)
+     * @Assert\NotBlank(groups={"solicitud"})
      */
     private $pais;
 
     /**
      * @var string $ciudad
      *
-     * @ORM\Column(name="ciudad", type="string", length=30)
+     * @ORM\Column(name="ciudad", type="string", length=30, nullable=true)
+     * @Assert\NotBlank(groups={"solicitud"})
      */
     private $ciudad;
 
     /**
      * @var string $universidad
      *
-     * @ORM\Column(name="universidad", type="string", length=30)
+     * @ORM\Column(name="universidad", type="string", length=30, nullable=true)
+     * @Assert\NotBlank(groups={"solicitud"})
      */
     private $universidad;
 
     /**
      * @var string $profesor
      *
-     * @ORM\Column(name="profesor", type="string", length=30)
+     * @ORM\Column(name="profesor", type="string", length=30, nullable=true)
+     * @Assert\NotBlank(groups={"solicitud"})
      */
     private $profesor;
 
     /**
      * @var string $actividad
      *
-     * @ORM\Column(name="actividad", type="string", length=30)
+     * @ORM\Column(name="actividad", type="string", length=30, nullable=true)
+     * @Assert\NotBlank(groups={"solicitud"})
      */
     private $actividad;
 
     /**
      * @var string $proposito
      *
-     * @ORM\Column(name="proposito", type="string", length=30)
+     * @ORM\Column(name="proposito", type="string", length=30, nullable=true)
+     * @Assert\NotBlank(groups={"solicitud"})
      */
     private $proposito;
 
     /**
      * @var string $proyecto
      *
-     * @ORM\Column(name="proyecto", type="string")
+     * @ORM\Column(name="proyecto", type="string", nullable=true)
+     * @Assert\NotBlank(groups={"solicitud"})
      */
     private $proyecto;
 
     /**
      * @var string $inicio
      *
-     * @ORM\Column(name="inicio", type="date")
+     * @ORM\Column(name="inicio", type="date", nullable=true)
+     * @Assert\Date()
      * @Assert\NotBlank(groups={"solicitud"})
      */
     private $inicio;
@@ -102,14 +114,17 @@ class Solicitud
     /**
      * @var string $fin
      *
-     * @ORM\Column(name="fin", type="date")
+     * @ORM\Column(name="fin", type="date", nullable=true)
+     * @Assert\Date()
+     * @Assert\NotBlank(groups={"solicitud"})
      */
     private $fin;
 
     /**
      * @var string $trabajo
      *
-     * @ORM\Column(name="trabajo", type="string", length=30)
+     * @ORM\Column(name="trabajo", type="string", length=30, nullable=true)
+     * @Assert\NotBlank(groups={"solicitud"})
      */
     private $trabajo;
 

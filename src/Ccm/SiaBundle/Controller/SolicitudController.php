@@ -85,6 +85,8 @@ class SolicitudController extends Controller
                 ? 'solicitud_send'
                 : 'solicitud_show';
 
+            $this->get('session')->getFlashBag()->add('info', 'Tu solicitud se ha guardado exitosamente');
+
             return $this->redirect($this->generateUrl($nextAction, array('id' => $entity->getId())));
 
         //    return $content = $this->render('CcmSiaBundle:Solicitud:confirm.html.twig', array('id' => $entity->getId(),'entity'=>$entity));
@@ -131,7 +133,7 @@ class SolicitudController extends Controller
         $entity = new Solicitud();
 
         $viaticos = new Financiamiento();
-        $viaticos->setNombre("Viaticos");
+        $viaticos->setNombre("Viáticos");
         $viaticos->setCcm(0);
         $viaticos->setPapiit(0);
         $viaticos->setConacyt(0);
@@ -325,7 +327,7 @@ class SolicitudController extends Controller
             $em->flush();
         }
 
-        return $this->redirect($this->generateUrl('solicitud'));
+        return $this->redirect($this->generateUrl('sia'));
     }
 
     /**
@@ -368,12 +370,10 @@ class SolicitudController extends Controller
 
         $em->persist($entity);
         $em->flush();
-        $this->get('session')->getFlashBag()->add('info',
-            'Tu solicitud se ha enviado correctamente'
-        );
+        $this->get('session')->getFlashBag()->add('info','Tu solicitud se ha enviado correctamente');
 
 
-        return $content = $this->render('CcmSiaBundle:Solicitud:confirm.html.twig', array('id' => $entity->getId(),'entity'=>$entity));
+        return $content = $this->render('CcmSiaBundle:Solicitud:show.html.twig', array('id' => $entity->getId(),'entity'=>$entity));
 
     }
 }
