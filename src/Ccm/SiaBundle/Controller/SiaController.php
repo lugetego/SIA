@@ -9,6 +9,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Ccm\SiaBundle\Entity\Solicitud;
+use Ccm\SiaBundle\Entity\Sesiones;
 use Ccm\SiaBundle\Entity\Proyecto;
 use Ccm\SiaBundle\Form\SolicitudType;
 
@@ -34,16 +35,17 @@ class SiaController extends Controller
         if ($this->get('security.context')->isGranted('ROLE_ADMIN'))
         {
             $em = $this->getDoctrine()->getManager();
-            $entities = $em->getRepository('CcmSiaBundle:Solicitud')->findAll();
+            $solicitudes = $em->getRepository('CcmSiaBundle:Solicitud')->findAll();
+            $sesiones =  $em->getRepository('CcmSiaBundle:Sesiones')->findAll();
         }
         else{
             $user = $this->get('security.context')->getToken()->getUser();
-            $entities = $user->getAcademico()->getSolicitudes();
+            $solicitudes = $user->getAcademico()->getSolicitudes();
         }
 
 
         return array(
-            'entities' => $entities,
+            'solicitudes' => $solicitudes, 'sesiones' => $sesiones
         );
 
 

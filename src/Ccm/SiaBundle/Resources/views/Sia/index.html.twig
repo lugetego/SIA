@@ -33,14 +33,14 @@
                             </thead>
                             <tbody>
 
-                            {% for entity in entities %}
+                            {% for solicitud in solicitudes %}
                                 <tr>
                                     <td>
-                                        <a href="{{ path('solicitud_show', { 'id': entity.id }) }}"> {{ entity.id }}</a>
+                                        <a href="{{ path('solicitud_show', { 'id': solicitud.id }) }}"> {{ solicitud.id }}</a>
                                     </td>
                                     <td>
-                                        {{ entity.actividad }} {{ entity.tipo }}
-                                        <span class="pull-right text-muted small"><em>Inicia: {{ entity.inicio|date('y-m-d')}}</em>
+                                        {{ solicitud.actividad }} {{ solicitud.tipo }}
+                                        <span class="pull-right text-muted small"><em>Inicia: {{ solicitud.inicio|date('y-m-d')}}</em>
                                     </span>
                                     </td>
 
@@ -64,9 +64,39 @@
                 <div class="panel panel-default">
                     <div class="panel-heading"><i class="fa fa-university"></i> Sesiones de Consejo </div>
                         <div class="panel-body">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan. Aliquam ornare lacus adipiscing, posuere lectus et, fringilla augue.</p>
+
+                            <table class="table">
+                            <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Sesion</th>
+                                <th>Fecha</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+
+                            {% for sesion in sesiones %}
+                                <tr>
+                                    <td>
+                                        {{ sesion.id }}
+                                    </td>
+                                    <td>
+                                        {{ sesion.name }}
+                                    </td>
+
+                                    <td>
+                                        {{ solicitud.fecha }}
+                                    </td>
+
+                                </tr>
+                            {% endfor %}
+
+                            </tbody>
+                        </table>
+                        <!-- /.table -->
+
                         </div>
-                    <div class="panel-footer"> Panel Footer </div>
+                    <div class="panel-footer"> Todas las sesiones </div>
                 </div>
             </div>
 
@@ -92,13 +122,13 @@
                             </thead>
                             <tbody>
 
-                            {% for entity in entities %}
+                            {% for solicitud in solicitudes %}
                                 <tr>
                                     <td>
                                         <img src="http://placekitten.com/g/150/150" alt="..." class="img-circle" style="width: 50px; height: 50px;">
                                     </td>
                                     <td>
-                                        {{ entity.actividad }} {{ entity.tipo }}
+                                        {{ solicitud.actividad }} {{ solicitud.tipo }}
                                     </td>
 
                                     <td>
