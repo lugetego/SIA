@@ -1,14 +1,36 @@
 <?php
 
 namespace Ccm\SiaBundle\Entity;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 
 class Financiamiento {
 
+    /**
+     * @Assert\NotBlank(groups={"solicitud"})
+     */
     private $nombre;
+
+    /**
+     * @Assert\NotBlank(groups={"solicitud"})
+     * @Assert\Type(type="float", message="The value is not a valid.")
+     */
     private $ccm;
+
+    /**
+     * @Assert\NotBlank(groups={"solicitud"})
+     */
     private $papiit;
+
+    /**
+     * @Assert\NotBlank(groups={"solicitud"})
+     */
     private $conacyt;
+
+    /**
+     * @Assert\NotBlank(groups={"solicitud"})
+     */
     private $otro;
 
     public function getNombre()

@@ -35,12 +35,20 @@ class SolicitudType extends AbstractType
         }
 
         $builder
-            ->add('tipo', 'choice', array('empty_value' => 'Choose an option','choices'=>array('licencia'=>'Licencia','comision'=>'Comision','visitante'=>'Visitante')));
+            ->add('tipo', 'choice', array('empty_value' => 'Choose an option','required'=>false,
+                'choices'=>array(
+                    'licencia'=>'Licencia',
+                    'comision'=>'Comision',
+                )));
 
         if ( false === $this->securityContext->isGranted('ROLE_ADMIN') ) {
 
-            $builder->add('academico', 'entity', array('class' => 'Ccm\SiaBundle\Entity\Academico','query_builder'=> function(\Doctrine\ORM\EntityRepository  $er) use ($user) {
-                      return $er->createQueryBuilder('q')
+            $builder
+                ->add('academico', 'entity', array(
+                    'class' => 'Ccm\SiaBundle\Entity\Academico',
+                    'required'=>false,
+                    'query_builder'=> function(\Doctrine\ORM\EntityRepository  $er) use ($user) {
+                        return $er->createQueryBuilder('q')
                                 ->select('r')
                                 ->from('Ccm\SiaBundle\Entity\Academico', 'r')
                                 ->leftjoin('r.user','a')
@@ -48,8 +56,11 @@ class SolicitudType extends AbstractType
                                 ->setParameter('id', $user->getId())
                                 ;}, 'multiple' => true, 'expanded'=>false))
 
-                    ->add('proyecto', 'entity', array('class' => 'Ccm\SiaBundle\Entity\Proyecto','query_builder'=> function(\Doctrine\ORM\EntityRepository  $er) use ($user) {
-                      return $er->createQueryBuilder('q')
+                ->add('proyecto', 'entity', array(
+                    'class' => 'Ccm\SiaBundle\Entity\Proyecto',
+                    'required'=>false,
+                    'query_builder'=> function(\Doctrine\ORM\EntityRepository  $er) use ($user) {
+                        return $er->createQueryBuilder('q')
                                 ->select('r')
                                 ->from('Ccm\SiaBundle\Entity\Proyecto', 'r')
                                 ->leftjoin('r.academico','a')
@@ -61,41 +72,39 @@ class SolicitudType extends AbstractType
         else {
 
             $builder
-                ->add('academico')
-                ->add('proyecto', 'entity', array('class' => 'Ccm\SiaBundle\Entity\Proyecto','query_builder'=> function(\Doctrine\ORM\EntityRepository  $er) use ($user) {
-                  return $er->createQueryBuilder('q')
-                            ->select('r')
-                            ->from('Ccm\SiaBundle\Entity\Proyecto', 'r')
-                            ;}, ));
+                ->add('academico',null,array('required'=>false))
+                ->add('proyecto', 'entity', array(
+                    'required'=>false,
+                    'empty_value' => 'Choose an option',
+                    'class' => 'Ccm\SiaBundle\Entity\Proyecto',
+                    'query_builder'=> function(\Doctrine\ORM\EntityRepository  $er) use ($user) {
+                         return $er->createQueryBuilder('q')
+                                 ->select('r')
+                                 ->from('Ccm\SiaBundle\Entity\Proyecto', 'r')
+                                 ;}, ));
         }
 
-        $builder->add('sesion')
-                ->add('pais')
-                ->add('ciudad')
-                ->add('universidad')
-                ->add('profesor')
-                ->add('actividad')
-                ->add('proposito')
-            //->add('proyecto')
-                ->add('inicio', 'date',array('widget' => 'single_text', 'format' => 'yyyy-MM-dd'))
-                ->add('fin', 'date',array('widget' => 'single_text', 'format' => 'yyyy-MM-dd'))
-            // ->add('inicio','date',array('widget' => 'single_text','format' => 'yyyy-MM-dd', 'attr' => array('class'=>'form-control', 'datepicker-popup'=> 'yyyy-MM-dd','ng-model'=>'dt',
-            //'is-open'=>'opened', 'min-date'=>'minDate', 'max-date'=>"'2014-12-31'", 'datepicker-options'=>'dateOptions', 'ng-required'=>'true', 'close-text'=>'Close' )))
-            //->add('fin','date',array('widget' => 'single_text','format' => 'yyyy-MM-dd', 'attr' => array('class'=>'form-control', 'datepicker-popup'=> 'yyyy-MM-dd','ng-model'=>'dt',
-            //          'is-open'=>'opened', 'min-date'=>'minDate', 'max-date'=>"'2014-12-31'", 'datepicker-options'=>'dateOptions', 'ng-required'=>'true', 'close-text'=>'Close' )))
-            ->add('trabajo')
-            ->add('financiamiento', 'collection', array(
-                'type' => new FinanciamientoType(),
-                'allow_add'    => true,
-            ));
-
-        //   ->add('sesion', 'entity', array(
-        //       'class' => 'CcmSiaBundle:Sesiones',
-        //       'query_builder' => function(\Doctrine\ORM\EntityRepository  $er) {
-        //               return $er->createQueryBuilder('u')
-        //                   ->orderBy('u.id', 'DESC');},))
-
-
+            $builder->add('sesion',null,array('required'=>false))
+                    ->add('pais','text',array('required'=>false,'label'=>'País que visitará'))
+                    ->add('ciudad','text',array('required'=>false,'label'=>'Ciudad que visitará'))
+                    ->add('universidad','text',array('required'=>false,'label'=>'Universidad y departamento que visitará'))
+                    ->add('profesor','text',array('required'=>false,'label'=>'Profesor a quién visitará'))
+                    ->add('actividad','textarea',array('required'=>false,'label'=>'Actividad a desarrollar'))
+                    ->add('proposito','textarea',array('required'=>false,'label'=>'Propósito del viaje y/o nombre del proyecto de investigación'))
+                    //->add('proyecto')
+                    ->add('inicio', 'date',array('widget' => 'single_text', 'format' => 'yyyy-MM-dd','label'=>'Fecha inicial','required'=>false))
+                    ->add('fin', 'date',array('widget' => 'single_text', 'format' => 'yyyy-MM-dd','label'=>'Fecha final','required'=>false))
+                    //->add('inicio','date',array('widget' => 'single_text','format' => 'yyyy-MM-dd', 'attr' => array('class'=>'form-control', 'datepicker-popup'=> 'yyyy-MM-dd','ng-model'=>'dt',
+                    //'is-open'=>'opened', 'min-date'=>'minDate', 'max-date'=>"'2014-12-31'", 'datepicker-options'=>'dateOptions', 'ng-required'=>'true', 'close-text'=>'Close' )))
+                    //->add('fin','date',array('widget' => 'single_text','format' => 'yyyy-MM-dd', 'attr' => array('class'=>'form-control', 'datepicker-popup'=> 'yyyy-MM-dd','ng-model'=>'dt',
+                    //'is-open'=>'opened', 'min-date'=>'minDate', 'max-date'=>"'2014-12-31'", 'datepicker-options'=>'dateOptions', 'ng-required'=>'true', 'close-text'=>'Close' )))
+                    ->add('trabajo','textarea',array('required'=>false,'label'=>'Título del trabajo que presentará (en su caso)'))
+                    ->add('financiamiento', 'collection', array(
+                          'required'=>false,
+                          'type' => new FinanciamientoType(),
+                          'allow_add'    => true,))
+                    ->add('save', 'submit', array('label' => 'Guardar','validation_groups' => false,))
+                    ->add('saveAndAdd', 'submit', array('label' => 'Guardar y enviar'))
         ;
     }
 
@@ -104,9 +113,14 @@ class SolicitudType extends AbstractType
      */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
+
         $resolver->setDefaults(array(
-            'data_class' => 'Ccm\SiaBundle\Entity\Solicitud',
-            'cascade_validation' => true,
+            'validation_groups' => array(
+                'solicitud'),
+
+
+
+
         ));
     }
 

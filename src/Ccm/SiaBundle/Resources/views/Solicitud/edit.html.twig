@@ -1,64 +1,293 @@
 {% extends 'CcmSiaBundle::layout.html.twig' %}
 
+{% form_theme edit_form 'CcmSiaBundle::form_errors.html.twig' %}
+
 {% block wrapper%}
-    <h1>Solicitud edit</h1>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Modificar Solicitud</h1>
+        </div>
+    </div>
+{% if entity.enviada %}
+<div class="row">
+<div class="col-lg-8">
+    <div class="alert alert-danger">
+        <button class="btn btn-danger btn-circle" type="button"><i class="fa fa-times"></i>
+        </button> Ya no es posible modificar esta solicitud <a href="{{ path('solicitud_show', { 'id': entity.id }) }}" type="button" class="alert-link">Regresar</a>
+
+    </div>
+</div>
+</div>
+{% else %}
 
     {{ form_start(edit_form) }}
 
 
-    <div ng-controller="DatepickerDemoCtrl" ng-init="inicio='{{ entity.inicio|date("Y-m-d") }}';">
 
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="col-lg-4">
+                <div ng-controller="DatepickerDemoCtrl" class="form-group input-group" ng-init="inicio='{{ entity.inicio|date("Y-m-d") }}';">
+                    <div>{{ form_label(edit_form.inicio) }}</div>
+                    <div>{{ form_errors(edit_form.inicio) }}
+                    {{ form_widget(edit_form.inicio, { 'attr': {
+                    'class': 'form-control',
+                    'datepicker-popup': 'yyyy-MM-dd',
+                    'ng-model':'inicio',
+                    'is-open':'opened',
+                    'min-date':'minDate',
+                    'max-date':"'2015-06-22'",
+                    'datepicker-options':'dateOptions',
+                    'ng-required':'true',
+                    'close-text':'Close' } } ) }}
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                        </span>
+                    </div>
+                </div>
+            </div>
 
-        {{ form_label(edit_form.inicio) }}
-        {{ form_errors(edit_form.inicio) }}
+            <div class="col-lg-4">
+                <div ng-controller="DatepickerDemoCtrl" class="form-group input-group" ng-init="fin='{{ entity.fin|date("Y-m-d") }}';">
+                    <div>{{ form_label(edit_form.fin) }}</div>
+                    <div>{{ form_errors(edit_form.fin) }}
+                    {{ form_widget(edit_form.fin, { 'attr': {
+                    'class': 'form-control',
+                    'datepicker-popup': 'yyyy-MM-dd',
+                    'ng-model':'fin',
+                    'is-open':'opened',
+                    'min-date':'minDate',
+                    'max-date':"'2015-06-22'",
+                    'datepicker-options':'dateOptions',
+                    'ng-required':'true',
+                    'close-text':'Close' } } ) }}
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                        </span>
+                    <b id='days'> </b>
+                </div>
+                </div>
 
-        {{ form_widget(edit_form.inicio, { 'attr': {
-            'datepicker-popup': 'yyyy-MM-dd',
-            'ng-model':'inicio',
-            'is-open':'opened',
-            'min-date':'minDate',
-            'max-date':"'2015-06-22'",
-            'datepicker-options':'dateOptions',
-            'ng-required':'true',
-            'close-text':'Close'  } } ) }}
-
-        <span class="input-group-btn">
-            <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
-        </span>
-
-
+            </div>
+        </div>
     </div>
 
-    <div ng-controller="DatepickerDemoCtrl" ng-init="fin='{{ entity.fin|date("Y-m-d") }}';">
-
-        {{ form_label(edit_form.fin) }}
-        {{ form_errors(edit_form.fin) }}
-
-        {{ form_widget(edit_form.fin, { 'attr': {
-            'datepicker-popup': 'yyyy-MM-dd',
-            'ng-model':'fin',
-            'is-open':'opened',
-            'min-date':'minDate',
-            'max-date':"'2015-06-22'",
-            'datepicker-options':'dateOptions',
-            'ng-required':'true',
-            'close-text':'Close'  } } ) }}
-        <span class="input-group-btn">
-                <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
-              </span>
-        <b id='days'> </b>
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="col-lg-4">
+                <div class="form-group">
+                    <div>
+                        {{ form_label(edit_form.tipo) }}
+                    </div>
+                    <div>
+                        {{ form_widget(edit_form.tipo, {'attr': {'class': 'form-control'} } ) }}
+                    </div>
+                    <div>{{ form_errors(edit_form.tipo) }}</div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="form-group">
+                    <div>
+                        {{ form_label(edit_form.proyecto) }}
+                    </div>
+                    <div>
+                        {{ form_widget(edit_form.proyecto, {'attr': {'class': 'form-control'} } ) }}
+                    </div>
+                    <div>{{ form_errors(edit_form.proyecto) }}</div>
+                </div>
+            </div>
+        </div>
     </div>
 
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="col-lg-4">
+                <div class="form-group">
+                    <div>
+                        {{ form_label(edit_form.academico) }}
+                    </div>
+                    <div>
+                        {{ form_widget(edit_form.academico, {'attr': {'class': 'form-control'} } ) }}
+                    </div>
+                    <div>{{ form_errors(edit_form.academico) }}</div>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="form-group">
+                    <div>
+                        {{ form_label(edit_form.sesion) }}
+                    </div>
+                    <div>
+                        {{ form_widget(edit_form.sesion, {'attr': {'class': 'form-control'} } ) }}
+                    </div>
+                    <div>{{ form_errors(edit_form.sesion) }}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="col-lg-4">
+                <div class="form-group">
+                    <div>
+                        {{ form_label(edit_form.pais) }}
+                    </div>
+                    <div>
+                        {{ form_widget(edit_form.pais, {'attr': {'class': 'form-control'} } ) }}
+                    </div>
+                    <div>{{ form_errors(edit_form.pais) }}</div>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="form-group">
+                    <div>
+                        {{ form_label(edit_form.ciudad) }}
+                    </div>
+                    <div>
+                        {{ form_widget(edit_form.ciudad, {'attr': {'class': 'form-control'} } ) }}
+                    </div>
+                    <div>{{ form_errors(edit_form.ciudad) }}</div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="col-lg-8">
+                <div class="form-group">
+                    <div>
+                        {{ form_label(edit_form.universidad) }}
+                    </div>
+                    <div>
+                        {{ form_widget(edit_form.universidad, {'attr': {'class': 'form-control'} } ) }}
+                    </div>
+                    <div>{{ form_errors(edit_form.universidad) }}</div>
+                </div>
+            </div>
+            <div class="col-lg-8">
+                <div class="form-group">
+                    <div>
+                        {{ form_label(edit_form.actividad) }}
+                    </div>
+                    <div>
+                        {{ form_widget(edit_form.actividad, {'attr': {'class': 'form-control'} } ) }}
+                    </div>
+                    <div>{{ form_errors(edit_form.actividad) }}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="col-lg-8">
+                <div class="form-group">
+                    <div>
+                        {{ form_label(edit_form.profesor) }}
+                    </div>
+                    <div>
+                        {{ form_widget(edit_form.profesor, {'attr': {'class': 'form-control'} } ) }}
+                    </div>
+                    <div>{{ form_errors(edit_form.profesor) }}</div>
+                </div>
+            </div>
+            <div class="col-lg-8">
+                <div class="form-group">
+                    <div>
+                        {{ form_label(edit_form.proposito) }}
+                    </div>
+                    <div>
+                        {{ form_widget(edit_form.proposito, {'attr': {'class': 'form-control'} } ) }}
+                    </div>
+                    <div>{{ form_errors(edit_form.proposito) }}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="col-lg-8">
+                <div class="form-group">
+                    <div>
+                        {{ form_label(edit_form.trabajo) }}
+                    </div>
+                    <div>
+                        {{ form_widget(edit_form.trabajo, {'attr': {'class': 'form-control'} } ) }}
+                    </div>
+                    <div>{{ form_errors(edit_form.trabajo) }}</div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="col-lg-12">
+                <div class="form-group">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-bordered table-hover">
+                            <thead>
+                            <tr>
+                                <th>Fuente de financiamiento</th>
+                                <th>CCM</th>
+                                <th>PAPIIT</th>
+                                <th>Conacyt</th>
+                                <th>Otro</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+
+                            {% for fin in edit_form.financiamiento %}
+                                <tr>
+                                    <td>{{ form_widget(fin.nombre, { 'attr':{'class': 'form-control','readonly':'true'} }) }}</td>
+                                    <td>{{ form_widget(fin.ccm, { 'attr':{'class': 'form-control'} }) }}</td>
+                                    <td>{{ form_widget(fin.papiit, { 'attr':{'class': 'form-control'} }) }}</td>
+                                    <td>{{ form_widget(fin.conacyt, { 'attr':{'class': 'form-control'} }) }}</td>
+                                    <td>{{ form_widget(fin.otro, { 'attr':{'class': 'form-control'} }) }}</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="col-lg-12">
+                {{ form_widget(edit_form.save,{'attr':{'class':'btn btn-primary'} } )}}
+                {{ form_widget(edit_form.saveAndAdd,{'attr':{'class':'btn btn-success','onclick':"return confirm('¿Estás seguro de enviar la solicitud?, después de esta acción la solicitud no podrá ser modificada')"} } )}}
+                <a href="{{ path('solicitud_show', { 'id': entity.id }) }}" type="button" class="btn btn-primary">Cancelar</a>
+            </div>
+        </div>
+    </div>
 
     {{ form_rest(edit_form) }}
-
     {{ form_end(edit_form) }}
-    <ul class="record_actions">
-        <li>
-            <a href="{{ path('solicitud') }}">
-                Back to the list
-            </a>
-        </li>
-        <li>{{ form(delete_form) }}</li>
-    </ul>
+
+    <br>
+    <div>
+        {% if is_granted('ROLE_PREVIOUS_ADMIN') %}
+            <ul>
+                <li>
+                    <a href="{{ path('solicitud', {'_switch_user': '_exit'}) }}">Exit impersonation</a>
+                </li>
+            </ul>
+        {% endif %}
+    </div>
+    </form>
+{% endif %}
+
 {% endblock %}
