@@ -16,7 +16,7 @@
             <div class="col-lg-6">
                  <div class="panel panel-default">
                     <div class="panel-heading">
-                        <i class="fa fa-tags"></i> Últimas Solicitudes <span class="badge">{{ entities|length }}</span>
+                        <i class="fa fa-tags"></i> Últimas Solicitudes <span class="badge">{{ solicitudes|length }}</span>
                             <div class="pull-right">
                                 <a href="{{ path('solicitud') }}"><button type="button" class="btn btn-primary btn-xs"><i class="fa fa-plus"></i> Crear Solicitud</button></a>
                             </div>
@@ -46,7 +46,7 @@
 
                                     <td>
 
-                                        {%  if entity.aprobada %}
+                                        {%  if solicitud.aprobada %}
                                             <div class="pull-right">
                                             <span class="label label-success">
                                                     {{ 'Aprobada' }}
@@ -102,7 +102,7 @@
                                     </td>
 
                                     <td>
-                                        {{ solicitud.fecha }}
+                                        {{ sesion.fecha|date('y-m-d') }}
                                     </td>
 
                                 </tr>

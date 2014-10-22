@@ -32,13 +32,14 @@ class SiaController extends Controller
      */
     public function indexAction()
     {
+        $em = $this->getDoctrine()->getManager();
+
         if ($this->get('security.context')->isGranted('ROLE_ADMIN'))
         {
-            $em = $this->getDoctrine()->getManager();
+            // $entities = $em->getRepository('CcmSiaBundle:Solicitud')->findAll();
+            // $entities = $em->getRepository('CcmSiaBundle:Solicitud')->findUltimasSolicitudes();
+            $solicitudes = $em->getRepository('CcmSiaBundle:Solicitud')->findUltimasSolicitudes();
 
-            //$entities = $em->getRepository('CcmSiaBundle:Solicitud')->findAll();
-
-            $entities = $em->getRepository('CcmSiaBundle:Solicitud')->findUltimasSolicitudes();
 
         }
         else{
@@ -46,6 +47,7 @@ class SiaController extends Controller
             $solicitudes = $user->getAcademico()->getSolicitudes();
         }
 
+        $sesiones =  $em->getRepository('CcmSiaBundle:Sesiones')->findAll();
 
         return array(
             'solicitudes' => $solicitudes, 'sesiones' => $sesiones
