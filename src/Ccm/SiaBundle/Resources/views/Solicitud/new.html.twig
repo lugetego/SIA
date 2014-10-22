@@ -161,6 +161,8 @@
                     <div>{{ form_errors(form.universidad) }}</div>
                 </div>
             </div>
+
+            {%  if form.actividad is defined %}
             <div class="col-lg-8">
                 <div class="form-group">
                     <div>
@@ -172,6 +174,7 @@
                     <div>{{ form_errors(form.actividad) }}</div>
                 </div>
             </div>
+            {% endif %}
         </div>
     </div>
 
@@ -202,6 +205,7 @@
         </div>
     </div>
 
+    {% if form.trabajo is defined %}
     <div class="row">
         <div class="col-lg-8">
             <div class="col-lg-8">
@@ -218,6 +222,7 @@
 
         </div>
     </div>
+    {% endif %}
 
     <div class="row">
         <div class="col-lg-8">
@@ -241,9 +246,9 @@
                                 <tr>
                                     <td>{{ form_widget(fin.nombre, { 'attr':{'class': 'form-control','readonly':'true'} }) }}</td>
                                     <td>{{ form_widget(fin.ccm, { 'attr':{'class': 'form-control'} }) }}  {{ form_errors(fin.ccm) }}</td>
-                                    <td>{{ form_widget(fin.papiit, { 'attr':{'class': 'form-control'} }) }}</td>
-                                    <td>{{ form_widget(fin.conacyt, { 'attr':{'class': 'form-control'} }) }}</td>
-                                    <td>{{ form_widget(fin.otro, { 'attr':{'class': 'form-control'} }) }}</td>
+                                    <td>{{ form_widget(fin.papiit, { 'attr':{'class': 'form-control'} }) }} {{ form_errors(fin.papiit) }}</td>
+                                    <td>{{ form_widget(fin.conacyt, { 'attr':{'class': 'form-control'} }) }} {{ form_errors(fin.conacyt) }}</td>
+                                    <td>{{ form_widget(fin.otro, { 'attr':{'class': 'form-control'} }) }} {{ form_errors(fin.otro) }}</td>
                                 </tr>
                             {% endfor %}
 

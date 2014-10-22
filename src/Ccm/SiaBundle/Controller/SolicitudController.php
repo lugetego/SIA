@@ -11,6 +11,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Ccm\SiaBundle\Entity\Solicitud;
 use Ccm\SiaBundle\Entity\Proyecto;
 use Ccm\SiaBundle\Form\SolicitudType;
+use Ccm\SiaBundle\Form\SolicitudVisitanteType;
 
 
 
@@ -63,7 +64,11 @@ class SolicitudController extends Controller
 
         $entity = new Solicitud($securityContext);
 
-        $form = $this->createCreateForm($entity);
+        $tipo= $request->request->all();
+        $tipo= $tipo['ccm_siabundle_solicitud']['tipo-form'];
+
+
+        $form = $this->createCreateForm($entity, $tipo);
         //$form = $this->createForm(new SolicitudType(), $entity);
 
         $form->handleRequest($request);
@@ -106,15 +111,26 @@ class SolicitudController extends Controller
     *
     * @return \Symfony\Component\Form\Form The form
     */
-    private function createCreateForm(Solicitud $entity)
+    private function createCreateForm(Solicitud $entity, $tipo)
     {
         $securityContext = $this->container->get('security.context');
 
-        $form = $this->createForm(new SolicitudType($securityContext), $entity, array(
+        if( $tipo == 'licencia-comision'){
+        $form = $this->createForm(new SolicitudType($securityContext),$entity, array(
             'action' => $this->generateUrl('solicitud_create'),
             'method' => 'POST',
 
         ));
+            $form->add('tipo-form','hidden', array('data' => 'licencia-comision', 'mapped'=>false));
+        }
+        elseif( $tipo == 'visitante'){
+            $form = $this->createForm(new SolicitudVisitanteType($securityContext),$entity, array(
+                'action' => $this->generateUrl('solicitud_create'),
+                'method' => 'POST',
+
+            ));
+            $form->add('tipo-form', 'hidden', array('data' => 'visitante', 'mapped'=>false));
+        }
 
         //$form->add('submit', 'submit', array('label' => 'Create'));
 
@@ -124,11 +140,11 @@ class SolicitudController extends Controller
     /**
      * Displays a form to create a new Solicitud entity.
      *
-     * @Route("/new", name="solicitud_new")
+     * @Route("/new/{tipo}", name="solicitud_new")
      * @Method("GET")
      * @Template()
      */
-    public function newAction()
+    public function newAction($tipo)
     {
         $entity = new Solicitud();
 
@@ -164,7 +180,7 @@ class SolicitudController extends Controller
         $inscripciones->setOtro(0);
         $entity->getFinanciamiento()->add($inscripciones);
 
-        $form   = $this->createCreateForm($entity);
+        $form   = $this->createCreateForm($entity,$tipo);
 
         return array(
             'entity' => $entity,
@@ -209,12 +225,13 @@ class SolicitudController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('CcmSiaBundle:Solicitud')->find($id);
+        $tipo = $entity->getTipo();
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Solicitud entity.');
         }
 
-        $editForm = $this->createEditForm($entity);
+        $editForm = $this->createEditForm($entity,$tipo);
         $deleteForm = $this->createDeleteForm($id);
 
         return array(
@@ -231,16 +248,25 @@ class SolicitudController extends Controller
     *
     * @return \Symfony\Component\Form\Form The form
     */
-    private function createEditForm(Solicitud $entity)
+    private function createEditForm(Solicitud $entity,$tipo)
     {
         $securityContext = $this->container->get('security.context');
 
-        $form = $this->createForm(new SolicitudType($securityContext), $entity, array(
-            'action' => $this->generateUrl('solicitud_update', array('id' => $entity->getId())),
-            'method' => 'PUT',
-        ));
+        if( $tipo == 'licencia' || $tipo == 'comision'){
+            $form = $this->createForm(new SolicitudType($securityContext),$entity, array(
+                'action' => $this->generateUrl('solicitud_update', array('id' => $entity->getId())),
+                'method' => 'PUT',
 
-        //$form->add('submit', 'submit', array('label' => 'Update'));
+            ));
+        }
+        elseif( $tipo == 'visitante'){
+            $form = $this->createForm(new SolicitudVisitanteType($securityContext),$entity, array(
+                'action' => $this->generateUrl('solicitud_update', array('id' => $entity->getId())),
+                'method' => 'PUT',
+
+            ));
+
+        }
 
         return $form;
     }
@@ -264,7 +290,7 @@ class SolicitudController extends Controller
         }
 
         $deleteForm = $this->createDeleteForm($id);
-        $editForm = $this->createEditForm($entity);
+        $editForm = $this->createEditForm($entity,$entity->getTipo());
         $editForm->handleRequest($request);
 
         if ($editForm->isValid()) {
