@@ -35,8 +35,11 @@ class SiaController extends Controller
         if ($this->get('security.context')->isGranted('ROLE_ADMIN'))
         {
             $em = $this->getDoctrine()->getManager();
-            $solicitudes = $em->getRepository('CcmSiaBundle:Solicitud')->findAll();
-            $sesiones =  $em->getRepository('CcmSiaBundle:Sesiones')->findAll();
+
+            //$entities = $em->getRepository('CcmSiaBundle:Solicitud')->findAll();
+
+            $entities = $em->getRepository('CcmSiaBundle:Solicitud')->findUltimasSolicitudes();
+
         }
         else{
             $user = $this->get('security.context')->getToken()->getUser();

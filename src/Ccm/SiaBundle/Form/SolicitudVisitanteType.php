@@ -10,7 +10,7 @@ use Ccm\SiaBundle\Form\FinanciamientoType;
 use Ccm\SiaBundle\Entity\Academico;
 
 
-class SolicitudType extends AbstractType
+class SolicitudVisitanteType extends AbstractType
 {
 
     private $securityContext;
@@ -35,11 +35,11 @@ class SolicitudType extends AbstractType
         }
 
         $builder
-            ->add('tipo', 'choice', array('empty_value' => 'Choose an option','required'=>true,
+            ->add('tipo', 'choice', array('required'=>true,
                 'choices'=>array(
-                    'licencia'=>'Licencia',
-                    'comision'=>'Comision',
-                )));
+                    'visitante'=>'Visitante',
+
+                ),'data' => 'visitante'));
 
         if ( false === $this->securityContext->isGranted('ROLE_ADMIN') ) {
 
@@ -85,12 +85,12 @@ class SolicitudType extends AbstractType
         }
 
             $builder->add('sesion',null,array('required'=>false))
-                    ->add('pais','text',array('required'=>false,'label'=>'País que visitará'))
-                    ->add('ciudad','text',array('required'=>false,'label'=>'Ciudad que visitará'))
-                    ->add('universidad','text',array('required'=>false,'label'=>'Universidad y departamento que visitará'))
-                    ->add('profesor','text',array('required'=>false,'label'=>'Profesor a quién visitará'))
-                    ->add('actividad','textarea',array('required'=>false,'label'=>'Actividad a desarrollar'))
-                    ->add('proposito','textarea',array('required'=>false,'label'=>'Propósito del viaje y/o nombre del proyecto de investigación'))
+                    ->add('pais','text',array('required'=>false,'label'=>'País de procedencia'))
+                    ->add('ciudad','text',array('required'=>false,'label'=>'Ciudad de procedencia'))
+                    ->add('universidad','text',array('required'=>false,'label'=>'Institución'))
+                    ->add('profesor','text',array('required'=>false,'label'=>'Nombre del invitado'))
+
+                    ->add('proposito','textarea',array('required'=>false,'label'=>'Objeto de la visita'))
                     //->add('proyecto')
                     ->add('inicio', 'date',array('widget' => 'single_text', 'format' => 'yyyy-MM-dd','label'=>'Fecha inicial','required'=>false))
                     ->add('fin', 'date',array('widget' => 'single_text', 'format' => 'yyyy-MM-dd','label'=>'Fecha final','required'=>false))
@@ -98,7 +98,7 @@ class SolicitudType extends AbstractType
                     //'is-open'=>'opened', 'min-date'=>'minDate', 'max-date'=>"'2014-12-31'", 'datepicker-options'=>'dateOptions', 'ng-required'=>'true', 'close-text'=>'Close' )))
                     //->add('fin','date',array('widget' => 'single_text','format' => 'yyyy-MM-dd', 'attr' => array('class'=>'form-control', 'datepicker-popup'=> 'yyyy-MM-dd','ng-model'=>'dt',
                     //'is-open'=>'opened', 'min-date'=>'minDate', 'max-date'=>"'2014-12-31'", 'datepicker-options'=>'dateOptions', 'ng-required'=>'true', 'close-text'=>'Close' )))
-                    ->add('trabajo','textarea',array('required'=>false,'label'=>'Título del trabajo que presentará (en su caso)'))
+
                     ->add('financiamiento', 'collection', array(
                           'required'=>false,
                           'type' => new FinanciamientoType(),

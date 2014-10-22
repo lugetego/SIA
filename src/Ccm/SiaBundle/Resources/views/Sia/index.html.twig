@@ -16,9 +16,9 @@
             <div class="col-lg-6">
                  <div class="panel panel-default">
                     <div class="panel-heading">
-                        <i class="fa fa-tags"></i> Solicitudes <span class="badge">5</span>
+                        <i class="fa fa-tags"></i> Últimas Solicitudes <span class="badge">{{ entities|length }}</span>
                             <div class="pull-right">
-                                <a href="{{ path('solicitud_new') }}"><button type="button" class="btn btn-primary btn-xs"><i class="fa fa-plus"></i> Crear Solicitud</button></a>
+                                <a href="{{ path('solicitud') }}"><button type="button" class="btn btn-primary btn-xs"><i class="fa fa-plus"></i> Crear Solicitud</button></a>
                             </div>
                     </div>
                     <!-- /.panel-heading -->
@@ -45,7 +45,24 @@
                                     </td>
 
                                     <td>
-                                        <div class="pull-right"><span class="label label-success">Aprobada</span></div>
+
+                                        {%  if entity.aprobada %}
+                                            <div class="pull-right">
+                                            <span class="label label-success">
+                                                    {{ 'Aprobada' }}
+                                            </span>
+                                            </div>
+
+                                                    {% else %}
+                                        <div class="pull-right">
+                                            <span class="label label-warning">
+                                                    {{ 'No aprobada' }}
+
+                                            </span>
+                                        </div>
+                                                {% endif %}
+
+
                                     </td>
 
                                 </tr>

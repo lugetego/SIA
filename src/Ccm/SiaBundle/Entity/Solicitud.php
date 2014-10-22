@@ -10,7 +10,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Ccm\SiaBundle\Entity\SolicitudRepository")
  * @ORM\Table(name="solicitud")
  * @ORM\HasLifecycleCallbacks
  */
@@ -40,7 +40,7 @@ class Solicitud
     /**
      * @var string $tipo
      *
-     * @ORM\Column(name="tipo", type="string", length=30, nullable=true)
+     * @ORM\Column(name="tipo", type="string", length=30)
      * @Assert\Choice(choices = {"licencia", "comision"}, message = "Choose a valid option.")
      * @Assert\NotBlank(groups={"solicitud"})
      */
@@ -628,5 +628,7 @@ class Solicitud
             return false;
         }
     }
+
+
 
 }
