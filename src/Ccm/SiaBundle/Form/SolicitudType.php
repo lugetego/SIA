@@ -86,7 +86,8 @@ class SolicitudType extends AbstractType
 
             $builder->add('sesion',null,array('required'=>false))
                     ->add('pais','text',array('required'=>false,'label'=>'País que visitará'))
-                    ->add('ciudad','text',array('required'=>false,'label'=>'Ciudad que visitará'))
+                    ->add('ciudad','text',array('required'=>false,'label'=>'Ciudad'))
+                    ->add('estado','text',array('required'=>false,'label'=>'Estado'))
                     ->add('universidad','text',array('required'=>false,'label'=>'Universidad y departamento que visitará'))
                     ->add('profesor','text',array('required'=>false,'label'=>'Profesor a quién visitará'))
                     ->add('actividad','textarea',array('required'=>false,'label'=>'Actividad a desarrollar'))
