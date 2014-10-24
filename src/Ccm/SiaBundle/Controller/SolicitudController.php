@@ -33,23 +33,7 @@ class SolicitudController extends Controller
     public function indexAction()
     {
 
-
-        if ($this->get('security.context')->isGranted('ROLE_ADMIN'))
-        {
-            $em = $this->getDoctrine()->getManager();
-            $entities = $em->getRepository('CcmSiaBundle:Solicitud')->findAll();
-        }
-        else{
-            $user = $this->get('security.context')->getToken()->getUser();
-            $entities = $user->getAcademico()->getSolicitudes();
-        }
-
-        //TODO: Caso no es ADMIN y no es Académico
-
-
-        return array(
-            'entities' => $entities,
-        );
+        return $this->render('CcmSiaBundle:Solicitud:index.html.twig');
     }
     /**
      * Creates a new Solicitud entity.
@@ -400,6 +384,29 @@ class SolicitudController extends Controller
 
 
         return $content = $this->render('CcmSiaBundle:Solicitud:show.html.twig', array('id' => $entity->getId(),'entity'=>$entity));
+
+    }
+
+    /**
+     * Seguimiento de solicitudes
+     * @Route("/seguimiento/", name="solicitud_seguimiento")
+     */
+    public function seguimientoAction()
+    {
+        if ($this->get('security.context')->isGranted('ROLE_ADMIN'))
+        {
+            $em = $this->getDoctrine()->getManager();
+            $entities = $em->getRepository('CcmSiaBundle:Solicitud')->findAll();
+        }
+        else{
+            $user = $this->get('security.context')->getToken()->getUser();
+            $entities = $user->getAcademico()->getSolicitudes();
+        }
+
+        //TODO: Caso no es ADMIN y no es Académico
+
+        return $content = $this->render('CcmSiaBundle:Solicitud:seguimiento.html.twig', array('entities' => $entities));
+
 
     }
 }

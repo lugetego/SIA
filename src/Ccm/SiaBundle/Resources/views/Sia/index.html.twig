@@ -19,6 +19,7 @@
                         <i class="fa fa-tags"></i> Últimas Solicitudes <span class="badge">{{ solicitudes|length }}</span>
                             <div class="pull-right">
                                 <a href="{{ path('solicitud') }}"><button type="button" class="btn btn-primary btn-xs"><i class="fa fa-plus"></i> Crear Solicitud</button></a>
+                                <a href="{{ path('solicitud_seguimiento') }}"><button type="button" class="btn btn-primary btn-xs"><i class="fa fa-search"></i> Todas las solicitudes</button></a>
                             </div>
                     </div>
                     <!-- /.panel-heading -->
@@ -46,17 +47,17 @@
 
                                     <td>
 
-                                        {%  if solicitud.aprobada %}
+                                        {%  if solicitud.enviada %}
                                             <div class="pull-right">
                                             <span class="label label-success">
-                                                    {{ 'Aprobada' }}
+                                                    {{ 'Enviada' }}
                                             </span>
                                             </div>
 
                                                     {% else %}
                                         <div class="pull-right">
                                             <span class="label label-warning">
-                                                    {{ 'No aprobada' }}
+                                                    {{ 'No enviada' }}
 
                                             </span>
                                         </div>
