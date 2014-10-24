@@ -63,6 +63,14 @@ class Solicitud
     private $ciudad;
 
     /**
+     * @var string $estado
+     *
+     * @ORM\Column(name="estado", type="string", length=30, nullable=true)
+     * @Assert\NotBlank(groups={"solicitud"})
+     */
+    private $estado;
+
+    /**
      * @var string $universidad
      *
      * @ORM\Column(name="universidad", type="string", length=30, nullable=true)
@@ -629,6 +637,21 @@ class Solicitud
         }
     }
 
+    /**
+     * @return string
+     */
+    public function getEstado()
+    {
+        return $this->estado;
+    }
+
+    /**
+     * @param string $estado
+     */
+    public function setEstado($estado)
+    {
+        $this->estado = $estado;
+    }
 
 
 }

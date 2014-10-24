@@ -87,6 +87,7 @@ class SolicitudVisitanteType extends AbstractType
             $builder->add('sesion',null,array('required'=>false))
                     ->add('pais','text',array('required'=>false,'label'=>'País de procedencia'))
                     ->add('ciudad','text',array('required'=>false,'label'=>'Ciudad de procedencia'))
+                    ->add('estado','text',array('required'=>false,'label'=>'Estado'))
                     ->add('universidad','text',array('required'=>false,'label'=>'Institución'))
                     ->add('profesor','text',array('required'=>false,'label'=>'Nombre del invitado'))
 
