@@ -34,24 +34,33 @@
                 <td>{{ entity.tipo }}</td>
                 <td>{{ entity.proposito }}</td>
                 <td>{{ entity.actividad }}</td>
+{#
                 <td>{% if entity.enviada == 1 %}
                         <i class="fa fa-check"></i>
                     {% else %}
                         {{ entity.enviada }}
                     {% endif %}
 
-                    </td>
+                </td>
+#}
+                <td {% if entity.enviada == 1 %}class="success"{% else %} class="danger" {% endif %}>
+
+                </td>
+                <td {% if entity.aprobada == 1 %}class="success"{% else %} class="danger" {% endif %}>
+
+                </td>
+{#
                 <td>{% if entity.aprobada == 1 %}
                         <i class="fa fa-check"></i>
                     {% else %}
                         {{ entity.aprobada }}
                     {% endif %}
                 </td>
-                <td>
-
-                            <a href="{{ path('solicitud_show', { 'id': entity.id }) }}"><i class="fa fa-search"></i>  </a>
+#}
+                <td><div  class="text-center">
+                            <a href="{{ path('solicitud_show', { 'id': entity.id }) }}"><i class="fa fa-search"></i>  </a> |
                             <a href="{{ path('solicitud_edit', { 'id': entity.id }) }}"><i class="fa fa-pencil-square-o"></i> </a>
-
+                    </div>
                 </td>
             </tr>
         {% endfor %}
