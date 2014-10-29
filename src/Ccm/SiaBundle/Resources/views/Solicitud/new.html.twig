@@ -131,8 +131,8 @@
                             <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
                         </span>
                         <p class="text-info" id="days"></p>
-                   </div>
-                   <div>{{ form_errors(form.fin) }}</div>
+                    </div>
+                    <div>{{ form_errors(form.fin) }}</div>
                 </div>
             </div>
         </div>
@@ -269,17 +269,17 @@
             </div>
 
             {%  if form.actividad is defined %}
-            <div class="col-lg-8">
-                <div class="form-group">
-                    <div>
-                        {{ form_label(form.actividad) }}
+                <div class="col-lg-8">
+                    <div class="form-group">
+                        <div>
+                            {{ form_label(form.actividad) }}
+                        </div>
+                        <div>
+                            {{ form_widget(form.actividad, {'attr': {'class': 'form-control'} } ) }}
+                        </div>
+                        <div>{{ form_errors(form.actividad) }}</div>
                     </div>
-                    <div>
-                        {{ form_widget(form.actividad, {'attr': {'class': 'form-control'} } ) }}
-                    </div>
-                    <div>{{ form_errors(form.actividad) }}</div>
                 </div>
-            </div>
             {% endif %}
         </div>
     </div>
@@ -312,22 +312,22 @@
     </div>
 
     {% if form.trabajo is defined %}
-    <div class="row">
-        <div class="col-lg-8">
+        <div class="row">
             <div class="col-lg-8">
-                <div class="form-group">
-                    <div>
-                        {{ form_label(form.trabajo) }}
+                <div class="col-lg-8">
+                    <div class="form-group">
+                        <div>
+                            {{ form_label(form.trabajo) }}
+                        </div>
+                        <div>
+                            {{ form_widget(form.trabajo, {'attr': {'class': 'form-control'} } ) }}
+                        </div>
+                        <div>{{ form_errors(form.trabajo) }}</div>
                     </div>
-                    <div>
-                        {{ form_widget(form.trabajo, {'attr': {'class': 'form-control'} } ) }}
-                    </div>
-                    <div>{{ form_errors(form.trabajo) }}</div>
                 </div>
-            </div>
 
+            </div>
         </div>
-    </div>
     {% endif %}
 
     <div class="row">
@@ -364,20 +364,20 @@
                 </div>
             </div>
         </div>
-        </div>
+    </div>
 
 
-        <div class="row">
-            <div class="col-lg-8">
-                <div class="col-lg-12">
-                    {{ form_widget(form.save,{'attr':{'class':'btn btn-primary'} } )}}
-                    {{ form_widget(form.saveAndAdd,{'attr':{'class':'btn btn-success',
-                        'onclick':"return confirm('¿Estás seguro de enviar la solicitud?,
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="col-lg-12">
+                {{ form_widget(form.save,{'attr':{'class':'btn btn-primary'} } )}}
+                {{ form_widget(form.saveAndAdd,{'attr':{'class':'btn btn-success',
+                'onclick':"return confirm('¿Estás seguro de enviar la solicitud?,
                         después de esta acción la solicitud no podrá ser modificada')"} } )}}
-                    <a href="{{ path('solicitud') }}" type="button"  class="btn btn-danger">Cancelar</a>
-                </div>
+                <a href="{{ path('solicitud') }}" type="button"  class="btn btn-danger">Cancelar</a>
             </div>
         </div>
+    </div>
 
         {{ form_rest(form) }}
     {{ form_end(form) }}
