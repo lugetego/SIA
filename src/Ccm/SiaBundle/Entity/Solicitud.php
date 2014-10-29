@@ -25,14 +25,17 @@ class Solicitud
 
     /**
      * @var academico
-     * @ORM\ManyToMany(targetEntity="Academico", inversedBy="solicitudes")
+     * @ORM\ManyToOne(targetEntity="Academico", inversedBy="solicitudes")
+     * @ORM\JoinColumn(name="academico_id", referencedColumnName="id")
      * @Assert\NotBlank(groups={"solicitud"})
      */
     public $academico;
 
+
     /**
      * @var sesion
-     * @ORM\ManyToMany(targetEntity="Sesiones", inversedBy="solicitudes")
+     * @ORM\ManyToOne(targetEntity="Sesiones", inversedBy="solicitudes")
+     * @ORM\JoinColumn(name="sesion_id", referencedColumnName="id")
      * @Assert\NotBlank(groups={"solicitud"})
      */
     private $sesion;
@@ -249,27 +252,15 @@ class Solicitud
         return $this->id;
     }
 
-    /**
-     * Add academico
-     *
-     * @param \Ccm\SiaBundle\Entity\Academico $academico
-     * @return Solicitud
-     */
-    public function addAcademico(\Ccm\SiaBundle\Entity\Academico $academico)
-    {
-        $this->academico[] = $academico;
-
-        return $this;
-    }
 
     /**
-     * Remove academico
+     * Set academico
      *
-     * @param \Ccm\SiaBundle\Entity\Academico $academico
+     * @param \Ccm\SiaBundle\Entity\academico $academico
      */
-    public function removeAcademico(\Ccm\SiaBundle\Entity\Academico $academico)
+    public function setAcademico($academico)
     {
-        $this->academico->removeElement($academico);
+        $this->academico = $academico;
     }
 
     /**
@@ -285,29 +276,6 @@ class Solicitud
 
 
     /**
-     * Add sesion
-     *
-     * @param \Ccm\SiaBundle\Entity\Sesiones $sesion
-     * @return Solicitud
-     */
-    public function addSesion(\Ccm\SiaBundle\Entity\Sesiones $sesion)
-    {
-        $this->sesion[] = $sesion;
-
-        return $this;
-    }
-
-    /**
-     * Remove sesion
-     *
-     * @param \Ccm\SiaBundle\Entity\Sesiones $sesion
-     */
-    public function removeSesion(\Ccm\SiaBundle\Entity\Sesiones $sesion)
-    {
-        $this->sesion->removeElement($sesion);
-    }
-
-    /**
      * Get sesion
      *
      * @return \Doctrine\Common\Collections\Collection
@@ -316,6 +284,17 @@ class Solicitud
     {
         return $this->sesion;
     }
+
+    /**
+     * Set sesion
+     *
+     * @param string $sesion
+     */
+    public function setSesion($sesion)
+    {
+        $this->sesion = $sesion;
+    }
+
 
 
     /**
