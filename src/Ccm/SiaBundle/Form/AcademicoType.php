@@ -15,12 +15,25 @@ class AcademicoType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name')
-            ->add('nacimiento')
-            ->add('rfc')
-            ->add('user')
-            ->add('dias')
+            ->add('name','text',array(
+                'required'=>false,
+                'label'=>'Nombre'))
+            ->add('nacimiento', 'date',array(
+                'widget' => 'single_text',
+                'format' => 'dd-MM-yyyy',
+                'label'=>'Fecha de nacimiento',
+                'required'=>false,
+                'empty_value' => array('year' => 'Year', 'month' => 'Month', 'day' => 'Day')))
+            ->add('rfc','text',array(
+                'required'=>false,
+                'label'=>'RFC'))
+            ->add('user',null,array(
+                'label'=>'Usuario',
+                'required'=>false))
+            ->add('dias','text',array('required'=>false,'label'=>'Días de licencia'))
             ->add('proyectos')
+            ->add('save', 'submit', array('label' => 'Guardar'))
+
         ;
     }
     

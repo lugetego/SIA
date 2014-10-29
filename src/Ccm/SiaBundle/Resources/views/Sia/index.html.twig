@@ -1,6 +1,6 @@
 {% extends 'CcmSiaBundle::layout.html.twig' %}
 
-{% block title %}Dashboard{% endblock %}
+{% block title %}SIA - Dashboard{% endblock %}
 
 {% block css %}
 
@@ -156,32 +156,53 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <i class="fa fa-users fa-fw"></i> Académicos
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <div class="pull-right">
+                            <a href="{{ path('academico_new') }}"><button type="button" class="btn btn-primary btn-xs"><i class="fa fa-plus"></i> Crear Académico</button></a>
+                            <a href="{{ path('academico') }}"><button type="button" class="btn btn-primary btn-xs"><i class="fa fa-search"></i> Todos los académicos</button></a>
+                        </div>
+                    {% else %}
+
+                    {% for academico in academicos %}
+                        <div class="pull-right">
+                            <a href="{{ path('academico_edit', { 'id':  academico.id })   }}"><button type="button" class="btn btn-primary btn-xs"><i class="fa fa-pencil-square-o"></i> Modificar </button></a>
+
+                        </div>
+
+                    {% endfor %}
+                    {% endif %}
                 </div>
+
                 <!-- /.panel-heading -->
                 <div class="panel-body">
 
                        <table class="table">
                             <thead>
                             <tr>
-                                <th>Id</th>
+                                <th>&nbsp;</th>
                                 <th>Nombre</th>
-                                <th>Solicitudes</th>
+                                <th>Días de licencia restantes</th>
                             </tr>
                             </thead>
                             <tbody>
 
-                            {% for solicitud in solicitudes %}
+                            {% for academico in academicos %}
                                 <tr>
                                     <td>
                                         <img src="http://placekitten.com/g/150/150" alt="..." class="img-circle" style="width: 50px; height: 50px;">
                                     </td>
                                     <td>
-                                        {{ solicitud.actividad }} {{ solicitud.tipo }}
+                                         {{ academico.name }}
+                                    </td>
+                                    <td>
+                                        {{ academico.dias }}
                                     </td>
 
                                     <td>
-                                        <a href="#"><span class="badge pull-right">42</span>Home</a>
+                                        <a href="{{ path('academico_edit', { 'id':  academico.id })   }}"><i class="fa fa-pencil-square-o"></i> </a>
+
                                     </td>
+
 
                                 </tr>
                             {% endfor %}
