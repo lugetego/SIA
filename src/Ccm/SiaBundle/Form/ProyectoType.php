@@ -18,6 +18,8 @@ class ProyectoType extends AbstractType
             ->add('numero')
             ->add('nombre')
             ->add('academico')
+            ->add('save', 'submit', array('label' => 'Guardar'))
+
         ;
     }
     
