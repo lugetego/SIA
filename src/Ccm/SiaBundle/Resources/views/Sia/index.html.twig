@@ -218,11 +218,52 @@
 
         <div class="col-lg-6">
             <div class="panel panel-default">
-                <div class="panel-heading"><i class="fa fa-file-text-o"></i> Proyectos </div>
-                <div class="panel-body">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan. Aliquam ornare lacus adipiscing, posuere lectus et, fringilla augue.</p>
+                <div class="panel-heading"><i class="fa fa-file-text-o"></i> Proyectos
+                {% if is_granted('ROLE_ADMIN') %}
+                    <div class="pull-right">
+                        <a href="{{ path('proyecto_new') }}"><button type="button" class="btn btn-primary btn-xs"><i class="fa fa-plus"></i> Crear Proyecto</button></a>
+                        <a href="{{ path('proyecto') }}"><button type="button" class="btn btn-primary btn-xs"><i class="fa fa-search"></i> Todos los proyectos</button></a>
+                    </div>
+
+                {% endif %}
                 </div>
-                <div class="panel-footer"> Panel Footer </div>
+                    <div class="panel-body">
+
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>Nombre</th>
+
+                                <th>Número</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+
+                            {% for proyecto in proyectos %}
+                                <tr>
+
+                                    <td>
+                                        {{ proyecto.nombre }}
+                                    </td>
+                                    <td>
+                                        {{ proyecto.numero }}
+                                    </td>
+
+                                    <td>
+                                        <a href="{{ path('proyecto_edit', { 'id':  proyecto.id })   }}"><i class="fa fa-pencil-square-o"></i> </a>
+
+                                    </td>
+
+
+                                </tr>
+                            {% endfor %}
+
+                            </tbody>
+                        </table>
+                        <!-- /.table -->
+                    </div>
+
+
             </div>
         </div>
 
