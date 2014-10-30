@@ -18,19 +18,19 @@
 
     <div class="row">
         <div class="col-lg-12">
-            <h1 class="page-header">Nueva Solicitud</h1>
+            <h3 class="page-header">Nueva Solicitud</h3>
         </div>
     </div>
 
     <div class="row">
         <div class="col-lg-8">
             <div class="col-lg-4">
-                <div ng-controller="DatepickerDemoCtrl" class="form-group input-group">
+                <div ng-controller="DatepickerDemoCtrl" class="form-group input-group ">
                     <div>{{ form_label(form.inicio) }}</div>
                     <div>
                         {{ form_widget(form.inicio, { 'attr': {
-                        'class': 'form-control',
-                        'datepicker-popup': 'yyyy-MM-dd',
+                        'class': 'form-control input-sm',
+                        'datepicker-popup': 'dd-MM-yyyy',
                         'ng-model':'dt',
                         'is-open':'opened',
                         'min-date':'minDate',
@@ -39,7 +39,7 @@
                         'ng-required':'false',
                         'close-text':'Close'  }} )  }}
                         <span class="input-group-btn">
-                            <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                            <button type="button" class="btn btn-default input-sm" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
                         </span>
                         <p class="text-danger">
                     </div>
@@ -52,8 +52,8 @@
                     <div>{{ form_label(form.fin) }}</div>
                     <div>
                         {{ form_widget(form.fin, { 'attr': {
-                        'class': 'form-control',
-                        'datepicker-popup': 'yyyy-MM-dd',
+                        'class': 'form-control input-sm',
+                        'datepicker-popup': 'dd-MM-yyyy',
                         'ng-model':'dt',
                         'is-open':'opened',
                         'min-date':'minDate',
@@ -62,7 +62,7 @@
                         'ng-required':'false',
                         'close-text':'Close'  }}) }}
                         <span class="input-group-btn">
-                            <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                            <button type="button" class="btn btn-default input-sm" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
                         </span>
 
                    </div>
@@ -84,7 +84,7 @@
                         {{ form_label(form.tipo) }}
                     </div>
                     <div>
-                        {{ form_widget(form.tipo, {'attr': {'class': 'form-control'} } ) }}
+                        {{ form_widget(form.tipo, {'attr': {'class': 'form-control input-sm'} } ) }}
                     </div>
                     <div>{{ form_errors(form.tipo) }}</div>
                 </div>
@@ -95,7 +95,7 @@
                         {{ form_label(form.proyecto) }}
                     </div>
                     <div>
-                        {{ form_widget(form.proyecto, {'attr': {'class': 'form-control'} } ) }}
+                        {{ form_widget(form.proyecto, {'attr': {'class': 'form-control input-sm'} } ) }}
                     </div>
                     <div>{{ form_errors(form.proyecto) }}</div>
                 </div>
@@ -111,7 +111,7 @@
                         {{ form_label(form.academico) }}
                     </div>
                     <div>
-                        {{ form_widget(form.academico, {'attr': {'class': 'form-control'} } ) }}
+                        {{ form_widget(form.academico, {'attr': {'class': 'form-control input-sm'} } ) }}
                     </div>
                     <div>{{ form_errors(form.academico) }}</div>
                 </div>
@@ -123,7 +123,7 @@
                         {{ form_label(form.sesion) }}
                     </div>
                     <div>
-                        {{ form_widget(form.sesion, {'attr': {'class': 'form-control'} } ) }}
+                        {{ form_widget(form.sesion, {'attr': {'class': 'form-control input-sm'} } ) }}
                     </div>
                     <div>{{ form_errors(form.sesion) }}</div>
                 </div>
@@ -140,7 +140,7 @@
             <div class="col-lg-8">
                 <div class="form-group">
                     <div id="locationField">
-                        <input class="form-control" id="autocomplete" placeholder="Dirección a buscar" onFocus="geolocate()" type="text"></input>
+                        <input class="form-control input-sm" id="autocomplete" placeholder="Dirección a buscar" onFocus="geolocate()" type="text"></input>
                         <span class="help-block">Escriba una dirección para autocompletar los campos correspondientes.</span>
                     </div>
                 </div>
@@ -156,7 +156,7 @@
                         {{ form_label(form.pais) }}
                     </div>
                     <div>
-                        {{ form_widget(form.pais, {'id': 'country', 'attr': {'class': 'form-control'}} ) }}
+                        {{ form_widget(form.pais, {'id': 'country', 'attr': {'class': 'form-control input-sm'}} ) }}
                     </div>
                     <div>{{ form_errors(form.pais) }}</div>
                 </div>
@@ -173,7 +173,7 @@
                         {{ form_label(form.ciudad) }}
                     </div>
                     <div>
-                        {{ form_widget(form.ciudad, {'id': 'locality', 'attr': {'class': 'form-control'} } ) }}
+                        {{ form_widget(form.ciudad, {'id': 'locality', 'attr': {'class': 'form-control input-sm'} } ) }}
                     </div>
                     <div>{{ form_errors(form.ciudad) }}</div>
                 </div>
@@ -184,7 +184,7 @@
                         {{ form_label(form.estado) }}
                     </div>
                     <div>
-                        {{ form_widget(form.estado, {'id': 'administrative_area_level_1', 'attr': {'class': 'form-control'} } ) }}
+                        {{ form_widget(form.estado, {'id': 'administrative_area_level_1', 'attr': {'class': 'form-control input-sm'} } ) }}
                     </div>
                     <div>{{ form_errors(form.estado) }}</div>
                 </div>
@@ -192,6 +192,9 @@
         </div>
     </div>
 
+    <div class="page-header">
+        <h1><small>Actividad</small></h1>
+    </div>
     <div class="row">
         <div class="col-lg-8">
             <div class="col-lg-8">
@@ -200,11 +203,13 @@
                         {{ form_label(form.universidad) }}
                     </div>
                     <div>
-                        {{ form_widget(form.universidad, {'attr': {'class': 'form-control'} } ) }}
+                        {{ form_widget(form.universidad, {'attr': {'class': 'form-control input-sm'} } ) }}
                     </div>
                     <div>{{ form_errors(form.universidad) }}</div>
                 </div>
             </div>
+
+
 
             {%  if form.actividad is defined %}
                 <div class="col-lg-8">
@@ -213,7 +218,7 @@
                             {{ form_label(form.actividad) }}
                         </div>
                         <div>
-                            {{ form_widget(form.actividad, {'attr': {'class': 'form-control'} } ) }}
+                            {{ form_widget(form.actividad, {'attr': {'class': 'form-control input-sm'} } ) }}
                         </div>
                         <div>{{ form_errors(form.actividad) }}</div>
                     </div>
@@ -230,7 +235,7 @@
                         {{ form_label(form.profesor) }}
                     </div>
                     <div>
-                        {{ form_widget(form.profesor, {'attr': {'class': 'form-control'} } ) }}
+                        {{ form_widget(form.profesor, {'attr': {'class': 'form-control input-sm'} } ) }}
                     </div>
                     <div>{{ form_errors(form.profesor) }}</div>
                 </div>
@@ -241,7 +246,7 @@
                         {{ form_label(form.proposito) }}
                     </div>
                     <div>
-                        {{ form_widget(form.proposito, {'attr': {'class': 'form-control'} } ) }}
+                        {{ form_widget(form.proposito, {'attr': {'class': 'form-control input-sm'} } ) }}
                     </div>
                     <div>{{ form_errors(form.proposito) }}</div>
                 </div>
@@ -258,7 +263,7 @@
                             {{ form_label(form.trabajo) }}
                         </div>
                         <div>
-                            {{ form_widget(form.trabajo, {'attr': {'class': 'form-control'} } ) }}
+                            {{ form_widget(form.trabajo, {'attr': {'class': 'form-control input-sm'} } ) }}
                         </div>
                         <div>{{ form_errors(form.trabajo) }}</div>
                     </div>
@@ -267,6 +272,10 @@
             </div>
         </div>
     {% endif %}
+
+    <div class="page-header">
+        <h1><small>Financiamiento</small></h1>
+    </div>
 
     <div class="row">
         <div class="col-lg-8">
@@ -288,11 +297,11 @@
                             {% for fin in form.financiamiento %}
 
                                 <tr>
-                                    <td>{{ form_widget(fin.nombre, { 'attr':{'class': 'form-control','readonly':'true'} }) }}</td>
-                                    <td>{{ form_widget(fin.ccm, { 'attr':{'class': 'form-control'} }) }}  {{ form_errors(fin.ccm) }}</td>
-                                    <td>{{ form_widget(fin.papiit, { 'attr':{'class': 'form-control'} }) }} {{ form_errors(fin.papiit) }}</td>
-                                    <td>{{ form_widget(fin.conacyt, { 'attr':{'class': 'form-control'} }) }} {{ form_errors(fin.conacyt) }}</td>
-                                    <td>{{ form_widget(fin.otro, { 'attr':{'class': 'form-control'} }) }} {{ form_errors(fin.otro) }}</td>
+                                    <td>{{ form_widget(fin.nombre, { 'attr':{'class': 'form-control input-sm','readonly':'true'} }) }}</td>
+                                    <td>{{ form_widget(fin.ccm, { 'attr':{'class': 'form-control input-sm'} }) }}  {{ form_errors(fin.ccm) }}</td>
+                                    <td>{{ form_widget(fin.papiit, { 'attr':{'class': 'form-control input-sm'} }) }} {{ form_errors(fin.papiit) }}</td>
+                                    <td>{{ form_widget(fin.conacyt, { 'attr':{'class': 'form-control input-sm'} }) }} {{ form_errors(fin.conacyt) }}</td>
+                                    <td>{{ form_widget(fin.otro, { 'attr':{'class': 'form-control input-sm'} }) }} {{ form_errors(fin.otro) }}</td>
                                 </tr>
                             {% endfor %}
 

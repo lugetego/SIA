@@ -3,8 +3,8 @@ var fin = document.getElementById('ccm_siabundle_solicitud_fin');
 
 fin.onfocus = function(){
 
-    var a = moment(inicio.value,"YYYY MM DD");
-    var b = moment(fin.value, "YYYY MM DD");
+    var a = moment(inicio.value,"DD MM YYYY");
+    var b = moment(fin.value, "DD MM YYYY");
 
     if ( a.isValid() && b.isValid() && (b.isSame(a)) || (b.isAfter(a))){
         var days = b.diff(a,'days') + 1 ;

@@ -31,7 +31,6 @@ class AcademicoType extends AbstractType
                 'label'=>'Usuario',
                 'required'=>false))
             ->add('dias','text',array('required'=>false,'label'=>'Días de licencia'))
-            ->add('proyectos')
             ->add('save', 'submit', array('label' => 'Guardar'))
 
         ;
