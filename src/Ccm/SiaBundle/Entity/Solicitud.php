@@ -29,7 +29,7 @@ class Solicitud
      * @ORM\JoinColumn(name="academico_id", referencedColumnName="id")
      * @Assert\NotBlank(groups={"solicitud"})
      */
-    public $academico;
+    private $academico;
 
 
     /**
