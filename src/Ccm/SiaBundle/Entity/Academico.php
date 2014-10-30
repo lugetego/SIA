@@ -69,8 +69,6 @@ class Academico
     private $dias;
 
 
-
-
     /**
      * Get id
      *

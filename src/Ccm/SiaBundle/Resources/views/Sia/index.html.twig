@@ -36,7 +36,7 @@
                             <thead>
                             <tr>
                                 <th>Id</th>
-                                <th>Tipo / fecha</th>
+                                <th>Académico</th>
                                 <th>Estatus</th>
                             </tr>
                             </thead>
@@ -48,7 +48,7 @@
                                         <a href="{{ path('solicitud_show', { 'id': solicitud.id }) }}"> {{ solicitud.id }}</a>
                                     </td>
                                     <td>
-                                        {{ solicitud.actividad }} {{ solicitud.tipo }}
+                                        {{ solicitud.academico.name }}
                                         <span class="pull-right text-muted small"><em>Inicia: {{ solicitud.inicio|date('y-m-d')}}</em>
                                     </span>
                                     </td>
@@ -181,7 +181,7 @@
                             <tr>
                                 <th>&nbsp;</th>
                                 <th>Nombre</th>
-                                <th>Días de licencia restantes</th>
+                                <th>Asignación Anual</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -195,11 +195,17 @@
                                          {{ academico.name }}
                                     </td>
                                     <td>
-                                        {{ academico.dias }}
+                                        {#{{ academico.dias }}#}
+                                        <div class="progress">
+                                                <div class="progress-bar progress-bar-warning"
+                                                     role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
+                                                        <span class="sr-only">40% Complete (success)</span><span class="text-danger">80%</span>
+                                                </div>
+                                        </div>
                                     </td>
 
                                     <td>
-                                        <a href="{{ path('academico_edit', { 'id':  academico.id })   }}"><i class="fa fa-pencil-square-o"></i> </a>
+                                        <a href="{{ path('academico_edit', { 'id':  academico.id })   }}" class="btn btn-default btn-xs"><i class="fa fa-pencil-square-o"></i>  Editar</a>
 
                                     </td>
 
