@@ -36,6 +36,7 @@ class SolicitudVisitanteType extends AbstractType
 
         $builder
             ->add('tipo', 'choice', array('required'=>true,
+                'empty_value' => 'Seleccionar',
                 'choices'=>array(
                     'visitante'=>'Visitante',
 
@@ -46,6 +47,7 @@ class SolicitudVisitanteType extends AbstractType
             $builder
                 ->add('academico', 'entity', array(
                     'class' => 'Ccm\SiaBundle\Entity\Academico',
+                    'empty_value' => 'Seleccionar',
                     'required'=>false,
                     'query_builder'=> function(\Doctrine\ORM\EntityRepository  $er) use ($user) {
                         return $er->createQueryBuilder('q')
@@ -58,6 +60,7 @@ class SolicitudVisitanteType extends AbstractType
 
                 ->add('proyecto', 'entity', array(
                     'class' => 'Ccm\SiaBundle\Entity\Proyecto',
+                    'empty_value' => 'Seleccionar',
                     'required'=>false,
                     'query_builder'=> function(\Doctrine\ORM\EntityRepository  $er) use ($user) {
                         return $er->createQueryBuilder('q')
@@ -72,10 +75,12 @@ class SolicitudVisitanteType extends AbstractType
         else {
 
             $builder
-                ->add('academico',null,array('required'=>false))
+                ->add('academico',null,array(
+                    'required'=>false,
+                    'empty_value' => 'Seleccionar',))
                 ->add('proyecto', 'entity', array(
                     'required'=>false,
-                    'empty_value' => 'Choose an option',
+                    'empty_value' => 'Seleccionar',
                     'class' => 'Ccm\SiaBundle\Entity\Proyecto',
                     'query_builder'=> function(\Doctrine\ORM\EntityRepository  $er) use ($user) {
                          return $er->createQueryBuilder('q')
@@ -84,7 +89,10 @@ class SolicitudVisitanteType extends AbstractType
                                  ;}, ));
         }
 
-            $builder->add('sesion',null,array('required'=>false))
+            $builder
+                ->add('sesion',null,array(
+                    'required'=>false,
+                    'empty_value' => 'Seleccionar'))
                     ->add('pais','text',array('required'=>false,'label'=>'País de procedencia'))
                     ->add('ciudad','text',array('required'=>false,'label'=>'Ciudad de procedencia'))
                     ->add('estado','text',array('required'=>false,'label'=>'Estado'))

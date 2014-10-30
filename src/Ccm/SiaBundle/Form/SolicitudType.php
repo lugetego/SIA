@@ -35,7 +35,9 @@ class SolicitudType extends AbstractType
         }
 
         $builder
-            ->add('tipo', 'choice', array('empty_value' => 'Choose an option','required'=>true,
+            ->add('tipo', 'choice', array(
+                'empty_value' => 'Seleccionar',
+                'required'=>true,
                 'choices'=>array(
                     'licencia'=>'Licencia',
                     'comision'=>'Comision',
@@ -46,6 +48,8 @@ class SolicitudType extends AbstractType
             $builder
                 ->add('academico', 'entity', array(
                     'class' => 'Ccm\SiaBundle\Entity\Academico',
+                    'label' => 'Académico',
+                    'empty_value' => 'Seleccionar',
                     'required'=>false,
                     'query_builder'=> function(\Doctrine\ORM\EntityRepository  $er) use ($user) {
                         return $er->createQueryBuilder('q')
@@ -58,6 +62,8 @@ class SolicitudType extends AbstractType
 
                 ->add('proyecto', 'entity', array(
                     'class' => 'Ccm\SiaBundle\Entity\Proyecto',
+                    'label' => 'Proyecto',
+                    'empty_value' => 'Seleccionar',
                     'required'=>false,
                     'query_builder'=> function(\Doctrine\ORM\EntityRepository  $er) use ($user) {
                         return $er->createQueryBuilder('q')
@@ -72,10 +78,13 @@ class SolicitudType extends AbstractType
         else {
 
             $builder
-                ->add('academico',null,array('required'=>false))
+                ->add('academico',null,array(
+                    'required'=>false,
+                    'label'=>'Académico',
+                    'empty_value' => 'Seleccionar'))
                 ->add('proyecto', 'entity', array(
                     'required'=>false,
-                    'empty_value' => 'Choose an option',
+                    'empty_value' => 'Seleccionar',
                     'class' => 'Ccm\SiaBundle\Entity\Proyecto',
                     'query_builder'=> function(\Doctrine\ORM\EntityRepository  $er) use ($user) {
                          return $er->createQueryBuilder('q')
@@ -84,7 +93,10 @@ class SolicitudType extends AbstractType
                                  ;}, ));
         }
 
-            $builder->add('sesion',null,array('required'=>false))
+            $builder->add('sesion',null,array(
+                'required'=>false,
+                'empty_value' => 'Seleccionar',
+                'label'=> 'Sesión de consejo'))
                     ->add('pais','text',array('required'=>false,'label'=>'País que visitará'))
                     ->add('ciudad','text',array('required'=>false,'label'=>'Ciudad'))
                     ->add('estado','text',array('required'=>false,'label'=>'Estado'))
