@@ -48,7 +48,7 @@
                                         <a href="{{ path('solicitud_show', { 'id': solicitud.id }) }}"> {{ solicitud.id }}</a>
                                     </td>
                                     <td>
-                                        {{ solicitud.academico.name }}
+                                        {{ solicitud.academico }}
                                         <span class="pull-right text-muted small"><em>Inicia: {{ solicitud.inicio|date('y-m-d')}}</em>
                                     </span>
                                     </td>
@@ -88,41 +88,12 @@
 
             <div class="col-lg-6">
                 <div class="panel panel-default">
-                    <div class="panel-heading"><i class="fa fa-university"></i> Sesiones de Consejo </div>
+                    <div class="panel-heading"><i class="fa fa-university"></i> Sesiones de Consejo
+                        <div class="pull-right">
+                            <a href="{{ path('sesiones') }}"><button type="button" class="btn btn-primary btn-xs"><i class="fa fa-search"></i> Todas las sesiones</button></a>
+                        </div>
+                    </div>
                         <div class="panel-body">
-
-{#
-                            <table class="table">
-                            <thead>
-                            <tr>
-                                <th>Id</th>
-                                <th>Sesion</th>
-                                <th>Fecha</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-
-                            {% for sesion in sesiones %}
-                                <tr>
-                                    <td>
-                                        {{ sesion.id }}
-                                    </td>
-                                    <td>
-                                        {{ sesion.name }}
-                                    </td>
-
-                                    <td>
-                                        {{ sesion.fecha|date('y-m-d') }}
-                                    </td>
-
-                                </tr>
-                            {% endfor %}
-
-                            </tbody>
-                        </table>
-#}
-                            <!-- /.table -->
-
                             <div class="responsive-calendar">
                                 <div class="controls">
                                     <a class="pull-left" data-go="prev"><div class="btn btn-primary">Prev</div></a>
@@ -192,7 +163,7 @@
                                         <img src="http://placekitten.com/g/150/150" alt="..." class="img-circle" style="width: 50px; height: 50px;">
                                     </td>
                                     <td>
-                                         {{ academico.name }}
+                                        <a href="{{ path('academico_show', { 'id': academico.id }) }}">{{ academico.name }}</a>
                                     </td>
                                     <td>
                                         {#{{ academico.dias }}#}

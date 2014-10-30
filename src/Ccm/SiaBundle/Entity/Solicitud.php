@@ -236,10 +236,7 @@ class Solicitud
      */
     public function __construct()
     {
-        $this->academico = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->sesion = new \Doctrine\Common\Collections\ArrayCollection();
         $this->financiamiento = new \Doctrine\Common\Collections\ArrayCollection();
-
     }
 
     /**

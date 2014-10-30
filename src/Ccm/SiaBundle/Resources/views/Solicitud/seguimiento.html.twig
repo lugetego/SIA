@@ -11,7 +11,7 @@
             <thead>
             <tr>
                 <th>Id</th>
-                <th>Creación</th>
+                <th>Académico</th>
                 <th>Tipo</th>
                 <th>Propósito</th>
                 <th>Actividad</th>
@@ -25,7 +25,11 @@
         {% for entity in entities %}
             <tr>
                 <td><a href="{{ path('solicitud_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
-                <td>{{ entity.created|date('Y-m-d H:i:s') }}</td>
+                {% if entity.academico.id is defined %}
+                    <td><a href="{{ path('academico_show', { 'id': entity.academico.id }) }}">{{ entity.academico }}</a></td>
+                {% else %}
+                    <td>{{ entity.academico }}</td>
+                {% endif %}
                 <td>{{ entity.tipo }}</td>
                 <td>{{ entity.proposito }}</td>
                 <td>{{ entity.actividad }}</td>
