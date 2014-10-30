@@ -48,17 +48,20 @@
     {% endblock %}
 
 {% block javascript %}
-    <script type="text/javascript" language="javascript" src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-
+    {{ parent() }}
     <script type="text/javascript" language="javascript" src="//cdn.datatables.net/1.10.3/js/jquery.dataTables.min.js"></script>
     <script type="text/javascript" language="javascript" src="//cdn.datatables.net/plug-ins/380cb78f450/integration/bootstrap/3/dataTables.bootstrap.js"></script>
     <script type="text/javascript" class="init">
 
         $(document).ready(function() {
             $('#example').dataTable( {
-                "pagingType": "full_numbers"
+                "pagingType": "full_numbers",
+                "language": {
+                    url: '//cdn.datatables.net/plug-ins/380cb78f450/i18n/Spanish.json'
+                }
             } );
         } );
+
 
     </script>
 {% endblock %}

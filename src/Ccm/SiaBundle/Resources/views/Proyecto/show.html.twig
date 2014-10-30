@@ -57,7 +57,8 @@
                 {{ form_start(delete_form) }}
                 <a href="{{ path('proyecto_edit', { 'id': entity.id }) }}" type="button" class="btn btn-primary">Modificar</a>
                 <a href="{{ path('proyecto') }}" type="button"  class="btn btn-danger">Regresar</a>
-                <button href="{{ path('proyecto_delete', { 'id': entity.id }) }}" type="submit" class="btn btn-primary">Eliminar</button>
+                <button href="{{ path('proyecto_delete', { 'id': entity.id }) }}" type="submit" class="btn btn-primary"
+                        onclick="return confirm('¿Estás seguro de eliminar esta información?')">Eliminar</button>
                 {{ form_end(delete_form) }}
 
 

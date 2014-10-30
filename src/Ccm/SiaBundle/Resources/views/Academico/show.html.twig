@@ -7,6 +7,7 @@
             <h3 class="page-header">Académico</h3>
         </div>
 
+
         <div class="col-lg-8">
             <ol class="breadcrumb">
                 <li><a href="{{ path('sia') }}">Inicio</a></li>
@@ -61,8 +62,10 @@
                                     {{ form_start(delete_form) }}
                                     <a href="{{ path('academico_edit', { 'id': entity.id }) }}" type="button" class="btn btn-primary">Modificar</a>
                                     <a href="{{ path('academico') }}" type="button"  class="btn btn-danger">Regresar</a>
-                                    <button href="{{ path('academico_delete', { 'id': entity.id }) }}" type="submit" class="btn btn-primary">Eliminar</button>
+                                    <button href="{{ path('academico_delete', { 'id': entity.id }) }}" type="submit" class="btn btn-primary"
+                                            onclick="return confirm('¿Estás seguro de eliminar esta información?')">Eliminar</button>
                                     {{ form_end(delete_form) }}
+
                                 </div>
                             </div>
                         </div>
@@ -136,9 +139,7 @@
                 {% endfor %}
                 </tbody>
             </table>
-
         </div>
     </div>
-
 
 {% endblock %}

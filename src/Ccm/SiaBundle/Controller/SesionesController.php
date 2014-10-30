@@ -53,6 +53,9 @@ class SesionesController extends Controller
             $em->persist($entity);
             $em->flush();
 
+            $this->get('session')->getFlashBag()->add('info', 'El registro se ha guardado exitosamente');
+
+
             return $this->redirect($this->generateUrl('sesiones_show', array('id' => $entity->getId())));
         }
 
@@ -76,7 +79,7 @@ class SesionesController extends Controller
             'method' => 'POST',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Create'));
+       // $form->add('submit', 'submit', array('label' => 'Create'));
 
         return $form;
     }
@@ -165,7 +168,7 @@ class SesionesController extends Controller
             'method' => 'PUT',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Update'));
+        //$form->add('submit', 'submit', array('label' => 'Update'));
 
         return $form;
     }
@@ -193,7 +196,9 @@ class SesionesController extends Controller
         if ($editForm->isValid()) {
             $em->flush();
 
-            return $this->redirect($this->generateUrl('sesiones_edit', array('id' => $id)));
+            $this->get('session')->getFlashBag()->add('info', 'El registro se ha modificado exitosamente');
+
+            return $this->redirect($this->generateUrl('sesiones_show', array('id' => $id)));
         }
 
         return array(
@@ -240,7 +245,7 @@ class SesionesController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('sesiones_delete', array('id' => $id)))
             ->setMethod('DELETE')
-            ->add('submit', 'submit', array('label' => 'Delete'))
+           // ->add('submit', 'submit', array('label' => 'Delete'))
             ->getForm()
         ;
     }

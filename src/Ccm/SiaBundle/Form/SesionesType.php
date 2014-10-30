@@ -15,9 +15,16 @@ class SesionesType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('fecha')
-            ->add('name')
+            ->add('fecha', 'date',array(
+                'widget' => 'single_text',
+                'format' => 'dd-MM-yyyy',
+                'label'=>'Fecha de la sesión',
+                'required'=>false,
+                'empty_value' => array('year' => 'Year', 'month' => 'Month', 'day' => 'Day')))
+            ->add('name','text',array('label'=>'Nombre de la sesión'))
 //            ->add('solicitudes')
+            ->add('save', 'submit', array('label' => 'Guardar'))
+
         ;
     }
     

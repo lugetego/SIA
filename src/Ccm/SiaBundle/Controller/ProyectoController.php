@@ -52,6 +52,7 @@ class ProyectoController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
             $em->flush();
+            $this->get('session')->getFlashBag()->add('info', 'El registro se ha guardado exitosamente');
 
             return $this->redirect($this->generateUrl('proyecto_show', array('id' => $entity->getId())));
         }
@@ -193,7 +194,9 @@ class ProyectoController extends Controller
         if ($editForm->isValid()) {
             $em->flush();
 
-            return $this->redirect($this->generateUrl('proyecto_edit', array('id' => $id)));
+            $this->get('session')->getFlashBag()->add('info', 'El registro se ha modificado exitosamente');
+
+            return $this->redirect($this->generateUrl('proyecto_show', array('id' => $id)));
         }
 
         return array(
