@@ -4,7 +4,7 @@
 
     <div class="row">
         <div class="col-lg-12">
-            <h1 class="page-header">Académicos</h1>
+            <h3 class="page-header">Académicos</h3>
         </div>
     </div>
 
@@ -31,9 +31,9 @@
                     <td>{{ entity.nacimiento|date('Y-m-d') }}</td>
                     <td>{{ entity.rfc }}</td>
                     <td>
-                        <a href="{{ path('academico_show', { 'id': entity.id }) }}"><i class="fa fa-search"></i>  </a>
-                        <a href="{{ path('academico_edit', { 'id': entity.id }) }}"><i class="fa fa-pencil-square-o"></i> </a>
-                        <a href="{{ path('solicitud', {'_switch_user': entity.name }) }}">Crear solicitud</a>
+                        <a href="{{ path('academico_show', { 'id': entity.id }) }}" class="btn btn-default btn-sm"><i class="fa fa-search"></i> Ver</a>
+                        <a href="{{ path('academico_edit', { 'id': entity.id }) }}"class="btn btn-default btn-sm"><i class="fa fa-pencil-square-o"></i> Edit</a>
+                        <a href="{{ path('solicitud', {'_switch_user': entity.name }) }}"class="btn btn-default btn-sm"><i class="fa fa-plus-square-o"></i> Nueva solicitud</a>
                     </td>
                 </tr>
             {% endfor %}
