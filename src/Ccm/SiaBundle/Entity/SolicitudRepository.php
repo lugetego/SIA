@@ -12,8 +12,8 @@ class SolicitudRepository extends EntityRepository
                 SELECT p
                 FROM CcmSiaBundle:Solicitud p
                 WHERE p.enviada = true
-                AND p.created < :fecha
-                ORDER BY p.id DESC');
+                AND p.modified <= :fecha
+                ORDER BY p.modified DESC');
         $consulta->setMaxResults(10);
         $consulta->setParameter('fecha', new \DateTime('now'));
         return $consulta->getResult();
