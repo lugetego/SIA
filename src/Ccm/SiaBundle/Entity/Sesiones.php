@@ -35,8 +35,8 @@ class Sesiones
     /**
      * @var array $solicitudes
      *
-     * @ORM\ManyToMany(targetEntity="Ccm\SiaBundle\Entity\Solicitud", mappedBy="sesion")
-     *
+     * @ORM\OneToMany(targetEntity="Ccm\SiaBundle\Entity\Solicitud", mappedBy="academico")
+*
      * The mappedBy attribute designates the field in the entity that is the owner of the relationship.
      */
     private $solicitudes;

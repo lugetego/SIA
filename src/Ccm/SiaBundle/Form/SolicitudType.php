@@ -54,7 +54,7 @@ class SolicitudType extends AbstractType
                                 ->leftjoin('r.user','a')
                                 ->where('a.id = :id')
                                 ->setParameter('id', $user->getId())
-                                ;}, 'multiple' => true, 'expanded'=>false))
+                                ;}, ))
 
                 ->add('proyecto', 'entity', array(
                     'class' => 'Ccm\SiaBundle\Entity\Proyecto',

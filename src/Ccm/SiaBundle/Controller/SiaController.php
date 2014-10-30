@@ -41,6 +41,8 @@ class SiaController extends Controller
             // $entities = $em->getRepository('CcmSiaBundle:Solicitud')->findUltimasSolicitudes();
             $solicitudes = $em->getRepository('CcmSiaBundle:Solicitud')->findUltimasSolicitudes();
             $academicos = $em->getRepository('CcmSiaBundle:Academico')->findAll();
+            $proyectos = $em->getRepository('CcmSiaBundle:Proyecto')->findAll();
+
 
 
         }
@@ -48,16 +50,20 @@ class SiaController extends Controller
             $user = $this->get('security.context')->getToken()->getUser();
             //$solicitudes = $user->getAcademico()->getSolicitudes();
             $academico = $user->getAcademico();
-            $solicitudes = $em->getRepository('CcmSiaBundle:Solicitud')->findSolicitudesByAcademico($academico);
+            $proyectos = $academico->getProyectos();
+
+            $solicitudes = $em->getRepository('CcmSiaBundle:Solicitud')->findSolicitudesByAcademico($academico->getId());
             $academico = $user->getId();
             $academicos = $em->getRepository('CcmSiaBundle:Academico')->findByUser($academico);
+           // $proyectos = $em->getRepository('CcmSiaBundle:Proyecto')->findByAcademico($academico);
+
 
         }
 
         $sesiones =  $em->getRepository('CcmSiaBundle:Sesiones')->findAll();
 
         return array(
-            'solicitudes' => $solicitudes, 'sesiones' => $sesiones, 'academicos' => $academicos
+            'solicitudes' => $solicitudes, 'sesiones' => $sesiones, 'academicos' => $academicos, 'proyectos' => $proyectos
         );
 
 

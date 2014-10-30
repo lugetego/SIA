@@ -23,12 +23,11 @@ class SolicitudRepository extends EntityRepository
     {
         $em = $this->getEntityManager();
         $consulta = $em->createQuery('
-                SELECT p, a
+                SELECT p
                 FROM CcmSiaBundle:Solicitud p
-                JOIN p.academico a
                 WHERE p.enviada = true
                 AND p.created < :fecha
-                AND a.id = :id
+                AND p.academico = :id
                 ORDER BY p.id DESC');
         $consulta->setMaxResults(10);
         $consulta->setParameter('id', $academico);
