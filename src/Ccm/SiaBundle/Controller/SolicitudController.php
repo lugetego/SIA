@@ -74,7 +74,7 @@ class SolicitudController extends Controller
                 ? 'solicitud_send'
                 : 'solicitud_show';
 
-            $this->get('session')->getFlashBag()->add('info', 'Tu solicitud se ha guardado exitosamente');
+            $this->get('session')->getFlashBag()->add('info', 'El registro se ha guardado exitosamente');
 
             return $this->redirect($this->generateUrl($nextAction, array('id' => $entity->getId())));
 
@@ -294,6 +294,8 @@ class SolicitudController extends Controller
 
 
             $em->flush();
+            $this->get('session')->getFlashBag()->add('info', 'El registro se ha modificado exitosamente');
+
 
             $nextAction = $editForm->get('saveAndAdd')->isClicked()
                 ? 'solicitud_send'

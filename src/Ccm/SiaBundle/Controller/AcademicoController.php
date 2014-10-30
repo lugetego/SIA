@@ -53,6 +53,8 @@ class AcademicoController extends Controller
             $em->persist($entity);
             $em->flush();
 
+            $this->get('session')->getFlashBag()->add('info', 'El registro se ha guardado exitosamente');
+
             return $this->redirect($this->generateUrl('academico_show', array('id' => $entity->getId())));
         }
 
@@ -192,8 +194,9 @@ class AcademicoController extends Controller
 
         if ($editForm->isValid()) {
             $em->flush();
+            $this->get('session')->getFlashBag()->add('info', 'El registro se ha modificado exitosamente');
 
-            return $this->redirect($this->generateUrl('academico_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('academico_show', array('id' => $id)));
         }
 
         return array(
