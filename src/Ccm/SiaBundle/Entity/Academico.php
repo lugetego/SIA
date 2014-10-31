@@ -27,6 +27,13 @@ class Academico
     private $name;
 
     /**
+     * @var string $apellido
+     *
+     * @ORM\Column(name="apellido", type="string", length=120)
+     */
+    private $apellido;
+
+    /**
      * @ORM\Column(type="date")
      * @Assert\NotBlank()
      */
@@ -112,6 +119,22 @@ class Academico
         $this->nacimiento = $nacimiento;
 
         return $this;
+    }
+
+    /**
+     * @param string $apellido
+     */
+    public function setApellido($apellido)
+    {
+        $this->apellido = $apellido;
+    }
+
+    /**
+     * @return string
+     */
+    public function getApellido()
+    {
+        return $this->apellido;
     }
 
     /**

@@ -18,6 +18,9 @@ class AcademicoType extends AbstractType
             ->add('name','text',array(
                 'required'=>false,
                 'label'=>'Nombre'))
+            ->add('apellido','text',array(
+                'required'=>false,
+                'label'=>'Apellido(s)'))
             ->add('nacimiento', 'date',array(
                 'widget' => 'single_text',
                 'format' => 'dd-MM-yyyy',
