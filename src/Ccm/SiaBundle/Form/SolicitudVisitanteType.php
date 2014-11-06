@@ -35,7 +35,8 @@ class SolicitudVisitanteType extends AbstractType
         }
 
         $builder
-            ->add('tipo', 'choice', array('required'=>true,
+            ->add('tipo', 'choice', array(
+                'required'=>true,
                 'empty_value' => 'Seleccionar',
                 'choices'=>array(
                     'visitante'=>'Visitante',
@@ -101,8 +102,16 @@ class SolicitudVisitanteType extends AbstractType
 
                     ->add('proposito','textarea',array('required'=>false,'label'=>'Objeto de la visita'))
                     //->add('proyecto')
-                    ->add('inicio', 'date',array('widget' => 'single_text', 'format' => 'yyyy-MM-dd','label'=>'Fecha inicial','required'=>false))
-                    ->add('fin', 'date',array('widget' => 'single_text', 'format' => 'yyyy-MM-dd','label'=>'Fecha final','required'=>false))
+                    ->add('inicio', 'date',array(
+                        'widget' => 'single_text',
+                        'format' => 'dd-MM-yyyy',
+                        'label'=>'Fecha inicial',
+                        'required'=>false))
+                    ->add('fin', 'date',array(
+                        'widget' => 'single_text',
+                        'format' => 'dd-MM-yyyy',
+                        'label'=>'Fecha final',
+                        'required'=>false))
                     //->add('inicio','date',array('widget' => 'single_text','format' => 'yyyy-MM-dd', 'attr' => array('class'=>'form-control', 'datepicker-popup'=> 'yyyy-MM-dd','ng-model'=>'dt',
                     //'is-open'=>'opened', 'min-date'=>'minDate', 'max-date'=>"'2014-12-31'", 'datepicker-options'=>'dateOptions', 'ng-required'=>'true', 'close-text'=>'Close' )))
                     //->add('fin','date',array('widget' => 'single_text','format' => 'yyyy-MM-dd', 'attr' => array('class'=>'form-control', 'datepicker-popup'=> 'yyyy-MM-dd','ng-model'=>'dt',
@@ -125,7 +134,7 @@ class SolicitudVisitanteType extends AbstractType
 
         $resolver->setDefaults(array(
             'validation_groups' => array(
-                'solicitud'),
+                'visitante'),
 
 
 

@@ -39,6 +39,6 @@ var DatepickerDemoCtrl = function ($scope) {
     };
 
     $scope.initDate = new Date('2016-15-20');
-    $scope.formats = ['yyyy-MM-dd', 'shortDate'];
+    $scope.formats = ['dd-MM-yyyy', 'shortDate'];
     $scope.format = $scope.formats[0];
 };

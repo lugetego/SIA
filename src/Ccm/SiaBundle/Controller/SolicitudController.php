@@ -382,7 +382,32 @@ class SolicitudController extends Controller
 
         $em->persist($entity);
         $em->flush();
-        $this->get('session')->getFlashBag()->add('info','Tu solicitud se ha enviado correctamente');
+
+        $user = $this->get('security.context')->getToken()->getUser();
+        $mail = $user->getEmail();
+
+        // Obtiene correo y msg de la forma de contacto
+        $mailer = $this->get('mailer');
+
+        $message = \Swift_Message::newInstance()
+            ->setSubject('Registro de solicitud')
+            ->setFrom('info@matmor.unam.mx')
+            //->setTo(array($entity->getCorreo()))
+            ->setTo($mail)
+           //->setBcc(array('webmaster@matmor.unam.mx','escuela@matmor.unam.mx'))
+            ->setBody($this->renderView('CcmSiaBundle:Solicitud:email.txt.twig', array('entity' => $entity)))
+        ;
+        $mailer->send($message);
+
+        $this->get('session')->getFlashBag()->add(
+            'info',
+            'Se ha enviado un correo de notificación a tu cuenta y a la Secretaría Académica para la revisión de tu solicitud'
+        );
+
+        $this->get('session')->getFlashBag()->add(
+            'info',
+            'Tu solicitud se ha enviado correctamente');
+
 
 
         return $content = $this->render('CcmSiaBundle:Solicitud:show.html.twig', array('id' => $entity->getId(),'entity'=>$entity));

@@ -1,0 +1,24 @@
+SIA - CCM
+
+Solicitud {{ entity.tipo }}
+
+Nombre: {{ entity.academico.name|title }} {{ entity.academico.apellido }}
+Inicia: {{ entity.inicio|date('d-m-Y') }}
+Termina: {{ entity.inicio|date('d-m-Y') }}
+Proyecto: {{ entity.proyecto }}
+Sesión: {{ entity.sesion.name }}
+
+País que visitará: {{ entity.pais }}
+Ciudad: {{ entity.ciudad }}
+Estado: {{ entity.estado }}
+
+Universidad y departamento que vistará: {{ entity.universidad }}
+Actividad: {{ entity.actividad }}
+
+Profesor a quién visitará: {{ entity.profesor }}
+Propósito del viaje y/o nombre del proyecto de investigación: {{ entity.proposito }}
+Título del trabajo que presentará (en su caso) : {{ entity.trabajo }}
+
+Para mayor información dar clic en el siguiente enlace
+
+http://gaspacho.matmor.unam.mx/SIA/solicitud/{{ entity.id }}

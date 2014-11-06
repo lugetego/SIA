@@ -27,7 +27,7 @@ class Solicitud
      * @var academico
      * @ORM\ManyToOne(targetEntity="Academico", inversedBy="solicitudes")
      * @ORM\JoinColumn(name="academico_id", referencedColumnName="id")
-     * @Assert\NotBlank(groups={"solicitud"})
+     * @Assert\NotBlank(groups={"solicitud","visitante"})
      */
     private $academico;
 
@@ -36,7 +36,7 @@ class Solicitud
      * @var sesion
      * @ORM\ManyToOne(targetEntity="Sesiones", inversedBy="solicitudes")
      * @ORM\JoinColumn(name="sesion_id", referencedColumnName="id")
-     * @Assert\NotBlank(groups={"solicitud"})
+     * @Assert\NotBlank(groups={"solicitud","visitante"})
      */
     private $sesion;
 
@@ -45,7 +45,7 @@ class Solicitud
      *
      * @ORM\Column(name="tipo", type="string", length=30)
      * @Assert\Choice(choices = {"licencia", "comision"}, message = "Choose a valid option.")
-     * @Assert\NotBlank(groups={"solicitud"})
+     * @Assert\NotBlank(groups={"solicitud","visitante"})
      */
     private $tipo;
 
@@ -53,7 +53,7 @@ class Solicitud
      * @var string $pais
      *
      * @ORM\Column(name="pais", type="string", length=30, nullable=true)
-     * @Assert\NotBlank(groups={"solicitud"})
+     * @Assert\NotBlank(groups={"solicitud","visitante"})
      */
     private $pais;
 
@@ -61,7 +61,7 @@ class Solicitud
      * @var string $ciudad
      *
      * @ORM\Column(name="ciudad", type="string", length=30, nullable=true)
-     * @Assert\NotBlank(groups={"solicitud"})
+     * @Assert\NotBlank(groups={"solicitud","visitante"})
      */
     private $ciudad;
 
@@ -69,7 +69,7 @@ class Solicitud
      * @var string $estado
      *
      * @ORM\Column(name="estado", type="string", length=30, nullable=true)
-     * @Assert\NotBlank(groups={"solicitud"})
+     * @Assert\NotBlank(groups={"solicitud","visitante"})
      */
     private $estado;
 
@@ -77,7 +77,7 @@ class Solicitud
      * @var string $universidad
      *
      * @ORM\Column(name="universidad", type="string", length=30, nullable=true)
-     * @Assert\NotBlank(groups={"solicitud"})
+     * @Assert\NotBlank(groups={"solicitud","visitante"})
      */
     private $universidad;
 
@@ -85,7 +85,7 @@ class Solicitud
      * @var string $profesor
      *
      * @ORM\Column(name="profesor", type="string", length=30, nullable=true)
-     * @Assert\NotBlank(groups={"solicitud"})
+     * @Assert\NotBlank(groups={"solicitud","visitante"})
      */
     private $profesor;
 
@@ -101,7 +101,7 @@ class Solicitud
      * @var string $proposito
      *
      * @ORM\Column(name="proposito", type="string", length=30, nullable=true)
-     * @Assert\NotBlank(groups={"solicitud"})
+     * @Assert\NotBlank(groups={"solicitud","visitante"})
      */
     private $proposito;
 
@@ -109,7 +109,7 @@ class Solicitud
      * @var string $proyecto
      *
      * @ORM\Column(name="proyecto", type="string", nullable=true)
-     * @Assert\NotBlank(groups={"solicitud"})
+     * @Assert\NotBlank(groups={"solicitud","visitante"})
      */
     private $proyecto;
 
@@ -118,7 +118,7 @@ class Solicitud
      *
      * @ORM\Column(name="inicio", type="date", nullable=true)
      * @Assert\Date()
-     * @Assert\NotBlank(groups={"solicitud"})
+     * @Assert\NotBlank(groups={"solicitud","visitante"})
      */
     private $inicio;
 
@@ -127,7 +127,7 @@ class Solicitud
      *
      * @ORM\Column(name="fin", type="date", nullable=true)
      * @Assert\Date()
-     * @Assert\NotBlank(groups={"solicitud"})
+     * @Assert\NotBlank(groups={"solicitud","visitante"})
      */
     private $fin;
 
@@ -135,7 +135,6 @@ class Solicitud
      * @var string $trabajo
      *
      * @ORM\Column(name="trabajo", type="string", length=30, nullable=true)
-     * @Assert\NotBlank(groups={"solicitud"})
      */
     private $trabajo;
 

@@ -37,12 +37,12 @@
     <div class="row">
         <div class="col-lg-8">
             <div class="col-lg-4">
-                <div ng-controller="DatepickerDemoCtrl" class="form-group input-group" ng-init="inicio='{{ entity.inicio|date("Y-m-d") }}';">
+                <div ng-controller="DatepickerDemoCtrl" class="form-group input-group" ng-init="inicio='{{ entity.inicio|date("d-m-Y") }}';">
                     <div>{{ form_label(edit_form.inicio) }}</div>
                     <div>{{ form_errors(edit_form.inicio) }}
                     {{ form_widget(edit_form.inicio, { 'attr': {
-                    'class': 'form-control',
-                    'datepicker-popup': 'yyyy-MM-dd',
+                    'class': 'form-control input-sm',
+                    'datepicker-popup': 'dd-MM-yyyy',
                     'ng-model':'inicio',
                     'is-open':'opened',
                     'min-date':'minDate',
@@ -51,19 +51,19 @@
                     'ng-required':'true',
                     'close-text':'Close' } } ) }}
                         <span class="input-group-btn">
-                            <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                            <button type="button" class="btn btn-default input-sm" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
                         </span>
                     </div>
                 </div>
             </div>
 
             <div class="col-lg-4">
-                <div ng-controller="DatepickerDemoCtrl" class="form-group input-group" ng-init="fin='{{ entity.fin|date("Y-m-d") }}';">
+                <div ng-controller="DatepickerDemoCtrl" class="form-group input-group" ng-init="fin='{{ entity.fin|date("d-m-Y") }}';">
                     <div>{{ form_label(edit_form.fin) }}</div>
                     <div>{{ form_errors(edit_form.fin) }}
                     {{ form_widget(edit_form.fin, { 'attr': {
-                    'class': 'form-control',
-                    'datepicker-popup': 'yyyy-MM-dd',
+                    'class': 'form-control input-sm',
+                    'datepicker-popup': 'dd-MM-yyyy',
                     'ng-model':'fin',
                     'is-open':'opened',
                     'min-date':'minDate',
@@ -72,7 +72,7 @@
                     'ng-required':'true',
                     'close-text':'Close' } } ) }}
                         <span class="input-group-btn">
-                            <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                            <button type="button" class="btn btn-default input-sm" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
                         </span>
                     <b id='days'> </b>
                 </div>
@@ -90,7 +90,7 @@
                         {{ form_label(edit_form.tipo) }}
                     </div>
                     <div>
-                        {{ form_widget(edit_form.tipo, {'attr': {'class': 'form-control'} } ) }}
+                        {{ form_widget(edit_form.tipo, {'attr': {'class': 'form-control input-sm'} } ) }}
                     </div>
                     <div>{{ form_errors(edit_form.tipo) }}</div>
                 </div>
@@ -101,7 +101,7 @@
                         {{ form_label(edit_form.proyecto) }}
                     </div>
                     <div>
-                        {{ form_widget(edit_form.proyecto, {'attr': {'class': 'form-control'} } ) }}
+                        {{ form_widget(edit_form.proyecto, {'attr': {'class': 'form-control input-sm'} } ) }}
                     </div>
                     <div>{{ form_errors(edit_form.proyecto) }}</div>
                 </div>
@@ -117,7 +117,7 @@
                         {{ form_label(edit_form.academico) }}
                     </div>
                     <div>
-                        {{ form_widget(edit_form.academico, {'attr': {'class': 'form-control'} } ) }}
+                        {{ form_widget(edit_form.academico, {'attr': {'class': 'form-control input-sm'} } ) }}
                     </div>
                     <div>{{ form_errors(edit_form.academico) }}</div>
                 </div>
@@ -129,7 +129,7 @@
                         {{ form_label(edit_form.sesion) }}
                     </div>
                     <div>
-                        {{ form_widget(edit_form.sesion, {'attr': {'class': 'form-control'} } ) }}
+                        {{ form_widget(edit_form.sesion, {'attr': {'class': 'form-control input-sm'} } ) }}
                     </div>
                     <div>{{ form_errors(edit_form.sesion) }}</div>
                 </div>
@@ -162,7 +162,7 @@
                         {{ form_label(edit_form.pais) }}
                     </div>
                     <div>
-                        {{ form_widget(edit_form.pais, {'id': 'country', 'attr': {'class': 'form-control'}} ) }}
+                        {{ form_widget(edit_form.pais, {'id': 'country', 'attr': {'class': 'form-control input-sm'}} ) }}
                     </div>
                     <div>{{ form_errors(edit_form.pais) }}</div>
                 </div>
@@ -179,7 +179,7 @@
                         {{ form_label(edit_form.ciudad) }}
                     </div>
                     <div>
-                        {{ form_widget(edit_form.ciudad, {'id': 'locality', 'attr': {'class': 'form-control'} } ) }}
+                        {{ form_widget(edit_form.ciudad, {'id': 'locality', 'attr': {'class': 'form-control input-sm'} } ) }}
                     </div>
                     <div>{{ form_errors(edit_form.ciudad) }}</div>
                 </div>
@@ -190,7 +190,7 @@
                         {{ form_label(edit_form.estado) }}
                     </div>
                     <div>
-                        {{ form_widget(edit_form.estado, {'id': 'administrative_area_level_1', 'attr': {'class': 'form-control'} } ) }}
+                        {{ form_widget(edit_form.estado, {'id': 'administrative_area_level_1', 'attr': {'class': 'form-control input-sm'} } ) }}
                     </div>
                     <div>{{ form_errors(edit_form.estado) }}</div>
                 </div>
@@ -206,7 +206,7 @@
                         {{ form_label(edit_form.universidad) }}
                     </div>
                     <div>
-                        {{ form_widget(edit_form.universidad, {'attr': {'class': 'form-control'} } ) }}
+                        {{ form_widget(edit_form.universidad, {'attr': {'class': 'form-control input-sm'} } ) }}
                     </div>
                     <div>{{ form_errors(edit_form.universidad) }}</div>
                 </div>
@@ -224,7 +224,7 @@
                         {{ form_label(edit_form.actividad) }}
                     </div>
                     <div>
-                        {{ form_widget(edit_form.actividad, {'attr': {'class': 'form-control'} } ) }}
+                        {{ form_widget(edit_form.actividad, {'attr': {'class': 'form-control input-sm'} } ) }}
                     </div>
                     <div>{{ form_errors(edit_form.actividad) }}</div>
                 </div>
@@ -242,7 +242,7 @@
                         {{ form_label(edit_form.profesor) }}
                     </div>
                     <div>
-                        {{ form_widget(edit_form.profesor, {'attr': {'class': 'form-control'} } ) }}
+                        {{ form_widget(edit_form.profesor, {'attr': {'class': 'form-control input-sm'} } ) }}
                     </div>
                     <div>{{ form_errors(edit_form.profesor) }}</div>
                 </div>
@@ -253,7 +253,7 @@
                         {{ form_label(edit_form.proposito) }}
                     </div>
                     <div>
-                        {{ form_widget(edit_form.proposito, {'attr': {'class': 'form-control'} } ) }}
+                        {{ form_widget(edit_form.proposito, {'attr': {'class': 'form-control input-sm'} } ) }}
                     </div>
                     <div>{{ form_errors(edit_form.proposito) }}</div>
                 </div>
@@ -271,7 +271,7 @@
                         {{ form_label(edit_form.trabajo) }}
                     </div>
                     <div>
-                        {{ form_widget(edit_form.trabajo, {'attr': {'class': 'form-control'} } ) }}
+                        {{ form_widget(edit_form.trabajo, {'attr': {'class': 'form-control input-sm'} } ) }}
                     </div>
                     <div>{{ form_errors(edit_form.trabajo) }}</div>
                 </div>
@@ -300,11 +300,11 @@
 
                             {% for fin in edit_form.financiamiento %}
                                 <tr>
-                                    <td>{{ form_widget(fin.nombre, { 'attr':{'class': 'form-control','readonly':'true'} }) }}</td>
-                                    <td>{{ form_widget(fin.ccm, { 'attr':{'class': 'form-control'} }) }} {{ form_errors(fin.ccm) }}</td>
-                                    <td>{{ form_widget(fin.papiit, { 'attr':{'class': 'form-control'} }) }} {{ form_errors(fin.papiit) }}</td>
-                                    <td>{{ form_widget(fin.conacyt, { 'attr':{'class': 'form-control'} }) }} {{ form_errors(fin.conacyt) }}</td>
-                                    <td>{{ form_widget(fin.otro, { 'attr':{'class': 'form-control'} }) }} {{ form_errors(fin.otro) }}</td>
+                                    <td>{{ form_widget(fin.nombre, { 'attr':{'class': 'form-control input-sm','readonly':'true'} }) }}</td>
+                                    <td>{{ form_widget(fin.ccm, { 'attr':{'class': 'form-control input-sm'} }) }} {{ form_errors(fin.ccm) }}</td>
+                                    <td>{{ form_widget(fin.papiit, { 'attr':{'class': 'form-control input-sm'} }) }} {{ form_errors(fin.papiit) }}</td>
+                                    <td>{{ form_widget(fin.conacyt, { 'attr':{'class': 'form-control input-sm'} }) }} {{ form_errors(fin.conacyt) }}</td>
+                                    <td>{{ form_widget(fin.otro, { 'attr':{'class': 'form-control input-sm'} }) }} {{ form_errors(fin.otro) }}</td>
                                 </tr>
                             {% endfor %}
                             </tbody>

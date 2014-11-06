@@ -93,31 +93,40 @@ class SolicitudType extends AbstractType
                                  ;}, ));
         }
 
-            $builder->add('sesion',null,array(
-                'required'=>false,
-                'empty_value' => 'Seleccionar',
-                'label'=> 'Sesión de consejo'))
-                    ->add('pais','text',array('required'=>false,'label'=>'País que visitará'))
-                    ->add('ciudad','text',array('required'=>false,'label'=>'Ciudad'))
-                    ->add('estado','text',array('required'=>false,'label'=>'Estado'))
-                    ->add('universidad','text',array('required'=>false,'label'=>'Universidad y departamento que visitará'))
-                    ->add('profesor','text',array('required'=>false,'label'=>'Profesor a quién visitará'))
-                    ->add('actividad','textarea',array('required'=>false,'label'=>'Actividad a desarrollar'))
-                    ->add('proposito','textarea',array('required'=>false,'label'=>'Propósito del viaje y/o nombre del proyecto de investigación'))
-                    //->add('proyecto')
-                    ->add('inicio', 'date',array('widget' => 'single_text', 'format' => 'yyyy-MM-dd','label'=>'Fecha inicial','required'=>false))
-                    ->add('fin', 'date',array('widget' => 'single_text', 'format' => 'yyyy-MM-dd','label'=>'Fecha final','required'=>false))
+            $builder
+                ->add('sesion',null,array(
+                    'required'=>false,
+                    'empty_value' => 'Seleccionar',
+                    'label'=> 'Sesión de consejo'))
+                ->add('pais','text',array('required'=>false,'label'=>'País que visitará'))
+                ->add('ciudad','text',array('required'=>false,'label'=>'Ciudad'))
+                ->add('estado','text',array('required'=>false,'label'=>'Estado'))
+                ->add('universidad','text',array('required'=>false,'label'=>'Universidad y departamento que visitará'))
+                ->add('profesor','text',array('required'=>false,'label'=>'Profesor a quién visitará'))
+                ->add('actividad','textarea',array('required'=>false,'label'=>'Actividad a desarrollar'))
+                ->add('proposito','textarea',array('required'=>false,'label'=>'Propósito del viaje y/o nombre del proyecto de investigación'))
+                 //->add('proyecto')
+                ->add('inicio', 'date',array(
+                    'widget' => 'single_text',
+                    'format' => 'dd-MM-yyyy',
+                    'label'=>'Fecha inicial',
+                    'required'=>false))
+                ->add('fin', 'date',array(
+                    'widget' => 'single_text',
+                    'format' => 'dd-MM-yyyy',
+                    'label'=>'Fecha final',
+                    'required'=>false))
                     //->add('inicio','date',array('widget' => 'single_text','format' => 'yyyy-MM-dd', 'attr' => array('class'=>'form-control', 'datepicker-popup'=> 'yyyy-MM-dd','ng-model'=>'dt',
                     //'is-open'=>'opened', 'min-date'=>'minDate', 'max-date'=>"'2014-12-31'", 'datepicker-options'=>'dateOptions', 'ng-required'=>'true', 'close-text'=>'Close' )))
                     //->add('fin','date',array('widget' => 'single_text','format' => 'yyyy-MM-dd', 'attr' => array('class'=>'form-control', 'datepicker-popup'=> 'yyyy-MM-dd','ng-model'=>'dt',
                     //'is-open'=>'opened', 'min-date'=>'minDate', 'max-date'=>"'2014-12-31'", 'datepicker-options'=>'dateOptions', 'ng-required'=>'true', 'close-text'=>'Close' )))
-                    ->add('trabajo','textarea',array('required'=>false,'label'=>'Título del trabajo que presentará (en su caso)'))
-                    ->add('financiamiento', 'collection', array(
-                          'required'=>false,
-                          'type' => new FinanciamientoType(),
-                          'allow_add'    => true,))
-                    ->add('save', 'submit', array('label' => 'Guardar','validation_groups' => false,))
-                    ->add('saveAndAdd', 'submit', array('label' => 'Guardar y enviar'))
+                ->add('trabajo','textarea',array('required'=>false,'label'=>'Título del trabajo que presentará (en su caso)'))
+                ->add('financiamiento', 'collection', array(
+                    'required'=>false,
+                    'type' => new FinanciamientoType(),
+                    'allow_add'    => true,))
+                ->add('save', 'submit', array('label' => 'Guardar','validation_groups' => false,))
+                ->add('saveAndAdd', 'submit', array('label' => 'Guardar y enviar'))
         ;
     }
 
