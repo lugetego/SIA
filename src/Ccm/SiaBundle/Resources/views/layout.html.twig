@@ -400,9 +400,10 @@
 <!-- /#wrapper -->
 
 {% block javascript %}
-<!-- jQuery Version 1.11.0 -->
-<script src="{{ asset('bundles/ccmsia/js/jquery-1.11.0.js') }}"> </script>
 
+    <!-- jQuery Version 1.11.0 -->
+
+<script src="{{ asset('bundles/ccmsia/js/jquery-1.11.0.js') }}"> </script>
 <script type="text/javascript" language="javascript" src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
@@ -423,9 +424,16 @@
 
 
 <script src="{{ asset('bundles/ccmsia/js/moment.min.js') }}" type="text/javascript"></script>
+
+
+{#<script id="angularScript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.1/angular.js"></script>#}
 <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.10/angular.js"></script>
+
+
 <script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.11.0.js"></script>
-<script src="{{ asset('bundles/ccmsia/js/datepicker.js') }}" ></script>
+
+    <script src="{{ asset('bundles/ccmsia/js/datepicker.js') }}" ></script>
+
 
 {% endblock %}
 

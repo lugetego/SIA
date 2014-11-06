@@ -9,7 +9,6 @@
 
 {% endblock %}
 
-
 {% form_theme form 'CcmSiaBundle::form_errors.html.twig' %}
 
 {% block wrapper %}
@@ -65,12 +64,12 @@
                             <button type="button" class="btn btn-default input-sm" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
                         </span>
 
-                   </div>
-                   <div>{{ form_errors(form.fin) }}</div>
+                    </div>
+                    <div>{{ form_errors(form.fin) }}</div>
                 </div>
             </div>
             <div class="col-lg-4">
-                    <h3><span class="label label-primary" id="days"></span></h3>
+                <h3><span class="label label-primary" id="days"></span></h3>
                 {#<p class="text-info" id="days"></p>#}
             </div>
         </div>
@@ -140,7 +139,7 @@
             <div class="col-lg-8">
                 <div class="form-group">
                     <div id="locationField">
-                        <input class="form-control input-sm" id="autocomplete" placeholder="Dirección a buscar" onFocus="geolocate()" type="text"></input>
+                        <input class="form-control input-sm" id="autocomplete" placeholder="Dirección a buscar" onFocus="geolocate()" type="text">
                         <span class="help-block">Escriba una dirección para autocompletar los campos correspondientes.</span>
                     </div>
                 </div>
@@ -280,7 +279,7 @@
     <div class="row">
         <div class="col-lg-8">
             <div class="col-lg-12">
-                <div class="form-group">
+                <div ng-controller="DatepickerDemoCtrl" class="form-group">
                     <div class="table-responsive">
                         <table class="table table-striped table-bordered table-hover">
                             <thead>
@@ -294,16 +293,32 @@
                             </thead>
                             <tbody>
 
+                            {% set i = -1 %}
                             {% for fin in form.financiamiento %}
+                                {% set i = i + 1 %}
 
                                 <tr>
-                                    <td>{{ form_widget(fin.nombre, { 'attr':{'class': 'form-control input-sm','readonly':'true'} }) }}</td>
-                                    <td>{{ form_widget(fin.ccm, { 'attr':{'class': 'form-control input-sm'} }) }}  {{ form_errors(fin.ccm) }}</td>
-                                    <td>{{ form_widget(fin.papiit, { 'attr':{'class': 'form-control input-sm'} }) }} {{ form_errors(fin.papiit) }}</td>
-                                    <td>{{ form_widget(fin.conacyt, { 'attr':{'class': 'form-control input-sm'} }) }} {{ form_errors(fin.conacyt) }}</td>
-                                    <td>{{ form_widget(fin.otro, { 'attr':{'class': 'form-control input-sm'} }) }} {{ form_errors(fin.otro) }}</td>
+                                    <td>{{ form_widget(fin.nombre, { 'attr':{'class': 'form-control input-sm ','readonly':'true'} }) }}</td>
+                                    {% set ccmid = 'ccm' ~ i %}
+                                    <td>{{ form_widget(fin.ccm, { 'attr':{'class': 'form-control input-sm text-right', 'ng-model': ccmid, 'value': '8'} }) }}  {{ form_errors(fin.ccm) }}</td>
+                                    {% set papiitid = 'papiit' ~ i %}
+                                    <td>{{ form_widget(fin.papiit, { 'attr':{'class': 'form-control input-sm text-right', 'ng-model': papiitid } }) }} {{ form_errors(fin.papiit) }}</td>
+                                    {% set conacytid = 'conacyt' ~ i %}
+                                    <td>{{ form_widget(fin.conacyt, { 'attr':{'class': 'form-control input-sm text-right', 'ng-model': conacytid } }) }} {{ form_errors(fin.conacyt) }}</td>
+                                    {% set otroid = 'otro' ~ i %}
+                                    <td>{{ form_widget(fin.otro, { 'attr':{'class': 'form-control input-sm text-right', 'ng-model': otroid } }) }} {{ form_errors(fin.otro) }}</td>
                                 </tr>
                             {% endfor %}
+
+                            {% verbatim %}
+                            <tr class="text-right">
+                                <td></td>
+                                <td><strong>{{ totalCCM() }}</strong></td>
+                                <td><strong>{{ totalPAPIIT() }}</strong></td>
+                                <td><strong>{{ totalConacyt() }}</strong></td>
+                                <td><strong>{{ totalOtro() }}</strong></td>
+                            </tr>
+                            {% endverbatim %}
 
                             </tbody>
                         </table>
@@ -312,7 +327,6 @@
             </div>
         </div>
     </div>
-
 
     <div class="row">
         <div class="col-lg-8">
