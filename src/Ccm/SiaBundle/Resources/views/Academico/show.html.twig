@@ -78,11 +78,11 @@
     <div class="row">
         <div class="col-lg-8">
             <h3 class="page-header"><small>Asignación Anual</small></h3><br>
-            <strong>Saldo</strong><span style="color:#428bca; font-size:150%"> $20,000.00</span>
+            <strong>Saldo</strong><span style="color:#428bca; font-size:150%"> ${{ entity.asignacion |number_format(2)}}</span>
+            {% set asignacion = (entity.asignacion * 100)/30000 %}
             <div class="progress">
-                <div class="progress-bar progress-bar-primary"
-                     role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
-                    <span class="sr-only">80% Complete (success)</span><span class="text-default">80%</span>
+                <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="{{ asignacion }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ asignacion }}%">
+                    <span class="sr-only">80% Complete (success)</span><span class="text-default">{{ asignacion|number_format }}%</span>
                 </div>
             </div>
         </div>

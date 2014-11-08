@@ -76,6 +76,12 @@ class Academico
     private $dias;
 
     /**
+     * @ORM\Column(type="integer", length=3, nullable=true)
+     * @Assert\NotBlank()
+     */
+    private $asignacion;
+
+    /**
      * Get id
      *
      * @return integer 
@@ -185,6 +191,23 @@ class Academico
     {
         return $this->dias;
     }
+
+    /**
+     * @param mixed $asignacion
+     */
+    public function setAsignacion($asignacion)
+    {
+        $this->asignacion = $asignacion;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAsignacion()
+    {
+        return $this->asignacion;
+    }
+
     /**
      * Set user
      *

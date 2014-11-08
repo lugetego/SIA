@@ -82,6 +82,17 @@
                         <div>{{ form_errors(edit_form.dias) }}</div>
                     </div>
                 </div>
+                <div class="col-lg-4">
+                    <div class="form-group">
+                        <div>
+                            {{ form_label(edit_form.asignacion) }}
+                        </div>
+                        <div>
+                            {{ form_widget(edit_form.asignacion, {'attr': {'class': 'form-control input-sm'} } ) }}
+                        </div>
+                        <div>{{ form_errors(edit_form.asignacion) }}</div>
+                    </div>
+                </div>
             </div>
         </div>
 

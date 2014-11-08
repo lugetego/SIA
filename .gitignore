@@ -10,4 +10,4 @@
 /bin/
 /composer.phar
 /.idea
-app/config/config.yml
+/app/config/config.yml
