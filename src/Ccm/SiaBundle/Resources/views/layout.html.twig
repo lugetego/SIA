@@ -270,12 +270,14 @@
 <!-- /.dropdown -->
 </ul>
 <!-- /.navbar-top-links -->
+</nav>
+
 {% endblock %}
 
-{% block sidebar %}
 <div class="navbar-default sidebar" role="navigation">
     <div class="sidebar-nav navbar-collapse">
         <ul class="nav" id="side-menu">
+            {% block sidebar %}
 
             <li class="sidebar-search">
                 <div class="input-group custom-search-form">
@@ -374,6 +376,7 @@
                 <!-- /.nav-second-level -->
             </li>
         </ul>
+        {% endblock %}
     </div>
     <center>
         <img src="{{ asset('bundles/ccmsia/img/ccm.png') }}" width="180px" height="60px" /></center>
@@ -381,8 +384,6 @@
     <!-- /.sidebar-collapse -->
 </div>
 <!-- /.navbar-static-side -->
-</nav>
-{% endblock %}
 
 <div id="page-wrapper">
 
