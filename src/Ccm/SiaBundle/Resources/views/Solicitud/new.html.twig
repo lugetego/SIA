@@ -350,6 +350,26 @@
 
 
 
+    {% if form.aprobada is defined %}
+
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="col-lg-2">
+                    <div class="form-group">
+                        <div>
+                            {{ form_label(form.aprobada) }}
+                        </div>
+                        <div>
+                            {{ form_widget(form.aprobada, {'attr': {'class': 'form-control input-sm'} } ) }}
+                        </div>
+                        <div>{{ form_errors(form.aprobada) }}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
+
     <div class="row">
         <div class="col-lg-8">
             <div class="col-lg-12">
