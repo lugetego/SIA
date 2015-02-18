@@ -21,6 +21,10 @@ Título del trabajo que presentará (en su caso) : {{ entity.trabajo }}
 
 Observaciones: {{ entity.observaciones }}
 
-Para mayor información dar clic en el siguiente enlace
+{%  if entity.aprobada == true %}
+Aprobada: Si
+{% else %}
+Aprobada: No
+{% endif %}
 
-http://gaspacho.matmor.unam.mx/SIA/solicitud/{{ entity.id }}
+

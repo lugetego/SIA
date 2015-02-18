@@ -46,20 +46,22 @@ class SolicitudVisitanteType extends AbstractType
         if ( false === $this->securityContext->isGranted('ROLE_ADMIN') ) {
 
             $builder
-                ->add('academico', 'entity', array(
+                ->add('academico',null, array(
                     'class' => 'Ccm\SiaBundle\Entity\Academico',
-                    'empty_value' => 'Seleccionar',
-                    'required'=>false,
+                    'label' => 'Académico',
+                    'read_only'=>'true',
+                    'required'=>true,
+                    'disabled'  => false,
                     'query_builder'=> function(\Doctrine\ORM\EntityRepository  $er) use ($user) {
                         return $er->createQueryBuilder('q')
-                                ->select('r')
-                                ->from('Ccm\SiaBundle\Entity\Academico', 'r')
-                                ->leftjoin('r.user','a')
-                                ->where('a.id = :id')
-                                ->setParameter('id', $user->getId())
-                                ;}, 'multiple' => true, 'expanded'=>false))
+                            ->select('r')
+                            ->from('Ccm\SiaBundle\Entity\Academico', 'r')
+                            ->leftjoin('r.user','a')
+                            ->where('a.id = :id')
+                            ->setParameter('id', $user->getId())
+                            ;}, 'data' => ($user->getAcademico())))
 
-                ->add('proyecto', 'entity', array(
+                ->add('proyecto', null, array(
                     'class' => 'Ccm\SiaBundle\Entity\Proyecto',
                     'empty_value' => 'Seleccionar',
                     'required'=>false,
@@ -77,7 +79,7 @@ class SolicitudVisitanteType extends AbstractType
 
             $builder
                 ->add('academico',null,array(
-                    'required'=>false,
+                    'required'=>true,
                     'empty_value' => 'Seleccionar',))
                 ->add('proyecto', 'entity', array(
                     'required'=>false,
@@ -92,16 +94,43 @@ class SolicitudVisitanteType extends AbstractType
 
             $builder
                 ->add('sesion',null,array(
-                    'required'=>false,
-                    'empty_value' => 'Seleccionar'))
-                    ->add('pais','text',array('required'=>false,'label'=>'País de procedencia'))
-                    ->add('ciudad','text',array('required'=>false,'label'=>'Ciudad de procedencia'))
-                    ->add('estado','text',array('required'=>false,'label'=>'Estado'))
-                    ->add('universidad','text',array('required'=>false,'label'=>'Institución'))
-                    ->add('profesor','text',array('required'=>false,'label'=>'Nombre del invitado'))
+                'required'=>false,
+                'label'=>'Sesión de Consejo Interno',
+                'class'=> 'Ccm\SiaBundle\Entity\Sesiones',
+                'query_builder' => function(\Doctrine\ORM\EntityRepository $er) {
+                    return $er->createQueryBuilder('q')
+                        ->select('r')
+                        ->from('Ccm\SiaBundle\Entity\Sesiones', 'r')
+                        ->where('r.fecha >= :now')
+                        ->setParameter('now', new \DateTime("now"));
+                }
 
-                    ->add('proposito','textarea',array('required'=>false,'label'=>'Objeto de la visita'))
-                    //->add('proyecto')
+            ))
+                    ->add('pais','text',array(
+                        'required'=>false,
+                        'label'=>'País de procedencia'
+                    ))
+                    ->add('ciudad','text',array(
+                        'required'=>false,
+                        'label'=>'Ciudad de procedencia'
+                    ))
+                    ->add('estado','text',array(
+                        'required'=>false,
+                        'label'=>'Estado'
+                    ))
+                    ->add('universidad','text',array(
+                        'required'=>false,
+                        'label'=>'Institución'
+                    ))
+                    ->add('profesor','text',array(
+                        'required'=>false,
+                        'label'=>'Nombre del invitado'
+                    ))
+
+                    ->add('proposito','textarea',array(
+                        'required'=>false,
+                        'label'=>'Objeto de la visita'
+                    ))
                     ->add('inicio', 'date',array(
                         'widget' => 'single_text',
                         'format' => 'dd-MM-yyyy',
@@ -116,14 +145,37 @@ class SolicitudVisitanteType extends AbstractType
                     //'is-open'=>'opened', 'min-date'=>'minDate', 'max-date'=>"'2014-12-31'", 'datepicker-options'=>'dateOptions', 'ng-required'=>'true', 'close-text'=>'Close' )))
                     //->add('fin','date',array('widget' => 'single_text','format' => 'yyyy-MM-dd', 'attr' => array('class'=>'form-control', 'datepicker-popup'=> 'yyyy-MM-dd','ng-model'=>'dt',
                     //'is-open'=>'opened', 'min-date'=>'minDate', 'max-date'=>"'2014-12-31'", 'datepicker-options'=>'dateOptions', 'ng-required'=>'true', 'close-text'=>'Close' )))
-
+                    ->add('observaciones','textarea',array(
+                        'required'=>false,
+                        'label'=>'Observaciones'
+                    ))
                     ->add('financiamiento', 'collection', array(
                           'required'=>false,
                           'type' => new FinanciamientoType(),
-                          'allow_add'    => true,))
-                    ->add('save', 'submit', array('label' => 'Guardar','validation_groups' => false,))
-                    ->add('saveAndAdd', 'submit', array('label' => 'Guardar y enviar'))
-        ;
+                          'allow_add'    => true,
+                        ));
+                  if ( true === $this->securityContext->isGranted('ROLE_ADMIN') ) {
+                      $builder
+                          ->add('aprobada', 'choice', array(
+                              'choices' => array(
+                                  false => 'No',
+                                  true => 'Si'
+                              ),
+                              'required'    => false,
+                              'empty_value' => 'Seleccionar',
+                              'empty_data'  => null
+                          ));
+                  }
+
+                  $builder
+
+                      ->add('save', 'submit', array(
+                        'label' => 'Guardar',
+                        'validation_groups' => false,
+                        ))
+                       ->add('saveAndAdd', 'submit', array(
+                        'label' => 'Guardar y enviar'
+                    ));
     }
 
     /**

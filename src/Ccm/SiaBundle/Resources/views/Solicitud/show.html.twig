@@ -117,15 +117,20 @@
 
                 {% if entity.enviada %}
 
-                    {% if entity.aprobada == null %}
+                    {% if entity.aprobada is null %}
                         <div class="alert alert-warning">
                             <button class="btn btn-warning btn-circle" type="button"><i class="fa fa-exclamation-triangle"></i></button>
-                            Esta solicitud ya fue enviada pero no ha sido aprobada.
+                            Esta solicitud ya fue enviada pero no se ha decidido si es aprobada.
                         </div>
-                    {% else %}
+                    {% elseif entity.aprobada == true %}
                         <div class="alert alert-success">
                             <button class="btn btn-success btn-circle" type="button"><i class="fa fa-check"></i></button>
-                            Esta solicitud ya ha sido aprobada.
+                            Esta solicitud fue aprobada.
+                        </div>
+                    {% elseif entity.aprobada == false %}
+                        <div class="alert alert-danger">
+                            <button class="btn btn-danger btn-circle" type="button"><i class="fa fa-times"></i></button>
+                            Esta solicitud no fue aprobada.
                         </div>
                     {% endif %}
 
@@ -135,25 +140,43 @@
                         Esta solicitud no ha sido enviada.
                     </div>
 
-
                 {% endif %}
 
                 {% block footer %}
+
                 <div class="panel-footer">
                     <div class="row">
                         <div class="col-lg-8">
                             <div class="col-lg-12">
-                                {% if entity.enviada %}
-                                    <a href="{{ path('sia') }}" type="button"  class="btn btn-danger">Regresar</a>
-                                    {# <button type="submit" class="btn btn-primary">Eliminar</button>#}
+                                {% if entity.enviada is not null   %}
+
+                                    {% if true == is_granted('ROLE_ADMIN')  %}
+
+                                        <a href="{{ path('solicitud_edit', { 'id': entity.id }) }}" type="button" class="btn btn-primary">Modificar</a>
+                                        <a href="{{ path('solicitud') }}" type="button"  class="btn btn-danger">Regresar</a>
+                                        <button href="{{ path('solicitud_delete', { 'id': entity.id }) }}" type="submit" class="btn btn-primary">Eliminar</button>
+
+                                        {% if entity.notificada is null and entity.aprobada is not null %}
+                                            <a href="{{ path('solicitud_notify', { 'id': entity.id }) }}" type="button" class="btn btn-primary">Notificar al solicitante</a>
+
+                                        {% elseif entity.notificada is defined and entity.aprobada is not null%}
+                                            <a href="{{ path('solicitud_notify', { 'id': entity.id }) }}" type="button" class="btn btn-primary disabled">Notificación enviada</a>
+                                        {% endif %}
+
+                                    {% else %}
+
+                                        <a href="{{ path('solicitud') }}" type="button"  class="btn btn-danger">Regresar</a>
+
+                                    {% endif %}
+
+
                                 {% else %}
-                                    {{ form_start(delete_form) }}
                                     <a href="{{ path('solicitud_edit', { 'id': entity.id }) }}" type="button" class="btn btn-primary">Modificar</a>
                                     <a href="{{ path('solicitud') }}" type="button"  class="btn btn-danger">Regresar</a>
-                                    <button href="{{ path('solicitud_delete', { 'id': entity.id }) }}" type="submit" class="btn btn-primary">Eliminar</button>
-                                    {{ form_end(delete_form) }}
+
 
                                 {% endif %}
+
                             </div>
                         </div>
                     </div>

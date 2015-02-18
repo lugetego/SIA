@@ -43,7 +43,7 @@ class Solicitud
     /**
      * @var string $tipo
      *
-     * @ORM\Column(name="tipo", type="string", length=30)
+     * @ORM\Column(name="tipo", type="string", length=10)
      * @Assert\Choice(choices = {"licencia", "comision"}, message = "Choose a valid option.")
      * @Assert\NotBlank(groups={"solicitud","visitante"})
      */
@@ -76,7 +76,7 @@ class Solicitud
     /**
      * @var string $universidad
      *
-     * @ORM\Column(name="universidad", type="string", length=30, nullable=true)
+     * @ORM\Column(name="universidad", type="string", length=60, nullable=true)
      * @Assert\NotBlank(groups={"solicitud","visitante"})
      */
     private $universidad;
@@ -84,7 +84,7 @@ class Solicitud
     /**
      * @var string $profesor
      *
-     * @ORM\Column(name="profesor", type="string", length=30, nullable=true)
+     * @ORM\Column(name="profesor", type="string", length=50, nullable=true)
      * @Assert\NotBlank(groups={"solicitud","visitante"})
      */
     private $profesor;
@@ -92,7 +92,7 @@ class Solicitud
     /**
      * @var string $actividad
      *
-     * @ORM\Column(name="actividad", type="string", length=30, nullable=true)
+     * @ORM\Column(name="actividad", type="string", length=250, nullable=true)
      * @Assert\NotBlank(groups={"solicitud"})
      */
     private $actividad;
@@ -100,7 +100,7 @@ class Solicitud
     /**
      * @var string $proposito
      *
-     * @ORM\Column(name="proposito", type="string", length=30, nullable=true)
+     * @ORM\Column(name="proposito", type="string", length=250, nullable=true)
      * @Assert\NotBlank(groups={"solicitud","visitante"})
      */
     private $proposito;
@@ -109,6 +109,13 @@ class Solicitud
      * @var string $proyecto
      *
      * @ORM\Column(name="proyecto", type="string", nullable=true)
+     * @Assert\NotBlank(groups={"solicitud","visitante"})
+     */
+
+    /**
+     * @var proyecto
+     * @ORM\ManyToOne(targetEntity="Proyecto", inversedBy="proyectos")
+     * @ORM\JoinColumn(name="proyecto_id", referencedColumnName="id")
      * @Assert\NotBlank(groups={"solicitud","visitante"})
      */
     private $proyecto;
@@ -134,10 +141,16 @@ class Solicitud
     /**
      * @var string $trabajo
      *
-     * @ORM\Column(name="trabajo", type="string", length=30, nullable=true)
+     * @ORM\Column(name="trabajo", type="string", length=250, nullable=true)
      */
     private $trabajo;
 
+    /**
+     * @var string $observaciones
+     *
+     * @ORM\Column(name="observaciones", type="string", length=250, nullable=true)
+     */
+    private $observaciones;
 
     /**
      * @var array
@@ -167,6 +180,11 @@ class Solicitud
     private $created;
 
     /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $notificada;
+
+    /**
      * @ORM\Column(type="datetime", nullable=true)
      */
     private $modified;
@@ -186,6 +204,7 @@ class Solicitud
     public function preUpdate()
     {
         $this->setModified(new \DateTime());
+
     }
 
     /**
@@ -480,6 +499,22 @@ class Solicitud
     }
 
     /**
+     * @return string
+     */
+    public function getObservaciones()
+    {
+        return $this->observaciones;
+    }
+
+    /**
+     * @param string $observaciones
+     */
+    public function setObservaciones($observaciones)
+    {
+        $this->observaciones = $observaciones;
+    }
+
+    /**
      * Set inicio
      *
      * @param \DateTime $inicio
@@ -610,6 +645,22 @@ class Solicitud
         else {
             return false;
         }
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getNotificada()
+    {
+        return $this->notificada;
+    }
+
+    /**
+     * @param mixed $notificada
+     */
+    public function setNotificada($notificada)
+    {
+        $this->notificada = $notificada;
     }
 
     /**

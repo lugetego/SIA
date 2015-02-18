@@ -18,17 +18,23 @@
             <h3 class="page-header">Modificar Solicitud</h3>
         </div>
     </div>
-{% if entity.enviada %}
-<div class="row">
-<div class="col-lg-8">
-    <div class="alert alert-danger">
-        <button class="btn btn-danger btn-circle" type="button"><i class="fa fa-times"></i>
-        </button> Ya no es posible modificar esta solicitud <a href="{{ path('solicitud_show', { 'id': entity.id }) }}" type="button" class="alert-link">Regresar</a>
 
-    </div>
-</div>
-</div>
-{% else %}
+
+
+
+    {% if (entity.enviada) and ( false == is_granted('ROLE_ADMIN')) %}
+
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="alert alert-danger">
+                    <button class="btn btn-danger btn-circle" type="button"><i class="fa fa-times"></i>
+                    </button> Ya no es posible modificar esta solicitud <a href="{{ path('solicitud_show', { 'id': entity.id }) }}" type="button" class="alert-link">Regresar</a>
+
+                </div>
+            </div>
+        </div>
+    {% else %}
+
 
     {{ form_start(edit_form) }}
 
@@ -321,13 +327,52 @@
         </div>
     </div>
 
+    {% if edit_form.observaciones is defined%}
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="col-lg-8">
+                    <div class="form-group">
+                        <div>
+                            {{ form_label(edit_form.observaciones) }}
+                        </div>
+                        <div>
+                            {{ form_widget(edit_form.observaciones, {'attr': {'class': 'form-control input-sm'} } ) }}
+                        </div>
+                        <div>{{ form_errors(edit_form.observaciones) }}</div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    {% endif %}
+
+    {% if edit_form.aprobada is defined %}
+
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="col-lg-2">
+                    <div class="form-group">
+                        <div>
+                            {{ form_label(edit_form.aprobada) }}
+                        </div>
+                        <div>
+                            {{ form_widget(edit_form.aprobada, {'attr': {'class': 'form-control input-sm'} } ) }}
+                        </div>
+                        <div>{{ form_errors(edit_form.aprobada) }}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+   {% endif %}
 
     <div class="row">
         <div class="col-lg-8">
             <div class="col-lg-12">
-                {{ form_widget(edit_form.save,{'attr':{'class':'btn btn-primary'} } )}}
+                    {{ form_widget(edit_form.save,{'attr':{'class':'btn btn-primary'} } )}}
+                {% if edit_form.saveAndAdd is defined %}
                 {{ form_widget(edit_form.saveAndAdd,{'attr':{'class':'btn btn-success','onclick':"return confirm('¿Estás seguro de enviar la solicitud?, después de esta acción la solicitud no podrá ser modificada')"} } )}}
-                <a href="{{ path('solicitud_show', { 'id': entity.id }) }}" type="button" class="btn btn-primary">Cancelar</a>
+                {% endif %}
+                    <a href="{{ path('solicitud_show', { 'id': entity.id }) }}" type="button" class="btn btn-primary">Cancelar</a>
             </div>
         </div>
     </div>

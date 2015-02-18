@@ -3,6 +3,7 @@
 namespace Ccm\SiaBundle\Controller;
 
 use Ccm\SiaBundle\Entity\Financiamiento;
+use Ccm\SiaBundle\Security\SolicitudVoter;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -12,6 +13,7 @@ use Ccm\SiaBundle\Entity\Solicitud;
 use Ccm\SiaBundle\Entity\Proyecto;
 use Ccm\SiaBundle\Form\SolicitudType;
 use Ccm\SiaBundle\Form\SolicitudVisitanteType;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 
 
@@ -46,6 +48,9 @@ class SolicitudController extends Controller
     {
         $securityContext = $this->container->get('security.context');
 
+        $user = $securityContext->getToken()->getUser();
+
+
         $entity = new Solicitud($securityContext);
 
         $tipo= $request->request->all();
@@ -60,6 +65,7 @@ class SolicitudController extends Controller
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $proyecto = $form->get('proyecto')->getData();
+
             $entity->getProyecto($proyecto);
 
             $em->persist($entity);
@@ -70,9 +76,11 @@ class SolicitudController extends Controller
 
         //return $this->redirect($this->generateUrl('solicitud_show', array('id' => $entity->getId())));
 
-            $nextAction = $form->get('saveAndAdd')->isClicked()
-                ? 'solicitud_send'
-                : 'solicitud_show';
+
+                $nextAction = $form->get('saveAndAdd')->isClicked()
+                    ? 'solicitud_send'
+                    : 'solicitud_show';
+
 
             $this->get('session')->getFlashBag()->add('info', 'El registro se ha guardado exitosamente');
 
@@ -185,8 +193,23 @@ class SolicitudController extends Controller
 
         $entity = $em->getRepository('CcmSiaBundle:Solicitud')->find($id);
 
+        $context = $this->get('security.context');
+
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Solicitud entity.');
+        }
+
+        if (false === $context->isGranted(SolicitudVoter::VIEW, $entity)) {
+
+            throw new AccessDeniedException('Access denied!');
+
+        }
+
+        elseif ( false === $context->isGranted('ROLE_ACADEMICO')) {
+
+            throw new AccessDeniedException('Access denied!');
+
+
         }
 
         $deleteForm = $this->createDeleteForm($id);
@@ -213,6 +236,12 @@ class SolicitudController extends Controller
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Solicitud entity.');
+        }
+
+        if (false === $this->get('security.context')->isGranted(SolicitudVoter::EDIT, $entity)) {
+
+            throw new AccessDeniedException('Access denied!');
+
         }
 
         $editForm = $this->createEditForm($entity,$tipo);
@@ -301,6 +330,7 @@ class SolicitudController extends Controller
                 ? 'solicitud_send'
                 : 'solicitud_show';
 
+
             return $this->redirect($this->generateUrl($nextAction, array('id' => $entity->getId())));
 
             $logger->notice('Solicitud Edit persist', array('id' => $id));
@@ -378,7 +408,73 @@ class SolicitudController extends Controller
             throw $this->createNotFoundException('Unable to find Solicitud entity.');
         }
 
-        $entity->setEnviada(1);
+        if ( $entity->getEnviada()== null ) {
+
+            $entity->setEnviada(true);
+
+            $em->persist($entity);
+            $em->flush();
+
+            $user = $this->get('security.context')->getToken()->getUser();
+            $mail = $user->getEmail();
+
+            // Obtiene correo y msg de la forma de contacto
+            $mailer = $this->get('mailer');
+
+
+            $message = \Swift_Message::newInstance()
+                ->setSubject('Registro de solicitud')
+                ->setFrom('info@matmor.unam.mx')
+                //->setTo(array($entity->getCorreo()))
+                ->setTo($mail)
+                //->setBcc(array('webmaster@matmor.unam.mx','escuela@matmor.unam.mx'))
+                ->setBody($this->renderView('CcmSiaBundle:Solicitud:email.txt.twig', array('entity' => $entity)));
+
+            $mailer->send($message);
+
+            $this->get('session')->getFlashBag()->add(
+                'info',
+                'Se ha enviado un correo de notificación a tu cuenta y a la Secretaría Académica para la revisión de tu solicitud'
+            );
+
+            $this->get('session')->getFlashBag()->add(
+                'info',
+                'Tu solicitud se ha enviado correctamente');
+
+
+            return $content = $this->render('CcmSiaBundle:Solicitud:show.html.twig', array('id' => $entity->getId(), 'entity' => $entity));
+        }
+
+        else {
+
+            $this->get('session')->getFlashBag()->add(
+                'info',
+                'Esta solicitud ya fue enviada.');
+
+
+            return $content = $this->render('CcmSiaBundle:Solicitud:show.html.twig', array('id' => $entity->getId(), 'entity' => $entity));
+        }
+    }
+
+    /**
+     * Envía la solicitud a la Secretaría Académica
+     *
+     * @Route("/{id}/notify", name="solicitud_notify")
+     * @Method("GET")
+     * @Template()
+     */
+    public function notifyAction(Request $request, $id)
+    {
+
+        $em = $this->getDoctrine()->getManager();
+
+        $entity = $em->getRepository('CcmSiaBundle:Solicitud')->find($id);
+
+        if (!$entity) {
+            throw $this->createNotFoundException('Unable to find Solicitud entity.');
+        }
+
+        $entity->setNotificada(true);
 
         $em->persist($entity);
         $em->flush();
@@ -389,25 +485,21 @@ class SolicitudController extends Controller
         // Obtiene correo y msg de la forma de contacto
         $mailer = $this->get('mailer');
 
+
         $message = \Swift_Message::newInstance()
-            ->setSubject('Registro de solicitud')
+            ->setSubject('Notificación de solicitud')
             ->setFrom('info@matmor.unam.mx')
             //->setTo(array($entity->getCorreo()))
             ->setTo($mail)
-           //->setBcc(array('webmaster@matmor.unam.mx','escuela@matmor.unam.mx'))
-            ->setBody($this->renderView('CcmSiaBundle:Solicitud:email.txt.twig', array('entity' => $entity)))
-        ;
+            //->setBcc(array('webmaster@matmor.unam.mx','escuela@matmor.unam.mx'))
+            ->setBody($this->renderView('CcmSiaBundle:Solicitud:notificacion.txt.twig', array('entity' => $entity)));
+
         $mailer->send($message);
 
         $this->get('session')->getFlashBag()->add(
             'info',
-            'Se ha enviado un correo de notificación a tu cuenta y a la Secretaría Académica para la revisión de tu solicitud'
+            'Se ha enviado un correo de notificación.'
         );
-
-        $this->get('session')->getFlashBag()->add(
-            'info',
-            'Tu solicitud se ha enviado correctamente');
-
 
 
         return $content = $this->render('CcmSiaBundle:Solicitud:show.html.twig', array('id' => $entity->getId(),'entity'=>$entity));

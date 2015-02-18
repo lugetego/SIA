@@ -94,7 +94,7 @@
                         </div>
                     </div>
                         <div class="panel-body">
-                            <div class="responsive-calendar">
+                            <div class="responsive-calendar" >
                                 <div class="controls">
                                     <a class="pull-left" data-go="prev"><div class="btn btn-primary">Prev</div></a>
                                     <h4><span data-head-year></span> <span data-head-month></span></h4>
@@ -194,10 +194,13 @@
             <!-- /.panel -->
         </div>
 
+
+
         <div class="col-lg-6">
             <div class="panel panel-default">
                 <div class="panel-heading"><i class="fa fa-file-text-o"></i> Proyectos
-                {% if is_granted('ROLE_ADMIN') %}
+
+                    {% if is_granted('ROLE_ADMIN') %}
                     <div class="pull-right">
                         <a href="{{ path('proyecto_new') }}"><button type="button" class="btn btn-primary btn-xs"><i class="fa fa-plus"></i> Crear Proyecto</button></a>
                         <a href="{{ path('proyecto') }}"><button type="button" class="btn btn-primary btn-xs"><i class="fa fa-search"></i> Todos los proyectos</button></a>
@@ -236,6 +239,9 @@
                                 </tr>
                             {% endfor %}
 
+
+
+
                             </tbody>
                         </table>
                         <!-- /.table -->
@@ -247,7 +253,6 @@
 
     </div>
     <!-- /.row -->
-    </div>
 
 {% endblock %}
 
@@ -256,20 +261,61 @@
 
     {{ parent() }}
 
+
+
+
+
     <script src="{{ asset('bundles/ccmsia/js/responsive-calendar.js')}}"></script>
     <script type="text/javascript">
-      $(document).ready(function () {
+
+
+        {% set fechas = [] %}
+        {% for sesion in sesiones %}
+
+        {# {%  set fechas = fechas |  merge([ sesion.fecha|date("Y-m-d")  ])  %}#}
+
+        {% set fechas = fechas|merge({ (sesion.fecha|date("Y-m-d")) : ({ "number": sesion.name, "badgeClass": "badge-error", "url": "sesiones/"~sesion.id  })}) %}
+
+        {% endfor %}
+
+
+
+        var events =  {{ fechas |json_encode|raw }} ;
+
+
+
+
+       /* var events = {
+            "2013-04-30": {
+
+            },
+            "2013-04-26": {
+                "number": 1,
+                "badgeClass": "badge-warning",
+                "url": "http://w3widgets.com"
+            },
+            "2013-05-03": {
+                "number": 1,
+                "badgeClass": "badge-error"
+            },
+            "2013-06-12": {}
+        };*/
+
+        {# Muestra: {"nombre":"José García", "edad":27, "emails":["email1@localhost","email2@localhost"]} #}
+
+
+
+        $(document).ready(function () {
         $(".responsive-calendar").responsiveCalendar({
-          time: '2014-10',
-//          translateMonths: {"January": "Enero", "February": "Febrero", "March": "Marzo", "April": "Abril", "May": "Mayo", "June": "Junio", "July": "Julio", "August": "Agosto", "September": "Septiembre", "October": "Octubre", "November": "Noviembre", "December": "Diciembre"},
-          monthChangeAnimation: false,
-          events: {
-            "2014-10-30": {"number": 5, "url": "http://w3widgets.com/responsive-slider"},
-            "2014-10-26": {"number": 1, "url": "http://w3widgets.com"},
-            "2014-11-03":{"number": 1},
-            "2014-11-12": {}}
+          monthChangeAnimation: true,
+            translateMonths: {0:"Enero",1:"Febrero",2:"Marzo",3:"Abril",4:"Mayo",5:"Junio", 6:"Julio",7:"Agosto",
+                8:"Septiembre",9:"Octubre",10:"Noviembre",11:"Diciembre"} ,
+            events: events
         });
-      });
+        });
+
+
+
     </script>
 
 {% endblock %}
