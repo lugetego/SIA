@@ -679,5 +679,17 @@ class Solicitud
         $this->estado = $estado;
     }
 
+    /**
+     * @return suma financiamiento CCM
+     */
+    public function getTotalAsignación()
+    {
+        $total_asignacion = 0;
+
+        foreach ($this->financiamiento as $finccm)
+            $total_asignacion += $finccm->getCcm();
+
+        return $total_asignacion;
+    }
 
 }

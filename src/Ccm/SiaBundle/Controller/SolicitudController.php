@@ -71,23 +71,18 @@ class SolicitudController extends Controller
             $em->persist($entity);
             $em->flush();
 
+            //return $this->redirect($this->generateUrl('solicitud_show', array('id' => $entity->getId())));
 
-
-
-        //return $this->redirect($this->generateUrl('solicitud_show', array('id' => $entity->getId())));
-
-
-                $nextAction = $form->get('saveAndAdd')->isClicked()
-                    ? 'solicitud_send'
-                    : 'solicitud_show';
+            $nextAction = $form->get('saveAndAdd')->isClicked()
+                ? 'solicitud_send'
+                : 'solicitud_show';
 
 
             $this->get('session')->getFlashBag()->add('info', 'El registro se ha guardado exitosamente');
 
             return $this->redirect($this->generateUrl($nextAction, array('id' => $entity->getId())));
 
-        //    return $content = $this->render('CcmSiaBundle:Solicitud:confirm.html.twig', array('id' => $entity->getId(),'entity'=>$entity));
-
+            //    return $content = $this->render('CcmSiaBundle:Solicitud:confirm.html.twig', array('id' => $entity->getId(),'entity'=>$entity));
         }
 
         return array(

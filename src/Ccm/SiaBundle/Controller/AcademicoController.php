@@ -118,11 +118,19 @@ class AcademicoController extends Controller
             throw $this->createNotFoundException('Unable to find Academico entity.');
         }
 
+        // Calcula Totales
+        $totalAsignacionLicencia = $em->getRepository('CcmSiaBundle:Academico')->erogadoLicencias($entity);
+        $totalAsignacionComision = $em->getRepository('CcmSiaBundle:Academico')->erogadoComisiones($entity);
+        $totalAsignacionVisitante = $em->getRepository('CcmSiaBundle:Academico')->erogadoVisitantes($entity);
+
         $deleteForm = $this->createDeleteForm($id);
 
         return array(
             'entity'      => $entity,
             'delete_form' => $deleteForm->createView(),
+            'asignacionLicencia' => $totalAsignacionLicencia,
+            'asignacionComision' => $totalAsignacionComision,
+            'asignacionVisitante' => $totalAsignacionVisitante,
         );
     }
 

@@ -78,7 +78,16 @@
     <div class="row">
         <div class="col-lg-8">
             <h3 class="page-header"><small>Asignación Anual</small></h3><br>
-            <strong>Saldo</strong><span style="color:#428bca; font-size:150%"> ${{ entity.asignacion |number_format(2)}}</span>
+            <table  class="table table-condensed">
+                <thead>
+                <tr><th>Total Licencias</th><th>Total Comisiones</th><th>Total Visitantes</th></tr>
+                </thead>
+                <tbody>
+                <tr><td>${{ asignacionLicencia |number_format(2)}}</td><td>${{ asignacionComision |number_format(2)}}</td><td>${{ asignacionVisitante |number_format(2)}}</td></tr>
+                </tbody>
+            </table>
+
+            <strong>Saldo</strong><span style="color:#428bca; font-size:150%"> ${{ asignacionLicencia |number_format(2)}}</span>
             {% set asignacion = (entity.asignacion * 100)/30000 %}
             <div class="progress">
                 <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="{{ asignacion }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ asignacion }}%">

@@ -7,9 +7,12 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 
+
+
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Ccm\SiaBundle\Entity\SolicitudRepository")
  * @ORM\Table(name="solicitud")
+ * @ORM\HasLifecycleCallbacks
  */
 class Solicitud
 {
@@ -22,112 +25,236 @@ class Solicitud
 
     /**
      * @var academico
-     * @ORM\ManyToMany(targetEntity="Academico", inversedBy="solicitudes")
+     * @ORM\ManyToOne(targetEntity="Academico", inversedBy="solicitudes")
+     * @ORM\JoinColumn(name="academico_id", referencedColumnName="id")
+     * @Assert\NotBlank(groups={"solicitud","visitante"})
      */
     private $academico;
 
+
     /**
      * @var sesion
-     * @ORM\ManyToMany(targetEntity="Sesiones", inversedBy="solicitudes")
+     * @ORM\ManyToOne(targetEntity="Sesiones", inversedBy="solicitudes")
+     * @ORM\JoinColumn(name="sesion_id", referencedColumnName="id")
+     * @Assert\NotBlank(groups={"solicitud","visitante"})
      */
     private $sesion;
 
     /**
      * @var string $tipo
      *
-     * @ORM\Column(name="tipo", type="string", length=30)
+     * @ORM\Column(name="tipo", type="string", length=10)
+     * @Assert\Choice(choices = {"licencia", "comision"}, message = "Choose a valid option.")
+     * @Assert\NotBlank(groups={"solicitud","visitante"})
      */
     private $tipo;
 
     /**
      * @var string $pais
      *
-     * @ORM\Column(name="pais", type="string", length=30)
+     * @ORM\Column(name="pais", type="string", length=30, nullable=true)
+     * @Assert\NotBlank(groups={"solicitud","visitante"})
      */
     private $pais;
 
     /**
      * @var string $ciudad
      *
-     * @ORM\Column(name="ciudad", type="string", length=30)
+     * @ORM\Column(name="ciudad", type="string", length=30, nullable=true)
+     * @Assert\NotBlank(groups={"solicitud","visitante"})
      */
     private $ciudad;
 
     /**
+     * @var string $estado
+     *
+     * @ORM\Column(name="estado", type="string", length=30, nullable=true)
+     * @Assert\NotBlank(groups={"solicitud","visitante"})
+     */
+    private $estado;
+
+    /**
      * @var string $universidad
      *
-     * @ORM\Column(name="universidad", type="string", length=30)
+     * @ORM\Column(name="universidad", type="string", length=60, nullable=true)
+     * @Assert\NotBlank(groups={"solicitud","visitante"})
      */
     private $universidad;
 
     /**
      * @var string $profesor
      *
-     * @ORM\Column(name="profesor", type="string", length=30)
+     * @ORM\Column(name="profesor", type="string", length=50, nullable=true)
+     * @Assert\NotBlank(groups={"solicitud","visitante"})
      */
     private $profesor;
 
     /**
      * @var string $actividad
      *
-     * @ORM\Column(name="actividad", type="string", length=30)
+     * @ORM\Column(name="actividad", type="string", length=250, nullable=true)
+     * @Assert\NotBlank(groups={"solicitud"})
      */
     private $actividad;
 
     /**
      * @var string $proposito
      *
-     * @ORM\Column(name="proposito", type="string", length=30)
+     * @ORM\Column(name="proposito", type="string", length=250, nullable=true)
+     * @Assert\NotBlank(groups={"solicitud","visitante"})
      */
     private $proposito;
 
     /**
      * @var string $proyecto
      *
-     * @ORM\Column(name="proyecto", type="string", length=30)
+     * @ORM\Column(name="proyecto", type="string", nullable=true)
+     * @Assert\NotBlank(groups={"solicitud","visitante"})
+     */
+
+    /**
+     * @var proyecto
+     * @ORM\ManyToOne(targetEntity="Proyecto", inversedBy="proyectos")
+     * @ORM\JoinColumn(name="proyecto_id", referencedColumnName="id")
+     * @Assert\NotBlank(groups={"solicitud","visitante"})
      */
     private $proyecto;
 
     /**
      * @var string $inicio
      *
-     * @ORM\Column(name="inicio", type="date")
+     * @ORM\Column(name="inicio", type="date", nullable=true)
+     * @Assert\Date()
+     * @Assert\NotBlank(groups={"solicitud","visitante"})
      */
     private $inicio;
 
     /**
      * @var string $fin
      *
-     * @ORM\Column(name="fin", type="date")
+     * @ORM\Column(name="fin", type="date", nullable=true)
+     * @Assert\Date()
+     * @Assert\NotBlank(groups={"solicitud","visitante"})
      */
     private $fin;
 
     /**
      * @var string $trabajo
      *
-     * @ORM\Column(name="trabajo", type="string", length=30)
+     * @ORM\Column(name="trabajo", type="string", length=250, nullable=true)
      */
     private $trabajo;
 
+    /**
+     * @var string $observaciones
+     *
+     * @ORM\Column(name="observaciones", type="string", length=250, nullable=true)
+     */
+    private $observaciones;
 
     /**
      * @var array
      *
      * @ORM\Column(type="array")
      */
-    private $financiamiento = array();
+    private $financiamiento;
+
+    /**
+     * @var boolean $enviada
+     *
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $enviada;
+
+   /**
+     * @var boolean $aprobada
+     *
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $aprobada;
+
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $created;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $notificada;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $modified;
+
+    /**
+     * @ORM\PrePersist
+     */
+    public function prePersist()
+    {
+        $this->setCreated(new \DateTime());
+        $this->setModified(new \DateTime());
+    }
+
+    /**
+     * @ORM\PreUpdate
+     */
+    public function preUpdate()
+    {
+        $this->setModified(new \DateTime());
+
+    }
+
+    /**
+     * Set created
+     *
+     * @param datetime $created
+     */
+    public function setCreated($created)
+    {
+        $this->created = $created;
+    }
+
+    /**
+     * Get created
+     *
+     * @return string
+     */
+    public function getCreated()
+    {
+        return $this->created;
+
+    }
+    /**
+     * Set modified
+     *
+     * @param datetime $modified
+     */
+    public function setModified($modified)
+    {
+        $this->modified = $modified;
+    }
+
+    /**
+     * Get modified
+     *
+     * @return string
+     */
+    public function getModified()
+    {
+        return $this->modified;
+
+    }
+
 
     /**
      * Constructor
      */
     public function __construct()
     {
-        $this->academico = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->sesion = new \Doctrine\Common\Collections\ArrayCollection();
-
-        $viaticos = new Financiamiento();
-
-
+        $this->financiamiento = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -140,27 +267,15 @@ class Solicitud
         return $this->id;
     }
 
-    /**
-     * Add academico
-     *
-     * @param \Ccm\SiaBundle\Entity\Academico $academico
-     * @return Solicitud
-     */
-    public function addAcademico(\Ccm\SiaBundle\Entity\Academico $academico)
-    {
-        $this->academico[] = $academico;
-
-        return $this;
-    }
 
     /**
-     * Remove academico
+     * Set academico
      *
-     * @param \Ccm\SiaBundle\Entity\Academico $academico
+     * @param \Ccm\SiaBundle\Entity\academico $academico
      */
-    public function removeAcademico(\Ccm\SiaBundle\Entity\Academico $academico)
+    public function setAcademico($academico)
     {
-        $this->academico->removeElement($academico);
+        $this->academico = $academico;
     }
 
     /**
@@ -173,28 +288,7 @@ class Solicitud
         return $this->academico;
     }
 
-    /**
-     * Add sesion
-     *
-     * @param \Ccm\SiaBundle\Entity\Sesiones $sesion
-     * @return Solicitud
-     */
-    public function addSesion(\Ccm\SiaBundle\Entity\Sesiones $sesion)
-    {
-        $this->sesion[] = $sesion;
 
-        return $this;
-    }
-
-    /**
-     * Remove sesion
-     *
-     * @param \Ccm\SiaBundle\Entity\Sesiones $sesion
-     */
-    public function removeSesion(\Ccm\SiaBundle\Entity\Sesiones $sesion)
-    {
-        $this->sesion->removeElement($sesion);
-    }
 
     /**
      * Get sesion
@@ -205,6 +299,17 @@ class Solicitud
     {
         return $this->sesion;
     }
+
+    /**
+     * Set sesion
+     *
+     * @param string $sesion
+     */
+    public function setSesion($sesion)
+    {
+        $this->sesion = $sesion;
+    }
+
 
 
     /**
@@ -386,11 +491,27 @@ class Solicitud
     /**
      * Get proyecto
      *
-     * @return string 
+     * @return string
      */
     public function getProyecto()
     {
         return $this->proyecto;
+    }
+
+    /**
+     * @return string
+     */
+    public function getObservaciones()
+    {
+        return $this->observaciones;
+    }
+
+    /**
+     * @param string $observaciones
+     */
+    public function setObservaciones($observaciones)
+    {
+        $this->observaciones = $observaciones;
     }
 
     /**
@@ -462,20 +583,6 @@ class Solicitud
         return $this->trabajo;
     }
 
-
-    /**
-     * Set financiamiento
-     *
-     * @param array $financiamiento
-     * @return Solicitud
-     */
-    public function setFinanciamiento(array $financiamiento)
-    {
-        $this->financiamiento = $financiamiento;
-
-        return $this;
-    }
-
     /**
      * Get financiamiento
      *
@@ -485,4 +592,92 @@ class Solicitud
     {
         return $this->financiamiento;
     }
+
+    /**
+     * Set financiamiento
+     *
+     * @param array
+     */
+    public function setFinanciamiento($financiamiento)
+    {
+        $this->financiamiento = $financiamiento;
+    }
+
+    /**
+     * @param boolean $enviada
+     */
+    public function setEnviada($enviada)
+    {
+        $this->enviada = $enviada;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function getEnviada()
+    {
+        return $this->enviada;
+    }
+
+    /**
+     * @param boolean $aprobada
+     */
+    public function setAprobada($aprobada)
+    {
+        $this->aprobada = $aprobada;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function getAprobada()
+    {
+        return $this->aprobada;
+    }
+
+    public function isDatesValid()
+    {
+        if($this->inicio < $this->fin ){
+
+            $interval = $this->inicio->diff($this->fin);
+            return $interval->days <= 45;
+        }
+        else {
+            return false;
+        }
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getNotificada()
+    {
+        return $this->notificada;
+    }
+
+    /**
+     * @param mixed $notificada
+     */
+    public function setNotificada($notificada)
+    {
+        $this->notificada = $notificada;
+    }
+
+    /**
+     * @return string
+     */
+    public function getEstado()
+    {
+        return $this->estado;
+    }
+
+    /**
+     * @param string $estado
+     */
+    public function setEstado($estado)
+    {
+        $this->estado = $estado;
+    }
+
+
 }
