@@ -1,0 +1,5 @@
+services:
+    sia_solicitud_voter:
+        class:      Ccm\SiaBundle\Security\SolicitudVoter
+        tags:
+            - { name: security.voter }
