@@ -49,28 +49,32 @@
                                     </td>
                                     <td>
                                         {{ solicitud.academico }}
-                                        <span class="pull-right text-muted small"><em>Inicia: {{ solicitud.inicio|date('y-m-d')}}</em>
+                                        <span class="pull-right text-muted small"><em>{{ solicitud.created|date('d-m-Y')}}</em>
                                     </span>
                                     </td>
 
                                     <td>
 
-                                        {%  if solicitud.enviada %}
+                                        {%  if solicitud.aprobada is not null %}
                                             <div class="pull-right">
                                             <span class="label label-success">
-                                                    {{ 'Enviada' }}
+                                                    {{ 'aprobada' }}
+                                            </span>
+                                            </div>
+                                        {%  elseif solicitud.aprobada is null %}
+                                            <div class="pull-right">
+                                            <span class="label label-warning">
+                                                    {{ 'en proceso' }}
                                             </span>
                                             </div>
 
-                                                    {% else %}
-                                        <div class="pull-right">
-                                            <span class="label label-warning">
-                                                    {{ 'No enviada' }}
-
+                                        {% else %}
+                                            <div class="pull-right">
+                                            <span class="label label-danger">
+                                                    {{ 'No aprobada' }}
                                             </span>
-                                        </div>
-                                                {% endif %}
-
+                                            </div>
+                                        {% endif %}
 
                                     </td>
 

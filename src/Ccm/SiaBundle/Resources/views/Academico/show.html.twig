@@ -78,12 +78,16 @@
     <div class="row">
         <div class="col-lg-8">
             <h3 class="page-header"><small>Asignación Anual</small></h3><br>
-            <table  class="table table-condensed">
+            <table  class="table table-condensed table-bordered">
                 <thead>
-                <tr><th>Total Licencias</th><th>Total Comisiones</th><th>Total Visitantes</th></tr>
+                <tr><th>Total Licencias</th><th>Días Lic.</th><th>Total Comisiones</th><th>Días Com</th><th>Total Visitantes</th></tr>
                 </thead>
                 <tbody>
-                <tr><td>${{ asignacionLicencia |number_format(2)}}</td><td>${{ asignacionComision |number_format(2)}}</td><td>${{ asignacionVisitante |number_format(2)}}</td></tr>
+                <tr><td>${{ asignacionLicencia |number_format(2)}}</td>
+                    <td>{{ diasLicencia }}</td>
+                    <td>${{ asignacionComision |number_format(2)}}</td>
+                    <td>{{ diasComision }}</td>
+                    <td>${{ asignacionVisitante |number_format(2)}}</td></tr>
                 </tbody>
             </table>
 
@@ -102,7 +106,7 @@
             <h3 class="page-header"><small>Solicitudes</small></h3>
             <table class="table table-striped">
                 <thead>
-                <tr><th>Tipo de Solicitud</th><th>Actividad a realizar</th><th>Estado</th><th>Fecha</th></tr>
+                <tr><th>Tipo de Solicitud</th><th>Actividad a realizar</th><th>Erogaciones</th><th>Estado</th><th>Fecha</th></tr>
                 </thead>
                 <tbody>
                 {% for solicitud in entity.solicitudes %}
@@ -111,15 +115,23 @@
                             <a href="{{ path('solicitud_show', { 'id': solicitud.id }) }}">{{ solicitud.tipo }}</a>
                         </td>
                         <td> {{ solicitud.actividad }}</td>
+
+                        {% set ccm = 0 %}
+                            {% for fin in solicitud.financiamiento %}
+                                {% set ccm = fin.ccm + ccm %}
+                            {% endfor %}
+
+
+                        <td> ${{ ccm | number_format(2)}}</td>
                         <td>
-                            {% if solicitud.enviada is defined %}
-                                {% if aprobada is defined %}
-                                    <span class="label label-warning">Aprobada</span>
+                            {% if solicitud.enviada is null %}
+                                <span class="label label-warning">No enviada</span>
+                            {% else %}
+                                {% if solicitud.aprobada is not null %}
+                                    <span class="label label-success">Aprobada</span>
                                 {% else %}
                                     <span class="label label-danger">No aprobada</span>
                                 {% endif %}
-                            {% else %}
-                                <span class="label label-warning">No enviada</span>
                             {% endif %}
                         </td>
                         <td>
