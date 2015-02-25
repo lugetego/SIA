@@ -33,9 +33,9 @@
                 <td>{{ entity.tipo }}</td>
                 <td>{{ entity.proposito }}</td>
                 <td>{{ entity.actividad }}</td>
-                <td {% if entity.enviada == 1 %}class="success"{% else %} class="danger" {% endif %}>
+                <td {% if entity.enviada is not null %}class="success"{% else %} class="danger" {% endif %}>
                 </td>
-                <td {% if entity.aprobada == 1 %}class="success"{% else %} class="danger" {% endif %}>
+                <td {% if entity.aprobada == 1 %} class="success"{% elseif entity.aprobada is null %} class="warning" {% else %} class="danger" {% endif %}>
 
                 </td>
                 <td><div  class="text-center">

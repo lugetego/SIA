@@ -122,6 +122,8 @@ class AcademicoController extends Controller
         $totalAsignacionLicencia = $em->getRepository('CcmSiaBundle:Academico')->erogadoLicencias($entity);
         $totalAsignacionComision = $em->getRepository('CcmSiaBundle:Academico')->erogadoComisiones($entity);
         $totalAsignacionVisitante = $em->getRepository('CcmSiaBundle:Academico')->erogadoVisitantes($entity);
+        $totalDiasLicencia = $em->getRepository('CcmSiaBundle:Academico')->diasSolicitadosLicencia($entity);
+        $totalDiasComision = $em->getRepository('CcmSiaBundle:Academico')->diasSolicitadosComision($entity);
 
         $deleteForm = $this->createDeleteForm($id);
 
@@ -131,6 +133,8 @@ class AcademicoController extends Controller
             'asignacionLicencia' => $totalAsignacionLicencia,
             'asignacionComision' => $totalAsignacionComision,
             'asignacionVisitante' => $totalAsignacionVisitante,
+            'diasLicencia' => $totalDiasLicencia,
+            'diasComision' => $totalDiasComision,
         );
     }
 

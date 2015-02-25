@@ -74,9 +74,16 @@ class AcademicoRepository extends EntityRepository
      * Regresa el total de dias solicitados por licencia
      *
      */
-    public function diasSolicitadosLic()
+    public function diasSolicitadosLicencia(Academico $academico)
     {
-        return 0;
+        $dias = 0;
+
+        foreach ($academico->getSolicitudes() as $solicitud) {
+            if(date('Y') == $solicitud->getCreated()->format('Y') && $solicitud->getAprobada() && $solicitud->getTipo() == 'licencia')
+                $dias += $solicitud->getDias();
+        }
+
+        return $dias;
     }
 
     /**
@@ -84,8 +91,15 @@ class AcademicoRepository extends EntityRepository
      * Regresa el total de dias solicitados por comision
      *
      */
-    public function diasSolicitadosComision()
+    public function diasSolicitadosComision(Academico $academico)
     {
-        return 0;
+        $dias = 0;
+
+        foreach ($academico->getSolicitudes() as $solicitud) {
+            if(date('Y') == $solicitud->getCreated()->format('Y') && $solicitud->getAprobada() && $solicitud->getTipo() == 'comision')
+                $dias += $solicitud->getDias();
+        }
+
+        return $dias;
     }
 }
