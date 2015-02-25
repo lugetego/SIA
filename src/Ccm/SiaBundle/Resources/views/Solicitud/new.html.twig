@@ -24,21 +24,26 @@
     <div class="row">
         <div class="col-lg-8">
             <div class="col-lg-4">
-                <div ng-controller="DatepickerDemoCtrl" class="form-group input-group ">
+
+                {% if entity.inicio is null %}
+                    <div ng-controller="DatepickerDemoCtrl" class="form-group input-group" >
+                {% else %}
+                    <div ng-controller="DatepickerDemoCtrl" class="form-group input-group" ng-init="inicio='{{ entity.inicio|date("d-m-Y") }}';">
+                {% endif %}
                     <div>{{ form_label(form.inicio) }}</div>
                     <div>
                         {{ form_widget(form.inicio, { 'attr': {
                         'class': 'form-control input-sm',
                         'datepicker-popup': 'dd-MM-yyyy',
-                        'ng-model':'dt',
+                        'ng-model':'inicio',
                         'is-open':'opened',
                         'min-date':'minDate',
-                        'max-date':"'2015-06-22'",
+                        'max-date':"'2015-12-31'",
                         'datepicker-options':'dateOptions',
                         'ng-required':'false',
                         'close-text':'Close'  }} )  }}
                         <span class="input-group-btn">
-                            <button type="button" class="btn btn-default input-sm" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                            <button type="button" class="btn btn-default input-sm" ng-click="open($event)" ><i class="glyphicon glyphicon-calendar"></i></button>
                         </span>
                         <p class="text-danger">
                     </div>
@@ -47,13 +52,19 @@
             </div>
 
             <div class="col-lg-4">
-                <div ng-controller="DatepickerDemoCtrl" class="form-group input-group">
-                    <div>{{ form_label(form.fin) }}</div>
+
+                {% if entity.inicio is null %}
+                      <div ng-controller="DatepickerDemoCtrl" class="form-group input-group">
+                {% else %}
+                    <div ng-controller="DatepickerDemoCtrl" class="form-group input-group" ng-init="fin='{{ entity.fin|date("d-m-Y") }}';">
+                {% endif %}
+
+                <div>{{ form_label(form.fin) }}</div>
                     <div>
                         {{ form_widget(form.fin, { 'attr': {
                         'class': 'form-control input-sm',
                         'datepicker-popup': 'dd-MM-yyyy',
-                        'ng-model':'dt',
+                        'ng-model':'fin',
                         'is-open':'opened',
                         'min-date':'minDate',
                         'max-date':"'2015-06-22'",
