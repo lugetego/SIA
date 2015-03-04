@@ -106,7 +106,7 @@
             <h3 class="page-header"><small>Solicitudes</small></h3>
             <table class="table table-striped">
                 <thead>
-                <tr><th>Tipo de Solicitud</th><th>Actividad a realizar</th><th>Erogaciones</th><th>Estado</th><th>Fecha</th></tr>
+                <tr><th>Tipo de Solicitud</th><th>Actividad a realizar</th><th>Erogaciones</th><th>Enviada</th><th>Aprobada</th><th>Fecha</th></tr>
                 </thead>
                 <tbody>
                 {% for solicitud in entity.solicitudes %}
@@ -121,18 +121,11 @@
                                 {% set ccm = fin.ccm + ccm %}
                             {% endfor %}
 
-
                         <td> ${{ ccm | number_format(2)}}</td>
-                        <td>
-                            {% if solicitud.enviada is null %}
-                                <span class="label label-warning">No enviada</span>
-                            {% else %}
-                                {% if solicitud.aprobada is not null %}
-                                    <span class="label label-success">Aprobada</span>
-                                {% else %}
-                                    <span class="label label-danger">No aprobada</span>
-                                {% endif %}
-                            {% endif %}
+                        <td {% if solicitud.enviada is not null %}class="success"{% else %} class="danger" {% endif %}>
+                        </td>
+                        <td {% if solicitud.aprobada == 1 %} class="success"{% elseif solicitud.aprobada is null %} class="warning" {% else %} class="danger" {% endif %}>
+
                         </td>
                         <td>
                             <em>{{ solicitud.modified|date('d-m-Y') }}</em>
