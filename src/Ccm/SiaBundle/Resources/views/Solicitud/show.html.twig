@@ -44,25 +44,60 @@
                         <table class="table table-striped">
                             <tbody>
                             <tr>
-                                <td><label><i class="fa fa-calendar"></i> Fechas:</label> del <strong><span class="text-primary">{{ entity.inicio |date('d/m/Y') }}</span></strong> al <strong><span class="text-primary">{{ entity.fin |date('d/m/Y')}}</span></strong></td>
-                                <td>{%  set dias = entity.fin|date("U") - entity.inicio|date("U") %}<label>Días solicitados:</label> <span class="badge alert-info">{{ ((dias/3600) / 24) + 1}}</span></td>
+                                <td>
+                                    <label><i class="fa fa-calendar"></i> Fechas:</label> del
+                                    <strong><span class="text-primary">{{ entity.inicio |date('d/m/Y') }}</span></strong> al
+                                    <strong><span class="text-primary">{{ entity.fin |date('d/m/Y')}}</span></strong>
+                                </td>
+                                <td>{%  set dias = entity.fin|date("U") - entity.inicio|date("U") %}
+                                    <label>Días solicitados:</label>
+                                    <span class="badge alert-info">{{ ((dias/3600) / 24) + 1}}</span>
+                                </td>
                             </tr>
                             <tr>
-                                <td><label><i class="fa fa-file-text-o"></i> Proyecto:</label> {{ entity.proyecto}}</td><td></td>
+                                <td>
+                                    <label><i class="fa fa-file-text-o"></i> Proyecto:</label>
+                                    {{ entity.proyecto}}
+                                </td>
+                                <td>
+                                </td>
                             </tr>
                             <tr>
-                                <td><label><i class="fa fa-globe"></i> Destino:</label> {{ entity.ciudad}}, {{ entity.Estado}}, {{ entity.pais}}</td><td><label><i class="fa fa-university"></i> Universidad:</label> {{ entity.universidad}}</td>
+                                <td>
+                                    <label><i class="fa fa-globe"></i> Destino:</label>
+                                    {{ entity.ciudad}}, {{ entity.Estado}}, {{ entity.pais}}
+                                </td>
+                                <td>
+                                    <label><i class="fa fa-university"></i> Universidad:</label>
+                                    {{ entity.universidad}}
+                                </td>
                             </tr>
                             <tr>
-                                <td><label><i class="fa fa-male"></i> Profesor a quien visita:</label> {{ entity.profesor}}</td><td><label><i class="fa fa-laptop"></i> Actividad a realizar:</label> {{ entity.actividad}}</td>
+                                <td>
+                                    <label><i class="fa fa-male"></i> Profesor a quien visita:</label>
+                                    {{ entity.profesor}}
+                                </td>
+                                <td>
+                                    <label><i class="fa fa-laptop"></i> Actividad a realizar:</label>
+                                    {{ entity.actividad}}
+                                </td>
                             </tr>
                             <tr>
-                                <td><label><i class="fa fa-book"></i> Propósito:</label> {{ entity.proposito}}</td><td></td>
+                                <td>
+                                    <label><i class="fa fa-book"></i> Propósito:</label>
+                                    {{ entity.proposito}}
+                                </td>
+                                <td>
+                                </td>
                             </tr>
                             <tr>
-                                <td><label><i class="fa fa-folder-open"></i> Trabajo a presentar:</label> {{ entity.trabajo}}</td><td></td>
+                                <td>
+                                    <label><i class="fa fa-folder-open"></i> Trabajo a presentar:</label>
+                                    {{ entity.trabajo}}
+                                </td>
+                                <td>
+                                </td>
                             </tr>
-
                             </tbody>
                         </table>
                     </div>
@@ -119,24 +154,32 @@
 
                     {% if entity.aprobada is null %}
                         <div class="alert alert-warning">
-                            <button class="btn btn-warning btn-circle" type="button"><i class="fa fa-exclamation-triangle"></i></button>
+                            <button class="btn btn-warning btn-circle" type="button">
+                                <i class="fa fa-exclamation-triangle"></i>
+                            </button>
                             Esta solicitud ya fue enviada pero no se ha decidido si es aprobada.
                         </div>
                     {% elseif entity.aprobada == true %}
                         <div class="alert alert-success">
-                            <button class="btn btn-success btn-circle" type="button"><i class="fa fa-check"></i></button>
+                            <button class="btn btn-success btn-circle" type="button">
+                                <i class="fa fa-check"></i>
+                            </button>
                             Esta solicitud fue aprobada.
                         </div>
                     {% elseif entity.aprobada == false %}
                         <div class="alert alert-danger">
-                            <button class="btn btn-danger btn-circle" type="button"><i class="fa fa-times"></i></button>
+                            <button class="btn btn-danger btn-circle" type="button">
+                                <i class="fa fa-times"></i>
+                            </button>
                             Esta solicitud no fue aprobada.
                         </div>
                     {% endif %}
 
                 {% else %}
                     <div class="alert alert-warning">
-                        <button class="btn btn-warning btn-circle" type="button"><i class="fa fa-times"></i></button>
+                        <button class="btn btn-warning btn-circle" type="button">
+                            <i class="fa fa-times"></i>
+                        </button>
                         Esta solicitud no ha sido enviada.
                     </div>
 
@@ -152,42 +195,58 @@
 
                                     {% if true == is_granted('ROLE_ADMIN')  %}
 
-                                        <a href="{{ path('solicitud_edit', { 'id': entity.id }) }}" type="button" class="btn btn-primary">Modificar</a>
-                                        <a href="{{ path('solicitud') }}" type="button"  class="btn btn-danger">Regresar</a>
-                                        <button href="{{ path('solicitud_delete', { 'id': entity.id }) }}" type="submit" class="btn btn-primary">Eliminar</button>
+                                        <a href="{{ path('solicitud_edit', { 'id': entity.id }) }}"
+                                           type="button"
+                                           class="btn btn-primary">Modificar
+                                        </a>
+                                        <a href="{{ path('solicitud') }}"
+                                           type="button"
+                                           class="btn btn-danger">Regresar
+                                        </a>
+                                        <button href="{{ path('solicitud_delete', { 'id': entity.id }) }}"
+                                                type="submit"
+                                                class="btn btn-primary">Eliminar
+                                        </button>
 
                                         {% if entity.notificada is null and entity.aprobada is not null %}
-                                            <a href="{{ path('solicitud_notify', { 'id': entity.id }) }}" type="button" class="btn btn-primary">Notificar al solicitante</a>
+                                            <a href="{{ path('solicitud_notify', { 'id': entity.id }) }}"
+                                               type="button"
+                                               class="btn btn-primary">Notificar al solicitante
+                                            </a>
 
                                         {% elseif entity.notificada is defined and entity.aprobada is not null%}
-                                            <a href="{{ path('solicitud_notify', { 'id': entity.id }) }}" type="button" class="btn btn-primary disabled">Notificación enviada</a>
+                                            <a href="{{ path('solicitud_notify', { 'id': entity.id }) }}"
+                                               type="button"
+                                               class="btn btn-primary disabled">Notificación enviada
+                                            </a>
                                         {% endif %}
 
                                     {% else %}
 
-                                        <a href="{{ path('solicitud') }}" type="button"  class="btn btn-danger">Regresar</a>
+                                        <a href="{{ path('solicitud') }}"
+                                           type="button"
+                                           class="btn btn-danger">Regresar
+                                        </a>
 
                                     {% endif %}
 
 
                                 {% else %}
-                                    <a href="{{ path('solicitud_edit', { 'id': entity.id }) }}" type="button" class="btn btn-primary">Modificar</a>
-                                    <a href="{{ path('solicitud') }}" type="button"  class="btn btn-danger">Regresar</a>
-
-
+                                    <a href="{{ path('solicitud_edit', { 'id': entity.id }) }}"
+                                       type="button"
+                                       class="btn btn-primary">Modificar
+                                    </a>
+                                    <a href="{{ path('solicitud') }}"
+                                       type="button"
+                                       class="btn btn-danger">Regresar
+                                    </a>
                                 {% endif %}
 
                             </div>
                         </div>
                     </div>
                     {% endblock %}
-
-
-
                 </div>
             </div>
         </div>
-
-
-
         {% endblock %}
