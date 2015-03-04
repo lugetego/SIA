@@ -8,13 +8,14 @@
         </div>
 
 
-        <div class="col-lg-8">
+{#       <div class="col-lg-8">
             <ol class="breadcrumb">
                 <li><a href="{{ path('sia') }}">Inicio</a></li>
                 <li><a href="{{ path('academico') }}">Academicos</a></li>
                 <li class="active">{{ entity.id }}</li>
             </ol>
         </div>
+#}
 
         {% for flashMessage in app.session.flashbag.get('info') %}
             <div class="col-lg-8">
@@ -43,10 +44,23 @@
                                     <td>
                                         <img src="http://placekitten.com/g/150/150" alt="..." class="img-circle" style="width: 50px; height: 50px;">
                                     </td>
-                                    <td><label><i class="fa fa-male"></i> Fecha de nacimiento</label> {{ entity.nacimiento|date('d-m-Y')}}</td>
-                                    <td><label><i class="fa fa-book"></i> RFC:</label> {{ entity.rfc}}</td>
                                     <td>
-                                        <button class="btn btn-primary" type="button"><i class="fa fa-bookmark"></i> Dias: <span class="badge">{{ entity.dias}}</span></button>
+                                        <label>
+                                            <i class="fa fa-male"></i> Fecha de nacimiento
+                                        </label>
+                                        {{ entity.nacimiento|date('d-m-Y')}}
+                                    </td>
+                                    <td>
+                                        <label>
+                                            <i class="fa fa-book"></i> RFC:
+                                        </label>
+                                        {{ entity.rfc}}
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-primary" type="button">
+                                            <i class="fa fa-bookmark"></i> Dias:
+                                            <span class="badge">{{ entity.dias}}</span>
+                                        </button>
                                     </td>
                                 </tr>
                                 </tbody>
@@ -141,9 +155,19 @@
                 {% endfor %}
                 </tbody>
             </table>
+
+            <div class="panel-footer">
+                <div class="row">
+                    <div class="col-lg-8">
+                        <div class="col-lg-12">
+                            <a href="{{ path('solicitud_new', { 'tipo': "licencia-comision" }) }}" type="button" class="btn btn-success"><i class="fa fa-plus"></i> Licencia-Comisión</a>
+                            <a href="{{ path('solicitud_new', { 'tipo': "visitante" }) }}" type="button" class="btn btn-success"><i class="fa fa-plus"></i> Visitante</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-
 
     <div class="row">
         <div class="col-lg-8">

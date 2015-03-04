@@ -49,14 +49,18 @@ class SiaController extends Controller
         else{
             $user = $this->get('security.context')->getToken()->getUser();
             //$solicitudes = $user->getAcademico()->getSolicitudes();
-            $academico = $user->getAcademico();
-            $proyectos = $academico->getProyectos();
+            $academico = $user->getAcademico()->getId();
+            //$proyectos = $academico->getProyectos();
 
-            $solicitudes = $em->getRepository('CcmSiaBundle:Solicitud')->findSolicitudesByAcademico($academico->getId());
-            $academico = $user->getId();
-            $academicos = $em->getRepository('CcmSiaBundle:Academico')->findByUser($academico);
+            //$solicitudes = $em->getRepository('CcmSiaBundle:Solicitud')->findSolicitudesByAcademico($academico->getId());
+            //$academico = $user->getId();
+            //$academicos = $em->getRepository('CcmSiaBundle:Academico')->findByUser($academico);
            // $proyectos = $em->getRepository('CcmSiaBundle:Proyecto')->findByAcademico($academico);
 
+
+            return $this->redirect(
+                $this->generateUrl('academico_show',array('id' => $academico)
+            ));
 
         }
 

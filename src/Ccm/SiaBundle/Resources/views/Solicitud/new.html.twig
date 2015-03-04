@@ -72,7 +72,9 @@
                         'ng-required':'false',
                         'close-text':'Close'  }}) }}
                         <span class="input-group-btn">
-                            <button type="button" class="btn btn-default input-sm" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                            <button type="button" class="btn btn-default input-sm" ng-click="open($event)">
+                                <i class="glyphicon glyphicon-calendar"></i>
+                            </button>
                         </span>
 
                     </div>
@@ -304,20 +306,61 @@
                             </thead>
                             <tbody>
 
+
+
+
                             {% set i = -1 %}
                             {% for fin in form.financiamiento %}
                                 {% set i = i + 1 %}
-
                                 <tr>
-                                    <td>{{ form_widget(fin.nombre, { 'attr':{'class': 'form-control input-sm ','readonly':'true'} }) }}</td>
+
+                                    <td>
+                                        {{ form_widget(fin.nombre, { 'attr':{
+                                            'class': 'form-control input-sm ',
+                                            'readonly':'true'
+                                        } })
+                                        }}
+                                    </td>
+
                                     {% set ccmid = 'ccm' ~ i %}
-                                    <td>{{ form_widget(fin.ccm, { 'attr':{'class': 'form-control input-sm text-right', 'ng-model': ccmid, 'value': '8'} }) }}  {{ form_errors(fin.ccm) }}</td>
+
+                                    <td>
+                                        {{ form_widget(fin.ccm, {'attr':{
+                                            'class': 'form-control input-sm text-right',
+                                            'ng-model': ccmid,
+                                        } }) }}
+
+                                        {#  {{ form_widget(fin.ccm, {'value' : 'Default title'}) }} #}
+                                        {{ form_errors(fin.ccm) }}
+                                    </td>
+
                                     {% set papiitid = 'papiit' ~ i %}
-                                    <td>{{ form_widget(fin.papiit, { 'attr':{'class': 'form-control input-sm text-right', 'ng-model': papiitid } }) }} {{ form_errors(fin.papiit) }}</td>
+
+                                    <td>
+                                        {{ form_widget(fin.papiit, { 'attr':{
+                                            'class': 'form-control input-sm text-right',
+                                            'ng-model': papiitid }
+                                        }) }}
+                                        {{ form_errors(fin.papiit) }}
+                                    </td>
+
                                     {% set conacytid = 'conacyt' ~ i %}
-                                    <td>{{ form_widget(fin.conacyt, { 'attr':{'class': 'form-control input-sm text-right', 'ng-model': conacytid } }) }} {{ form_errors(fin.conacyt) }}</td>
+
+                                    <td>
+                                        {{ form_widget(fin.conacyt, { 'attr':{
+                                            'class': 'form-control input-sm text-right',
+                                            'ng-model': conacytid
+                                        } }) }}
+                                        {{ form_errors(fin.conacyt) }}</td>
+
                                     {% set otroid = 'otro' ~ i %}
-                                    <td>{{ form_widget(fin.otro, { 'attr':{'class': 'form-control input-sm text-right', 'ng-model': otroid } }) }} {{ form_errors(fin.otro) }}</td>
+
+                                    <td>{{ form_widget(fin.otro, { 'attr':{
+                                            'class': 'form-control input-sm text-right',
+                                            'ng-model': otroid
+                                        } }) }}
+                                        {{ form_errors(fin.otro) }}
+                                    </td>
                                 </tr>
                             {% endfor %}
 
