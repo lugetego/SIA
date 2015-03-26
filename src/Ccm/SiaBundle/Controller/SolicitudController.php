@@ -50,12 +50,10 @@ class SolicitudController extends Controller
 
         $user = $securityContext->getToken()->getUser();
 
-
         $entity = new Solicitud($securityContext);
 
         $tipo= $request->request->all();
         $tipo= $tipo['ccm_siabundle_solicitud']['tipo-form'];
-
 
         $form = $this->createCreateForm($entity, $tipo);
         //$form = $this->createForm(new SolicitudType(), $entity);
@@ -303,7 +301,6 @@ class SolicitudController extends Controller
 
         if ($editForm->isValid()) {
 
-
             //http://stackoverflow.com/questions/11084209/how-to-force-doctrine-to-update-array-type-fields
 
             $financiamientos = $entity->getFinanciamiento();
@@ -312,19 +309,14 @@ class SolicitudController extends Controller
             $financiamiento[2] = clone $financiamientos[2];
             $financiamiento[3] = clone $financiamientos[3];
 
-
             $entity->setFinanciamiento($financiamiento);
-
-
 
             $em->flush();
             $this->get('session')->getFlashBag()->add('info', 'El registro se ha modificado exitosamente');
 
-
             $nextAction = $editForm->get('saveAndAdd')->isClicked()
                 ? 'solicitud_send'
                 : 'solicitud_show';
-
 
             return $this->redirect($this->generateUrl($nextAction, array('id' => $entity->getId())));
 

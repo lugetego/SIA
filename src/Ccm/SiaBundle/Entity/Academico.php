@@ -82,6 +82,35 @@ class Academico
     private $asignacion;
 
     /**
+     * @ORM\Column(type="string", length=10)
+     * @Assert\NotBlank()
+     */
+//    private $numeroTrabajador;
+
+    /**
+     * @ORM\Column(name="categoria", type="string", length=40)
+     * @Assert\NotBlank()
+     */
+//    private $categoria;
+
+    /**
+     * @ORM\Column(type="date")
+     * @Assert\NotBlank()
+     */
+//    protected $fechaContratacion;
+
+    /**
+     * @ORM\Column(type="date" nullable=true)
+     */
+//    protected $fechaDefinitividad;
+
+
+    /**
+     * @ORM\Column(type="date" nullable=true)
+     */
+//    protected $fechaFechaContratoFin;
+
+    /**
      * Get id
      *
      * @return integer 

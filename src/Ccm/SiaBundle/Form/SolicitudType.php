@@ -128,17 +128,18 @@ class SolicitudType extends AbstractType
                     'required'=>false,
                     'label'=>'Universidad y departamento que visitará'
                 ))
-                ->add('profesor','text',array(
-                    'required'=>false,
-                    'label'=>'Profesor a quién visitará'
-                ))
                 ->add('actividad','textarea',array(
                     'required'=>false,
                     'label'=>'Actividad a desarrollar'
                 ))
-                ->add('proposito','textarea',array(
+                ->add('proposito','choice',array(
+                    'choices'   =>  $this->getPropositoChoice(),
                     'required'=>false,
-                    'label'=>'Propósito del viaje y/o nombre del proyecto de investigación'
+                    'label'=>'Propósito del viaje'
+                ))
+                ->add('profesor','text',array(
+                    'required'=>false,
+                    'label'=>'Profesor a quién visitará'
                 ))
                 ->add('inicio', 'date',array(
                     'widget' => 'single_text',
@@ -210,5 +211,76 @@ class SolicitudType extends AbstractType
     public function getName()
     {
         return 'ccm_siabundle_solicitud';
+    }
+
+    /**
+     * @return array
+     */
+    private function getPropositoChoice()
+    {
+        return array(
+            'Asamblea' => 'Asamblea',
+            'Asesoría' => 'Asesoría',
+            'Capacitación' => 'Capacitación',
+            'Cátedra' => 'Cátedra',
+            'Ceremonia' => 'Ceremonia',
+            'Colaboración' => 'Colaboración',
+            'Coloquio' => 'Coloquio',
+            'Comité' => 'Comité',
+            'Concurso' => 'Concurso',
+            'Conferencia' => 'Conferencia',
+            'Congreso' => 'Congreso',
+            'Conmemoración' => 'Conmemoración',
+            'Consultoría' => 'Consultoría',
+            'Convención' => 'Convención',
+            'Convenio' => 'Convenio',
+            'Coordinación' => 'Coordinación',
+            'Curso' => 'Curso',
+            'Curso-Taller' => 'Curso-Taller',
+            'Demostración' => 'Demostración',
+            'Dictamen' => 'Dictamen',
+            'Diplomado' => 'Diplomado',
+            'Encuentro' => 'Encuentro',
+            'Entrevista' => 'Entrevista',
+            'Estancia' => 'Estancia',
+            'Estudio' => 'Estudio',
+            'Evaluación' => 'Evaluación',
+            'Examen' => 'Examen',
+            'Exposición' => 'Exposición',
+            'Feria' => 'Feria',
+            'Feria-Posgrado' => 'Feria-Posgrado',
+            'Foro' => 'Foro',
+            'Homenaje' => 'Homenaje',
+            'Inauguración' => 'Inauguración',
+            'Instalación' => 'Instalación',
+            'Intercambio' => 'Intercambio',
+            'Investigación' => 'Investigación',
+            'Jornadas' => 'Jornadas',
+            'Jurado' => 'Jurado',
+            'Mesa redonda' => 'Mesa redonda',
+            'Minicongreso' => 'Minicongreso',
+            'Minicurso' => 'Minicurso',
+            'Minisimposio' => 'Minisimposio',
+            'Olimpiada' => 'Olimpiada',
+            'Organización' => 'Organización',
+            'Panel' => 'Panel',
+            'Plática' => 'Plática',
+            'Ponencia' => 'Ponencia',
+            'Premiación' => 'Premiación',
+            'Presentación' => 'Presentación',
+            'Proyecto' => 'Proyecto',
+            'Reconocimiento' => 'Reconocimiento',
+            'Reunión' => 'Reunión',
+            'Revisión' => 'Revisión',
+            'Seminario' => 'Seminario',
+            'Simposio' => 'Simposio',
+            'Sinodal' => 'Sinodal',
+            'Supervisión' => 'Supervisión',
+            'Taller' => 'Taller',
+            'Trabajo' => 'Trabajo',
+            'Trabajo de campo' => 'Trabajo de campo',
+            'Vinculación' => 'Vinculación',
+            'Visita' => 'Visita',
+        );
     }
 }

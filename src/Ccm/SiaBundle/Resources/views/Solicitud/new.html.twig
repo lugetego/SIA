@@ -220,9 +220,17 @@
                     <div>{{ form_errors(form.universidad) }}</div>
                 </div>
             </div>
-
-
-
+            <div class="col-lg-8">
+                <div class="form-group">
+                    <div>
+                        {{ form_label(form.proposito) }}
+                    </div>
+                    <div>
+                        {{ form_widget(form.proposito, {'attr': {'class': 'form-control input-sm'} } ) }}
+                    </div>
+                    <div>{{ form_errors(form.proposito) }}</div>
+                </div>
+            </div>
             {%  if form.actividad is defined %}
                 <div class="col-lg-8">
                     <div class="form-group">
@@ -241,6 +249,7 @@
 
     <div class="row">
         <div class="col-lg-8">
+
             <div class="col-lg-8">
                 <div class="form-group">
                     <div>
@@ -250,17 +259,6 @@
                         {{ form_widget(form.profesor, {'attr': {'class': 'form-control input-sm'} } ) }}
                     </div>
                     <div>{{ form_errors(form.profesor) }}</div>
-                </div>
-            </div>
-            <div class="col-lg-8">
-                <div class="form-group">
-                    <div>
-                        {{ form_label(form.proposito) }}
-                    </div>
-                    <div>
-                        {{ form_widget(form.proposito, {'attr': {'class': 'form-control input-sm'} } ) }}
-                    </div>
-                    <div>{{ form_errors(form.proposito) }}</div>
                 </div>
             </div>
         </div>
@@ -285,7 +283,9 @@
         </div>
     {% endif %}
 
-<div class="page-header">
+{# TODO: Reutilizar el siguiente código en New / Edit #}
+
+    <div class="page-header">
         <h1><small>Financiamiento</small></h1>
     </div>
 
@@ -306,9 +306,6 @@
                             </thead>
                             <tbody>
 
-
-
-
                             {% set i = -1 %}
                             {% for fin in form.financiamiento %}
                                 {% set i = i + 1 %}
@@ -327,10 +324,8 @@
                                     <td>
                                         {{ form_widget(fin.ccm, {'attr':{
                                             'class': 'form-control input-sm text-right',
-                                            'ng-model': ccmid,
+                                            'ng-model': ccmid, 'ng-init': ccmid ~ ' = ' ~ entity.financiamiento[i].ccm,
                                         } }) }}
-
-                                        {#  {{ form_widget(fin.ccm, {'value' : 'Default title'}) }} #}
                                         {{ form_errors(fin.ccm) }}
                                     </td>
 
@@ -339,8 +334,8 @@
                                     <td>
                                         {{ form_widget(fin.papiit, { 'attr':{
                                             'class': 'form-control input-sm text-right',
-                                            'ng-model': papiitid }
-                                        }) }}
+                                            'ng-model': papiitid, 'ng-init': papiitid ~ ' = ' ~ entity.financiamiento[i].papiit,
+                                        } }) }}
                                         {{ form_errors(fin.papiit) }}
                                     </td>
 
@@ -349,7 +344,7 @@
                                     <td>
                                         {{ form_widget(fin.conacyt, { 'attr':{
                                             'class': 'form-control input-sm text-right',
-                                            'ng-model': conacytid
+                                            'ng-model': conacytid, 'ng-init': conacytid ~ ' = ' ~ entity.financiamiento[i].conacyt,
                                         } }) }}
                                         {{ form_errors(fin.conacyt) }}</td>
 
@@ -357,7 +352,7 @@
 
                                     <td>{{ form_widget(fin.otro, { 'attr':{
                                             'class': 'form-control input-sm text-right',
-                                            'ng-model': otroid
+                                            'ng-model': otroid, 'ng-init': otroid ~ ' = ' ~ entity.financiamiento[i].otro,
                                         } }) }}
                                         {{ form_errors(fin.otro) }}
                                     </td>

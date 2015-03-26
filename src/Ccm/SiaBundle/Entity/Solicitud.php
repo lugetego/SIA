@@ -35,8 +35,8 @@ class Solicitud
     /**
      * @var sesion
      * @ORM\ManyToOne(targetEntity="Sesiones", inversedBy="solicitudes")
-     * @ORM\JoinColumn(name="sesion_id", referencedColumnName="id")
-     * @Assert\NotBlank(groups={"solicitud","visitante"})
+     * @ORM\JoinColumn(name="sesion_id", referencedColumnName="id", nullable=true)
+     * Assert NotBlank(groups={"solicitud","visitante"})
      */
     private $sesion;
 
@@ -105,18 +105,12 @@ class Solicitud
      */
     private $proposito;
 
-    /**
-     * @var string $proyecto
-     *
-     * @ORM\Column(name="proyecto", type="string", nullable=true)
-     * @Assert\NotBlank(groups={"solicitud","visitante"})
-     */
-
-    /**
+     /**
      * @var proyecto
-     * @ORM\ManyToOne(targetEntity="Proyecto", inversedBy="proyectos")
-     * @ORM\JoinColumn(name="proyecto_id", referencedColumnName="id")
-     * @Assert\NotBlank(groups={"solicitud","visitante"})
+     * (Owning side)
+     * @ORM\ManyToOne(targetEntity="Proyecto", inversedBy="solicitudes")
+     * ORM JoinColumn(name="proyecto_id", referencedColumnName="id", nullable=true)
+     * Assert NotBlank(groups={"solicitud","visitante"})
      */
     private $proyecto;
 

@@ -41,6 +41,13 @@ class Proyecto
     private $academico;
 
     /**
+     * @var solicitudes
+     * (Inverse side)
+     * @ORM\OneToMany(targetEntity="Solicitud", mappedBy="proyecto")
+     */
+    private $solicitudes;
+
+    /**
      * @param mixed $id
      */
     public function setId($id)
@@ -127,6 +134,7 @@ class Proyecto
     public function __construct()
     {
         $this->academico = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->solicitudes = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     public function __toString()
@@ -134,4 +142,36 @@ class Proyecto
         return $this->nombre;
     }
 
+    /**
+     * Add solicitudes
+     *
+     * @param \Ccm\SiaBundle\Entity\Solicitud $solicitudes
+     * @return Proyecto
+     */
+    public function addSolicitude(\Ccm\SiaBundle\Entity\Solicitud $solicitudes)
+    {
+        $this->solicitudes[] = $solicitudes;
+
+        return $this;
+    }
+
+    /**
+     * Remove solicitudes
+     *
+     * @param \Ccm\SiaBundle\Entity\Solicitud $solicitudes
+     */
+    public function removeSolicitude(\Ccm\SiaBundle\Entity\Solicitud $solicitudes)
+    {
+        $this->solicitudes->removeElement($solicitudes);
+    }
+
+    /**
+     * Get solicitudes
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getSolicitudes()
+    {
+        return $this->numero . '-' . $this->solicitudes;
+    }
 }
