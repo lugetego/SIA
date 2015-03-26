@@ -139,7 +139,7 @@ class Proyecto
 
     public function __toString()
     {
-        return $this->nombre;
+        return $this->nombre . '-' . $this->numero;
     }
 
     /**
@@ -172,6 +172,6 @@ class Proyecto
      */
     public function getSolicitudes()
     {
-        return $this->numero . '-' . $this->solicitudes;
+        return $this->solicitudes;
     }
 }
