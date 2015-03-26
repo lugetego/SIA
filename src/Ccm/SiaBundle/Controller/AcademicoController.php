@@ -118,6 +118,12 @@ class AcademicoController extends Controller
             throw $this->createNotFoundException('Unable to find Academico entity.');
         }
 
+        $asignacionAnual = $this->container->getParameter('sia.asignacion_anual');
+        $dLic = $this->container->getParameter('sia.dias_licencia');
+        $dCom = $this->container->getParameter('sia.dias_comision');
+
+        $totalDias = $dLic + $dCom;
+
         // Calcula Totales
         $totalAsignacionLicencia = $em->getRepository('CcmSiaBundle:Academico')->erogadoLicencias($entity);
         $totalAsignacionComision = $em->getRepository('CcmSiaBundle:Academico')->erogadoComisiones($entity);
@@ -135,6 +141,8 @@ class AcademicoController extends Controller
             'asignacionVisitante' => $totalAsignacionVisitante,
             'diasLicencia' => $totalDiasLicencia,
             'diasComision' => $totalDiasComision,
+            'totalDias' => $totalDias,
+            'asignacionAnual' => $asignacionAnual,
         );
     }
 

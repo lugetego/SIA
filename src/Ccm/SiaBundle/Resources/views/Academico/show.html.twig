@@ -7,15 +7,14 @@
             <h3 class="page-header">Académico</h3>
         </div>
 
-
-{#       <div class="col-lg-8">
-            <ol class="breadcrumb">
-                <li><a href="{{ path('sia') }}">Inicio</a></li>
-                <li><a href="{{ path('academico') }}">Academicos</a></li>
-                <li class="active">{{ entity.id }}</li>
-            </ol>
-        </div>
-#}
+        {#       <div class="col-lg-8">
+                    <ol class="breadcrumb">
+                        <li><a href="{{ path('sia') }}">Inicio</a></li>
+                        <li><a href="{{ path('academico') }}">Academicos</a></li>
+                        <li class="active">{{ entity.id }}</li>
+                    </ol>
+                </div>
+        #}
 
         {% for flashMessage in app.session.flashbag.get('info') %}
             <div class="col-lg-8">
@@ -58,8 +57,9 @@
                                     </td>
                                     <td>
                                         <button class="btn btn-primary" type="button">
-                                            <i class="fa fa-bookmark"></i> Dias:
-                                            <span class="badge">{{ entity.dias}}</span>
+                                            <i class="fa fa-bookmark"></i> Dias disponibles:
+
+                                            <span class="badge">{{ totalDias - diasLicencia - diasComision}}</span>
                                         </button>
                                     </td>
                                 </tr>
@@ -105,15 +105,27 @@
                 </tbody>
             </table>
 
-            <strong>Saldo</strong><span style="color:#428bca; font-size:150%"> ${{ asignacionLicencia |number_format(2)}}</span>
-            {% set asignacion = (entity.asignacion * 100)/30000 %}
-            <div class="progress">
-                <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="{{ asignacion }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ asignacion }}%">
-                    <span class="sr-only">80% Complete (success)</span><span class="text-default">{{ asignacion|number_format }}%</span>
-                </div>
+            {% set totalErogado = asignacionLicencia + asignacionComision + asignacionVisitante %}
+            {% set saldo = asignacionAnual - totalErogado %}
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-2">
+            <div  id="doughnut-chart" style="height: 160px;">
+
             </div>
         </div>
     </div>
+    <div class="row">
+        <div class="col-lg-3">
+            <strong>Saldo</strong><span style="color:#428bca; font-size:150%"> ${{ saldo |number_format(2)}}</span>
+        </div>
+        <div class="col-lg-3">
+            <strong>Días disponibles</strong><span style="color:#428bca; font-size:150%"> {{ totalDias - diasLicencia - diasComision}}</span>
+        </div>
+    </div>
+
 
     <div class="row">
         <div class="col-lg-8">
@@ -131,9 +143,9 @@
                         <td> {{ solicitud.actividad }}</td>
 
                         {% set ccm = 0 %}
-                            {% for fin in solicitud.financiamiento %}
-                                {% set ccm = fin.ccm + ccm %}
-                            {% endfor %}
+                        {% for fin in solicitud.financiamiento %}
+                            {% set ccm = fin.ccm + ccm %}
+                        {% endfor %}
 
                         <td> ${{ ccm | number_format(2)}}</td>
                         <td {% if solicitud.enviada is not null %}class="success"{% else %} class="danger" {% endif %}>
@@ -180,4 +192,30 @@
         </div>
     </div>
 
+
 {% endblock %}
+
+{%  block morris %}
+
+    {% set totalErogado = asignacionLicencia + asignacionComision + asignacionVisitante %}
+    {% set saldo = asignacionAnual - totalErogado %}
+
+    {% set porcentajeLicencia =  (asignacionLicencia * 100) / asignacionAnual %}
+    {% set porcentajeComision =  (asignacionComision * 100) / asignacionAnual %}
+    {% set porcentajeVisitante =  (asignacionVisitante * 100) / asignacionAnual %}
+    {% set porcentajeSaldo =  ( saldo * 100) / asignacionAnual %}
+
+    <script>
+        Morris.Donut({
+            element: 'doughnut-chart',
+            data: [
+                {label: 'Licencia', value: {{ porcentajeLicencia |number_format(2) }} },
+                {label: 'Comisión', value: {{ porcentajeComision |number_format(2) }} },
+                {label: 'Visitante', value: {{ porcentajeVisitante |number_format(2) }} },
+                {label: 'Saldo', value: {{ porcentajeSaldo |number_format(2) }} },
+            ],
+            formatter: function (y) { return y + "%" }
+        });
+    </script>
+
+{%  endblock %}
