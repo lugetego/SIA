@@ -45,7 +45,7 @@ class Proyecto
      * (Inverse side)
      * @ORM\OneToMany(targetEntity="Solicitud", mappedBy="proyecto")
      */
-    private $solicitudes;
+    // private $solicitudes;
 
     /**
      * @param mixed $id
@@ -134,7 +134,7 @@ class Proyecto
     public function __construct()
     {
         $this->academico = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->solicitudes = new \Doctrine\Common\Collections\ArrayCollection();
+       //  $this->solicitudes = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     public function __toString()
@@ -148,30 +148,31 @@ class Proyecto
      * @param \Ccm\SiaBundle\Entity\Solicitud $solicitudes
      * @return Proyecto
      */
-    public function addSolicitude(\Ccm\SiaBundle\Entity\Solicitud $solicitudes)
-    {
-        $this->solicitudes[] = $solicitudes;
+    /*    public function addSolicitude(\Ccm\SiaBundle\Entity\Solicitud $solicitudes)
+        {
+            $this->solicitudes[] = $solicitudes;
 
-        return $this;
-    }
+            return $this;
+        }
 
-    /**
-     * Remove solicitudes
-     *
-     * @param \Ccm\SiaBundle\Entity\Solicitud $solicitudes
-     */
-    public function removeSolicitude(\Ccm\SiaBundle\Entity\Solicitud $solicitudes)
-    {
-        $this->solicitudes->removeElement($solicitudes);
-    }
+        /**
+         * Remove solicitudes
+         *
+         * @param \Ccm\SiaBundle\Entity\Solicitud $solicitudes
+         */
+    /*    public function removeSolicitude(\Ccm\SiaBundle\Entity\Solicitud $solicitudes)
+        {
+            $this->solicitudes->removeElement($solicitudes);
+        }
 
-    /**
-     * Get solicitudes
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
+        /**
+         * Get solicitudes
+         *
+         * @return \Doctrine\Common\Collections\Collection
+         */
+    /*
     public function getSolicitudes()
     {
         return $this->solicitudes;
-    }
+    }*/
 }

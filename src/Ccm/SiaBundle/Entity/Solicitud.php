@@ -112,7 +112,7 @@ class Solicitud
      * ORM JoinColumn(name="proyecto_id", referencedColumnName="id", nullable=true)
      * Assert NotBlank(groups={"solicitud","visitante"})
      */
-    private $proyecto;
+    // private $proyecto;
 
     /**
      * @var string $inicio
@@ -469,28 +469,31 @@ class Solicitud
         return $this->proposito;
     }
 
-    /**
+
+   /**
      * Set proyecto
      *
      * @param string $proyecto
      * @return Solicitud
      */
-    public function setProyecto($proyecto)
-    {
-        $this->proyecto = $proyecto;
+    /*    public function setProyecto($proyecto)
+        {
+            $this->proyecto = $proyecto;
 
-        return $this;
-    }
+            return $this;
+        }
 
-    /**
-     * Get proyecto
-     *
-     * @return string
-     */
+        /**
+         * Get proyecto
+         *
+         * @return string
+         */
+    /*
     public function getProyecto()
     {
         return $this->proyecto;
     }
+*/
 
     /**
      * @return string

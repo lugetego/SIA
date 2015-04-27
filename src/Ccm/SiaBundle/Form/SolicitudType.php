@@ -59,9 +59,9 @@ class SolicitudType extends AbstractType
                                 ->leftjoin('r.user','a')
                                 ->where('a.id = :id')
                                 ->setParameter('id', $user->getId())
-                                ;}, 'data' => ($user->getAcademico())))
+                                ;}, 'data' => ($user->getAcademico())));
 
-                ->add('proyecto', null, array(
+/*                ->add('proyecto', null, array(
                     'class' => 'Ccm\SiaBundle\Entity\Proyecto',
                     'label' => 'Proyecto',
                     'empty_value' => 'Seleccionar',
@@ -73,7 +73,7 @@ class SolicitudType extends AbstractType
                                 ->leftjoin('r.academico','a')
                                 ->where('a.id = :id')
                                 ->setParameter('id', $user->getAcademico())
-                                ;}, ));
+                                ;}, ));*/
         }
 
         else {
@@ -82,8 +82,8 @@ class SolicitudType extends AbstractType
                 ->add('academico',null,array(
                     'required'=>true,
                     'label'=>'Académico',
-                    'empty_value' => 'Seleccionar'))
-                ->add('proyecto',null, array(
+                    'empty_value' => 'Seleccionar'));
+/*                ->add('proyecto',null, array(
                     'required'=>false,
                     'empty_value' => 'Seleccionar',
                     'class' => 'Ccm\SiaBundle\Entity\Proyecto',
@@ -91,7 +91,7 @@ class SolicitudType extends AbstractType
                          return $er->createQueryBuilder('q')
                                  ->select('r')
                                  ->from('Ccm\SiaBundle\Entity\Proyecto', 'r')
-                                 ;}, ));
+                                 ;}, ));*/
         }
 
             $builder

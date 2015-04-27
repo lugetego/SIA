@@ -198,24 +198,47 @@
 {%  block morris %}
 
     {% set totalErogado = asignacionLicencia + asignacionComision + asignacionVisitante %}
-    {% set saldo = asignacionAnual - totalErogado %}
 
-    {% set porcentajeLicencia =  (asignacionLicencia * 100) / asignacionAnual %}
-    {% set porcentajeComision =  (asignacionComision * 100) / asignacionAnual %}
-    {% set porcentajeVisitante =  (asignacionVisitante * 100) / asignacionAnual %}
-    {% set porcentajeSaldo =  ( saldo * 100) / asignacionAnual %}
+    {% if totalErogado >= asignacionAnual %}
 
-    <script>
-        Morris.Donut({
-            element: 'doughnut-chart',
-            data: [
-                {label: 'Licencia', value: {{ porcentajeLicencia |number_format(2) }} },
-                {label: 'Comisión', value: {{ porcentajeComision |number_format(2) }} },
-                {label: 'Visitante', value: {{ porcentajeVisitante |number_format(2) }} },
-                {label: 'Saldo', value: {{ porcentajeSaldo |number_format(2) }} },
-            ],
-            formatter: function (y) { return y + "%" }
-        });
-    </script>
+        <script>
+            Morris.Donut({
+                element: 'doughnut-chart',
+                data: [
+                    {label: 'Erogado', value: 100 },
+                ],
+                labelColor: '#AF0B0B',
+                colors: [
+                    '#AF0B0B',
+                    '#910000',
+                    '#6B0000',
+                ],
+                formatter: function (y) { return y + "%" }
+            });
+        </script>
+
+    {% else %}
+
+        {% set saldo = asignacionAnual - totalErogado %}
+
+        {% set porcentajeLicencia =  (asignacionLicencia * 100) / asignacionAnual %}
+        {% set porcentajeComision =  (asignacionComision * 100) / asignacionAnual %}
+        {% set porcentajeVisitante =  (asignacionVisitante * 100) / asignacionAnual %}
+        {% set porcentajeSaldo =  ( saldo * 100) / asignacionAnual %}
+
+        <script>
+            Morris.Donut({
+                element: 'doughnut-chart',
+                data: [
+                    {label: 'Licencia', value: {{ porcentajeLicencia |number_format(2) }} },
+                    {label: 'Comisión', value: {{ porcentajeComision |number_format(2) }} },
+                    {label: 'Visitante', value: {{ porcentajeVisitante |number_format(2) }} },
+                    {label: 'Saldo', value: {{ porcentajeSaldo |number_format(2) }} },
+                ],
+                formatter: function (y) { return y + "%" }
+            });
+        </script>
+
+    {% endif %}
 
 {%  endblock %}

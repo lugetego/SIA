@@ -7,8 +7,6 @@ security:
             ROLE_ADMIN:    ROLE_ACADEMICO
             ROLE_SUPER_ADMIN: [ROLE_ADMIN, ROLE_ACADEMICO]
 
-
-
     providers:
             fos_userbundle:
                 id: fos_user.user_provider.username

@@ -73,7 +73,9 @@ class AcademicoController extends Controller
     */
     private function createCreateForm(Academico $entity)
     {
-        $form = $this->createForm(new AcademicoType(), $entity, array(
+        $securityContext = $this->container->get('security.context');
+
+        $form = $this->createForm(new AcademicoType($securityContext), $entity, array(
             'action' => $this->generateUrl('academico_create'),
             'method' => 'POST',
         ));
@@ -92,7 +94,9 @@ class AcademicoController extends Controller
      */
     public function newAction()
     {
-        $entity = new Academico();
+        $securityContext = $this->container->get('security.context');
+
+        $entity = new Academico($securityContext);
         $form   = $this->createCreateForm($entity);
 
         return array(
@@ -182,7 +186,9 @@ class AcademicoController extends Controller
     */
     private function createEditForm(Academico $entity)
     {
-        $form = $this->createForm(new AcademicoType(), $entity, array(
+        $securityContext = $this->container->get('security.context');
+
+        $form = $this->createForm(new AcademicoType($securityContext), $entity, array(
             'action' => $this->generateUrl('academico_update', array('id' => $entity->getId())),
             'method' => 'PUT',
         ));
