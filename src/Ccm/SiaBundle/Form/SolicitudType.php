@@ -175,6 +175,12 @@ class SolicitudType extends AbstractType
             ));
         }
         $builder
+                ->add('cartaInvitacionFile', 'vich_file', array(
+                    'required'      => false, 'label' => 'PDF Carta de Invitación'
+                ))
+                ->add('planTrabajoFile', 'vich_file', array(
+                    'required'      => false, 'label' => 'PDF Plan de Trabajo'
+                ))
                 ->add('observaciones','textarea',array(
                     'required'=>false,
                     'label'=>'Observaciones'

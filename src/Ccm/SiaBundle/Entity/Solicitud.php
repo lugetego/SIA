@@ -5,14 +5,15 @@ namespace Ccm\SiaBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
-
-
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 
 /**
  * @ORM\Entity(repositoryClass="Ccm\SiaBundle\Entity\SolicitudRepository")
  * @ORM\Table(name="solicitud")
  * @ORM\HasLifecycleCallbacks
+ * @Vich\Uploadable
  */
 class Solicitud
 {
@@ -167,6 +168,48 @@ class Solicitud
      */
     private $aprobada;
 
+    /**
+     * NOTE: This is not a mapped field of entity metadata, just a simple property.
+     *
+     * @Vich\UploadableField(mapping="solicitud_carta_invitacion", fileNameProperty="cartaInvitacionName")
+     *
+     * @var File
+     * @Assert\File(
+     *     maxSize = "6M",
+     *     mimeTypes = {"application/pdf", "application/x-pdf"},
+     *     mimeTypesMessage = "Please upload a valid PDF"
+     * )
+     * @Assert\NotBlank(message = "La carta de invitación es requerida para una solicitud de comisión", groups={"comision"})
+     */
+    private $cartaInvitacionFile;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     *
+     * @var string
+     */
+    private $cartaInvitacionName;
+
+    /**
+     * @Vich\UploadableField(mapping="solicitud_plan_trabajo", fileNameProperty="planTrabajoName")
+     *
+     * @var File
+     * @Assert\File(
+     *     maxSize = "6M",
+     *     mimeTypes = {"application/pdf", "application/x-pdf"},
+     *     mimeTypesMessage = "Please upload a valid PDF"
+     * )
+     * @Assert\NotBlank(message = "El plan de trabajo es requerid para una solicitud de comisión", groups={"comision"})
+     */
+    private $planTrabajoFile;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     *
+     * @var string
+     *
+     */
+    private $planTrabajoName;
 
     /**
      * @ORM\Column(type="datetime", nullable=true)
@@ -676,6 +719,86 @@ class Solicitud
         $this->estado = $estado;
     }
 
+    // -----------------------------------------------------------------------------------------------------------------
+    // File upload Carta Invitacion
+    /**
+     * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile $cartaInvitacion
+     */
+    public function setCartaInvitacionFile(File $cartaInvitacion = null)
+    {
+        $this->cartaInvitacionFile = $cartaInvitacion;
+
+        if ($cartaInvitacion) {
+            // It is required that at least one field changes if you are using doctrine
+            // otherwise the event listeners won't be called and the file is lost
+            $this->modified = new \DateTime('now');
+        }
+    }
+
+    /**
+     * @return File
+     */
+    public function getCartaInvitacionFile()
+    {
+        return $this->cartaInvitacionFile;
+    }
+
+    /**
+     * @param string $cartaInvitacionName
+     */
+    public function setCartaInvitacionName($cartaInvitacionName)
+    {
+        $this->cartaInvitacionName = $cartaInvitacionName;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCartaInvitacionName()
+    {
+        return $this->cartaInvitacionName;
+    }
+
+    // File upload Plan de Trabajo
+    /**
+     * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile $planTrabajo
+     */
+    public function setPlanTrabajoFile(File $planTrabajo = null)
+    {
+        $this->planTrabajoFile = $planTrabajo;
+
+        if ($planTrabajo) {
+            // It is required that at least one field changes if you are using doctrine
+            // otherwise the event listeners won't be called and the file is lost
+            $this->modified = new \DateTime('now');
+        }
+    }
+
+    /**
+     * @return File
+     */
+    public function getPlanTrabajoFile()
+    {
+        return $this->planTrabajoFile;
+    }
+
+    /**
+     * @param string $planTrabajoName
+     */
+    public function setPlanTrabajoName($planTrabajoName)
+    {
+        $this->planTrabajoName = $planTrabajoName;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPlanTrabajoName()
+    {
+        return $this->planTrabajoName;
+    }
+
+    // -----------------------------------------------------------------------------------------------------------------
     /**
      * @return suma financiamiento CCM
      */

@@ -151,6 +151,10 @@
                         </div>
                     </div>
                 </div>
+                <h2><small>Documentos</small></h2>
+                <a href="{{ vich_uploader_asset(entity, 'cartaInvitacionFile') }}" alt="application" />{{ entity.cartaInvitacionName }}</a><br>
+                <a href="{{ vich_uploader_asset(entity, 'planTrabajoFile') }}" alt="application" />{{ entity.planTrabajoName }}</a><br><br>
+
 
                 {% if entity.enviada %}
 
@@ -184,7 +188,6 @@
                         </button>
                         Esta solicitud no ha sido enviada.
                     </div>
-
                 {% endif %}
 
                 {% block footer %}
@@ -224,16 +227,16 @@
                                         {% endif %}
 
                                     {% else %}
-
                                         <a href="{{ path('solicitud') }}"
                                            type="button"
                                            class="btn btn-danger">Regresar
                                         </a>
-
                                     {% endif %}
 
 
                                 {% else %}
+                                    <a href="{{ path('solicitud_send', { 'id': entity.id }) }}" type="button" class="btn btn-success">Enviar solicitud</a>
+
                                     <a href="{{ path('solicitud_edit', { 'id': entity.id }) }}"
                                        type="button"
                                        class="btn btn-primary">Modificar

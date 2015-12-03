@@ -13,3 +13,16 @@ parameters:
 
     locale:            en
     secret:            ThisTokenIsNotSoSecretChangeIt
+
+#    sia.asignacion_anual: 30000
+#    sia.dias_licencia: 15
+#    sia.dias_comision: 15
+
+#    db_driver: orm
+#    mappings:
+#        solicitud_carta_invitacion:
+#            uri_prefix:         /solicitudes/invitacion
+#            upload_destination: %kernel.root_dir%/../web/solicitudes/invitacion
+#        solicitud_plan_trabajo:
+#            uri_prefix:         /solicitudes/planes
+#            upload_destination: %kernel.root_dir%/../web/solicitudes/planes

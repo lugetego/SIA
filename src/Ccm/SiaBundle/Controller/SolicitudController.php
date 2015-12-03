@@ -48,12 +48,13 @@ class SolicitudController extends Controller
     {
         $securityContext = $this->container->get('security.context');
 
+        //// Donde se utiliza user?
         $user = $securityContext->getToken()->getUser();
 
         $entity = new Solicitud($securityContext);
 
-        $tipo= $request->request->all();
-        $tipo= $tipo['ccm_siabundle_solicitud']['tipo-form'];
+        $tipo = $request->request->all();
+        $tipo = $tipo['ccm_siabundle_solicitud']['tipo-form'];
 
         $form = $this->createCreateForm($entity, $tipo);
         //$form = $this->createForm(new SolicitudType(), $entity);
@@ -62,9 +63,9 @@ class SolicitudController extends Controller
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $proyecto = $form->get('proyecto')->getData();
 
-            $entity->getProyecto($proyecto);
+/*            $proyecto = $form->get('proyecto')->getData();
+            $entity->getProyecto($proyecto);*/
 
             $em->persist($entity);
             $em->flush();
@@ -195,14 +196,11 @@ class SolicitudController extends Controller
         if (false === $context->isGranted(SolicitudVoter::VIEW, $entity)) {
 
             throw new AccessDeniedException('Access denied!');
-
         }
 
         elseif ( false === $context->isGranted('ROLE_ACADEMICO')) {
 
             throw new AccessDeniedException('Access denied!');
-
-
         }
 
         $deleteForm = $this->createDeleteForm($id);
@@ -409,15 +407,15 @@ class SolicitudController extends Controller
             $mailer = $this->get('mailer');
 
 
-            $message = \Swift_Message::newInstance()
-                ->setSubject('Registro de solicitud')
-                ->setFrom('info@matmor.unam.mx')
-                //->setTo(array($entity->getCorreo()))
-                ->setTo($mail)
-                //->setBcc(array('webmaster@matmor.unam.mx','escuela@matmor.unam.mx'))
-                ->setBody($this->renderView('CcmSiaBundle:Solicitud:email.txt.twig', array('entity' => $entity)));
+//            $message = \Swift_Message::newInstance()
+//                ->setSubject('Registro de solicitud')
+//                ->setFrom('info@matmor.unam.mx')
+//                //->setTo(array($entity->getCorreo()))
+//                ->setTo($mail)
+//                //->setBcc(array('webmaster@matmor.unam.mx','escuela@matmor.unam.mx'))
+//                ->setBody($this->renderView('CcmSiaBundle:Solicitud:email.txt.twig', array('entity' => $entity)));
 
-            $mailer->send($message);
+            // $mailer->send($message);
 
             $this->get('session')->getFlashBag()->add(
                 'info',
@@ -499,6 +497,8 @@ class SolicitudController extends Controller
      */
     public function seguimientoAction()
     {
+       // $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+
         if ($this->get('security.context')->isGranted('ROLE_ADMIN'))
         {
             $em = $this->getDoctrine()->getManager();
