@@ -40,7 +40,7 @@ class Academico
     protected $nacimiento;
 
     /**
-     * @ORM\Column(type="string", length=10)
+     * @ORM\Column(type="string", length=13)
      * @Assert\NotBlank()
      */
     protected $rfc;
