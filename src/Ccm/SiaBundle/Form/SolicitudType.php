@@ -106,7 +106,7 @@ class SolicitudType extends AbstractType
                     'query_builder' => function(\Doctrine\ORM\EntityRepository $er) {
                         return $er->createQueryBuilder('q')
                             ->select('r')
-                            ->from('Ccm\SiaBundle\Entity\Sesiones', 'r');
+                            ->from('Ccm\SiaBundle\Entity\Sesiones', 'r')
                             ->where('r.fecha >= :now')
                             ->setParameter('now', new \DateTime("01-01-2016"));
                     }
