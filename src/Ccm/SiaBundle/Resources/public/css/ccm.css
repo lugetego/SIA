@@ -1,0 +1,26 @@
+body {
+    color: #676a6c;
+    font-family: "open sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.solicitud-success {
+    color: #5cb85c;
+}
+
+.solicitud-info {
+    color: #5bc0de;
+}
+
+.solicitud-primary {
+    color: #337ab7;
+}
+
+.solicitud-warning {
+    color: #f0ad4e;
+}
+
+.solicitud-danger {
+    color: #c9302c;
+}

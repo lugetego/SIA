@@ -3,3 +3,13 @@ services:
         class:      Ccm\SiaBundle\Security\SolicitudVoter
         tags:
             - { name: security.voter }
+
+    twig.extension.text:
+            class: Twig_Extensions_Extension_Text
+            tags:
+                - { name: twig.extension }
+
+    twig.extension.intl:
+        class: Twig_Extensions_Extension_Intl
+        tags:
+            - { name: twig.extension }

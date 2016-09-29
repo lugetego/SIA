@@ -35,7 +35,7 @@
                         <table class="table">
                             <thead>
                             <tr>
-                                <th>Id</th>
+                                <th>Tipo</th>
                                 <th>Académico</th>
                                 <th>Estatus</th>
                             </tr>
@@ -45,16 +45,14 @@
                             {% for solicitud in solicitudes %}
                                 <tr>
                                     <td>
-                                        <a href="{{ path('solicitud_show', { 'id': solicitud.id }) }}"> {{ solicitud.id }}</a>
+                                        <a href="{{ path('solicitud_show', { 'id': solicitud.id }) }}"> {{ solicitud.tipo | capitalize }}</a>
                                     </td>
                                     <td>
                                         {{ solicitud.academico }}
                                         <span class="pull-right text-muted small"><em>{{ solicitud.created|date('d-m-Y')}}</em>
                                     </span>
                                     </td>
-
-                                    <td>
-
+{#                                    <td>
                                         {%  if solicitud.aprobada is not null %}
                                             <div class="pull-right">
                                             <span class="label label-success">
@@ -76,8 +74,16 @@
                                             </div>
                                         {% endif %}
 
+                                    </td>#}
+                                    <td class="text-center">
+                                        {% if solicitud.aprobada == 1 %}
+                                            <span class="label label-success"><i class="fa fa-check"></i></span>
+                                        {% elseif solicitud.aprobada is null %}
+                                            <span class="label label-warning"><i class="fa fa-minus"></i></span>
+                                        {% else %}
+                                            <span class="label label-danger"><i class="fa fa-times"></i></span>
+                                        {% endif %}
                                     </td>
-
                                 </tr>
                             {% endfor %}
 
@@ -149,56 +155,50 @@
 
                 <!-- /.panel-heading -->
                 <div class="panel-body">
-
-                       <table class="table">
-                            <thead>
+                   <table class="table">
+                        <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Asignación Anual</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for academico in academicos %}
                             <tr>
-                                <th>&nbsp;</th>
-                                <th>Nombre</th>
-                                <th>Asignación Anual</th>
+{#                                    <td>
+                                    <img src="http://placekitten.com/g/150/150" alt="..." class="img-circle" style="width: 50px; height: 50px;">
+                                </td>#}
+                                <td>
+                                    <a href="{{ path('academico_show', { 'id': academico.id }) }}">{{ academico.name }}</a>
+                                </td>
+                                <td>
+                                    {#{{ academico.dias }}#}
+                                    {% set asignacion = (academico.asignacion * 100)/30000 %}
+
+                                    <div class="progress">
+                                            <div class="progress-bar progress-bar-warning"
+                                                 role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: {{ asignacion }}%">
+                                                    <span class="sr-only">40% Complete (success)</span><span class="text-danger">{{ asignacion|number_format }}%</span>
+                                            </div>
+                                    </div>
+                                </td>
+
+                                <td>
+                                    <a href="{{ path('academico_edit', { 'id':  academico.id })   }}" class="btn btn-default btn-xs"><i class="fa fa-pencil-square-o"></i>  Editar</a>
+
+                                </td>
+
+
                             </tr>
-                            </thead>
-                            <tbody>
-
-                            {% for academico in academicos %}
-                                <tr>
-                                    <td>
-                                        <img src="http://placekitten.com/g/150/150" alt="..." class="img-circle" style="width: 50px; height: 50px;">
-                                    </td>
-                                    <td>
-                                        <a href="{{ path('academico_show', { 'id': academico.id }) }}">{{ academico.name }}</a>
-                                    </td>
-                                    <td>
-                                        {#{{ academico.dias }}#}
-                                        {% set asignacion = (academico.asignacion * 100)/30000 %}
-
-                                        <div class="progress">
-                                                <div class="progress-bar progress-bar-warning"
-                                                     role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: {{ asignacion }}%">
-                                                        <span class="sr-only">40% Complete (success)</span><span class="text-danger">{{ asignacion|number_format }}%</span>
-                                                </div>
-                                        </div>
-                                    </td>
-
-                                    <td>
-                                        <a href="{{ path('academico_edit', { 'id':  academico.id })   }}" class="btn btn-default btn-xs"><i class="fa fa-pencil-square-o"></i>  Editar</a>
-
-                                    </td>
-
-
-                                </tr>
-                            {% endfor %}
-
-                            </tbody>
-                        </table>
-                        <!-- /.table -->
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                    <!-- /.table -->
                 </div>
                 <!-- /.panel-body -->
             </div>
             <!-- /.panel -->
         </div>
-
-
 
         <div class="col-lg-6">
             <div class="panel panel-default">
@@ -260,14 +260,9 @@
 
 {% endblock %}
 
-
 {% block javascript %}
 
     {{ parent() }}
-
-
-
-
 
     <script src="{{ asset('bundles/ccmsia/js/responsive-calendar.js')}}"></script>
     <script type="text/javascript">
@@ -282,12 +277,7 @@
 
         {% endfor %}
 
-
-
         var events =  {{ fechas |json_encode|raw }} ;
-
-
-
 
        /* var events = {
             "2013-04-30": {
@@ -307,8 +297,6 @@
 
         {# Muestra: {"nombre":"José García", "edad":27, "emails":["email1@localhost","email2@localhost"]} #}
 
-
-
         $(document).ready(function () {
         $(".responsive-calendar").responsiveCalendar({
           monthChangeAnimation: true,
@@ -317,8 +305,6 @@
             events: events
         });
         });
-
-
 
     </script>
 

@@ -69,25 +69,25 @@ class SolicitudVoter implements VoterInterface
                 // the data object could have for example a method isPrivate()
                 // which checks the Boolean attribute $private
 
+                if (in_array('ROLE_ADMIN',$user->getRoles())){
+                    return VoterInterface::ACCESS_GRANTED;
+                }
 
                 if ($user->getAcademico()->getId() === $post->getAcademico()->getId()) {
 
                     return VoterInterface::ACCESS_GRANTED;
                 }
 
-                if (in_array('ROLE_SUPER_ADMIN',$user->getRoles())){
-                    return VoterInterface::ACCESS_GRANTED;
-                }
                 break;
 
             case self::EDIT:
                 // we assume that our data object has a method getOwner() to
                 // get the current owner user entity for this data object
-                if ($user->getAcademico()->getId() === $post->getAcademico()->getId()) {
+                if (in_array('ROLE_ADMIN',$user->getRoles())){
                     return VoterInterface::ACCESS_GRANTED;
                 }
 
-                if (in_array('ROLE_SUPER_ADMIN',$user->getRoles())){
+                if ($user->getAcademico()->getId() === $post->getAcademico()->getId()) {
                     return VoterInterface::ACCESS_GRANTED;
                 }
 

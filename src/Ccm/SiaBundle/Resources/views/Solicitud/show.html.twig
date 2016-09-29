@@ -4,201 +4,259 @@
 {% block wrapper %}
 
 
-<div class="row">
+    <div class="row">
 
-    <div class="col-lg-12">
-        <h3 class="page-header">Solicitud Licencia/Comisión</h3>
-    </div>
-
-    <div class="col-lg-8">
-        <ol class="breadcrumb">
-            <li><a href="{{ path('sia') }}">Inicio</a></li>
-            <li><a href="{{ path('solicitud_seguimiento') }}">Solicitudes</a></li>
-            <li class="active">{{ entity.id }}</li>
-        </ol>
-    </div>
-
-    {% for flashMessage in app.session.flashbag.get('info') %}
-        <div class="col-lg-8">
-            <div class="alert alert-success alert-dismissable">
-                <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
-                <i class="fa fa-check fa-lg"></i> {{ flashMessage }}
-            </div>
+        <div class="col-lg-12">
+            <h3 class="page-header">Solicitud Licencia/Comisión -
+            <small><a href="{{ path('academico_show', { 'id': entity.academico.id }) }}">{{ entity.academico }}</a></small></h3>
         </div>
-    {% endfor %}
 
-</div>
+        <div class="col-lg-8">
+            <ol class="breadcrumb">
+                <li><a href="{{ path('sia') }}">Inicio</a></li>
+                <li><a href="{{ path('solicitud_seguimiento') }}">Solicitudes</a></li>
+                <li class="active">{{ entity.id }}</li>
+            </ol>
+        </div>
 
-<div class="row">
-    <div class="col-lg-8">
-        <div class="panel panel-info">
-            <div class="panel-heading">
-                {{ entity.tipo | capitalize}}
-                <span class="pull-right text-muted small">
-                    <em>Última modificación: {{ entity.modified|date('d/m/Y') }}</em>
-                </span>
-            </div>
-            <div class="panel-body">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <table class="table table-striped">
-                            <tbody>
-                            <tr>
-                                <td>
-                                    <label><i class="fa fa-calendar"></i> Fechas:</label> del
-                                    <strong><span class="text-primary">{{ entity.inicio |date('d/m/Y') }}</span></strong> al
-                                    <strong><span class="text-primary">{{ entity.fin |date('d/m/Y')}}</span></strong>
-                                </td>
-                                <td>{%  set dias = entity.fin|date("U") - entity.inicio|date("U") %}
-                                    <label>Días solicitados:</label>
-                                    <span class="badge alert-info">{{ ((dias/3600) / 24) + 1}}</span>
-                                </td>
-                            </tr>
-{#
-                            <tr>
-                                <td>
-                                    <label><i class="fa fa-file-text-o"></i> Proyecto:</label>
-                                    {{ entity.proyecto}}
-                                </td>
-                                <td>
-                                </td>
-                            </tr>
-#}
-                            <tr>
-                                <td>
-                                    <label><i class="fa fa-globe"></i> Destino:</label>
-                                    {{ entity.ciudad}}, {{ entity.Estado}}, {{ entity.pais}}
-                                </td>
-                                <td>
-                                    <label><i class="fa fa-university"></i> Universidad:</label>
-                                    {{ entity.universidad}}
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <label><i class="fa fa-male"></i> Profesor a quien visita:</label>
-                                    {{ entity.profesor}}
-                                </td>
-                                <td>
-                                    <label><i class="fa fa-laptop"></i> Actividad a realizar:</label>
-                                    {{ entity.actividad}}
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <label><i class="fa fa-book"></i> Propósito:</label>
-                                    {{ entity.proposito}}
-                                </td>
-                                <td>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <label><i class="fa fa-folder-open"></i> Trabajo a presentar:</label>
-                                    {{ entity.trabajo}}
-                                </td>
-                                <td>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
+        {% for flashMessage in app.session.flashbag.get('info') %}
+            <div class="col-lg-8">
+                <div class="alert alert-success alert-dismissable">
+                    <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+                    <i class="fa fa-check fa-lg"></i> {{ flashMessage }}
                 </div>
+            </div>
+        {% endfor %}
+    </div>
 
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="table-responsive">
-                            <h2><small>Financiamiento</small></h2>
-                            <table class="table table-striped table-bordered table-hover">
-                                <thead>
-                                <tr>
-                                    <th class="text-center">Fuente</th>
-                                    <th class="text-center">CCM</th>
-                                    <th class="text-center">PAPIIT</th>
-                                    <th class="text-center">Conacyt</th>
-                                    <th class="text-center">Otro</th>
-                                </tr>
-                                </thead>
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Tipo de solicitud: <strong>{{ entity.tipo | capitalize}}</strong>
+                <span class="pull-right text-muted small">
+                    <em>Última modificación: {{ entity.modified | date('d/m/Y') }}</em>
+                </span>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <table class="table table-bordered">
                                 <tbody>
-                                {% set ccm = 0 %}
-                                {% set papiit = 0 %}
-                                {% set conacyt = 0 %}
-                                {% set otro = 0 %}
-
-                                {% for fin in entity.financiamiento %}
-                                    <tr>
-                                        <td>{{ fin.nombre }}</td>
-                                        <td class="text-right">${{ fin.ccm|number_format(2)  }}</td>
-                                        <td class="text-right">${{ fin.papiit|number_format(2)  }}</td>
-                                        <td class="text-right">${{ fin.conacyt|number_format(2)  }}</td>
-                                        <td class="text-right">${{ fin.otro|number_format(2)  }}</td>
-                                    </tr>
-                                    {% set ccm = fin.ccm + ccm %}
-                                    {% set papiit = fin.papiit + papiit %}
-                                    {% set conacyt = fin.conacyt + conacyt %}
-                                    {% set otro = fin.otro + otro %}
-
-                                {% endfor %}
                                 <tr>
-                                    <td><h4><i class="fa fa-usd"></i> Total</td>
-                                    <td class="text-right"><h4><strong>${{ ccm|number_format(2) }}</strong></h4></td>
-                                    <td class="text-right"><h4><strong>${{ papiit|number_format(2)  }}</strong></h4></td>
-                                    <td class="text-right"><h4><strong>${{ conacyt|number_format(2)  }}</strong></h4></td>
-                                    <td class="text-right"><h4><strong>${{ otro|number_format(2)  }}</strong></h4></td>
+                                    <td>
+                                        <label><i class="fa fa-calendar"></i></label> del <strong>{{ entity.inicio | localizeddate('medium', 'none', null, null, "d LLLL") }}</strong> al <strong>{{ entity.fin| localizeddate('long', 'none') }}</strong> -
+                                    <span class="text-info">
+                                        {%  set dias = entity.fin|date("U") - entity.inicio|date("U") %}
+                                        <label> {{ ((dias/3600) / 24) + 1}} días solicitados</label></span>
+                                        {#                                    <span class="badge alert-info">{{ ((dias/3600) / 24) + 1}}</span></span>#}
+                                    </td>
+                                    {#                                <td>{%  set dias = entity.fin|date("U") - entity.inicio|date("U") %}
+                                                                        <label>Días solicitados:</label>
+                                                                        <span class="badge alert-info">{{ ((dias/3600) / 24) + 1}}</span>
+                                                                    </td>#}
                                 </tr>
+                                {#                            <tr>
+                                                                <td>
+                                                                    <label><i class="fa fa-calendar"></i> Fechas:</label> del
+                                                                    <strong><span class="text-primary">{{ entity.inicio |date('d/m/Y') }}</span></strong> al
+                                                                    <strong><span class="text-primary">{{ entity.fin |date('d/m/Y')}}</span></strong>
+                                                                </td>
+                                                                <td>{%  set dias = entity.fin|date("U") - entity.inicio|date("U") %}
+                                                                    <label>Días solicitados:</label>
+                                                                    <span class="badge alert-info">{{ ((dias/3600) / 24) + 1}}</span>
+                                                                </td>
+                                                            </tr>#}
+                                {#
+                                                            <tr>
+                                                                <td>
+                                                                    <label><i class="fa fa-file-text-o"></i> Proyecto:</label>
+                                                                    {{ entity.proyecto}}
+                                                                </td>
+                                                                <td>
+                                                                </td>
+                                                            </tr>
+                                #}                            <tr>
+                                    <td>
+                                        <label><i class="fa fa-globe"></i> {{ entity.tipo != 'visitante' ? 'Destino: ' : 'Origen: '}}</label>
+                                        {{ entity.ciudad}}, {{ entity.Estado}}, {{ entity.pais}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label><i class="fa fa-university"></i></label>
+                                        {{ entity.universidad}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label><i class="fa fa-user"></i> {{ entity.tipo != 'visitante' ? 'Profesor a quien visita: ' : 'Profesor: '}}</label>
+                                        {{ entity.profesor}}
+                                    </td>
+                                </tr>
+                                {% if entity.actividad is not null %}
+                                    <tr>
+                                        <td>
+                                            <label><i class="fa fa-laptop"></i> Actividad a realizar:</label>
+                                            {{ entity.actividad}}
+                                        </td>
+                                    </tr>
+                                {% endif %}
+                                <tr>
+                                    <td>
+                                        <label><i class="fa fa-book"></i> Propósito:</label>
+                                        {{ entity.proposito}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label><i class="fa fa-book"></i> Sesión:</label>
+                                        {{ entity.sesion }}
+                                    </td>
+                                </tr>
+                                {% if entity.trabajo is not null%}
+                                    <tr>
+                                        <td>
+                                            <label><i class="fa fa-folder-open"></i> Trabajo a presentar:</label>
+                                            <a href="{{ path('sesiones_show', { 'id': entity.sesion.id }) }}">{{ entity.trabajo}}</a>
+                                        </td>
+                                    </tr>
+                                {% endif %}
                                 </tbody>
                             </table>
                         </div>
                     </div>
-                </div>
-                <h2><small>Documentos</small></h2>
-                <a href="{{ vich_uploader_asset(entity, 'cartaInvitacionFile') }}" alt="application" />{{ entity.cartaInvitacionName }}</a><br>
-                <a href="{{ vich_uploader_asset(entity, 'planTrabajoFile') }}" alt="application" />{{ entity.planTrabajoName }}</a><br><br>
+
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="table-responsive">
+                                <h2><small>Financiamiento</small></h2>
+                                <table class="table table-striped table-bordered table-hover">
+                                    <thead>
+                                    <tr>
+                                        <th class="text-center">Fuente</th>
+                                        <th class="text-center">CCM</th>
+                                        <th class="text-center">PAPIIT</th>
+                                        <th class="text-center">Conacyt</th>
+                                        <th class="text-center">Otro</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% set ccm = 0 %}
+                                    {% set papiit = 0 %}
+                                    {% set conacyt = 0 %}
+                                    {% set otro = 0 %}
+
+                                    {% for fin in entity.financiamiento %}
+                                        <tr>
+                                            <td>{{ fin.nombre }}</td>
+                                            <td class="text-right">${{ fin.ccm|number_format(2)  }}</td>
+                                            <td class="text-right">${{ fin.papiit|number_format(2)  }}</td>
+                                            <td class="text-right">${{ fin.conacyt|number_format(2)  }}</td>
+                                            <td class="text-right">${{ fin.otro|number_format(2)  }}</td>
+                                        </tr>
+                                        {% set ccm = fin.ccm + ccm %}
+                                        {% set papiit = fin.papiit + papiit %}
+                                        {% set conacyt = fin.conacyt + conacyt %}
+                                        {% set otro = fin.otro + otro %}
+
+                                    {% endfor %}
+                                    <tr>
+                                        <td><h4><i class="fa fa-usd"></i> Total</td>
+                                        <td class="text-right"><h4><strong>${{ ccm|number_format(2) }}</strong></h4></td>
+                                        <td class="text-right"><h4><strong>${{ papiit|number_format(2)  }}</strong></h4></td>
+                                        <td class="text-right"><h4><strong>${{ conacyt|number_format(2)  }}</strong></h4></td>
+                                        <td class="text-right"><h4><strong>${{ otro|number_format(2)  }}</strong></h4></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <h2><small>Documentos</small></h2>
+                    <a href="{{ vich_uploader_asset(entity, 'cartaInvitacionFile') }}" alt="application" />{{ entity.cartaInvitacionName }}</a><br>
+                    <a href="{{ vich_uploader_asset(entity, 'planTrabajoFile') }}" alt="application" />{{ entity.planTrabajoName }}</a><br><br>
 
 
-                {% if entity.enviada %}
+                    {% if entity.enviada %}
 
-                    {% if entity.aprobada is null %}
+                        {% if entity.aprobada is null %}
+                            <div class="alert alert-warning">
+                                <button class="btn btn-warning btn-circle" type="button">
+                                    <i class="fa fa-exclamation-triangle"></i>
+                                </button>
+                                Esta solicitud ya fue enviada pero no se ha decidido si es aprobada.
+                            </div>
+                        {% elseif entity.aprobada == true %}
+                            <div class="alert alert-success">
+                                <button class="btn btn-success btn-circle" type="button">
+                                    <i class="fa fa-check"></i>
+                                </button>
+                                Esta solicitud fue aprobada.
+                            </div>
+                        {% elseif entity.aprobada == false %}
+                            <div class="alert alert-danger">
+                                <button class="btn btn-danger btn-circle" type="button">
+                                    <i class="fa fa-times"></i>
+                                </button>
+                                Esta solicitud no fue aprobada.
+                            </div>
+                        {% endif %}
+
+                    {% else %}
                         <div class="alert alert-warning">
                             <button class="btn btn-warning btn-circle" type="button">
-                                <i class="fa fa-exclamation-triangle"></i>
-                            </button>
-                            Esta solicitud ya fue enviada pero no se ha decidido si es aprobada.
-                        </div>
-                    {% elseif entity.aprobada == true %}
-                        <div class="alert alert-success">
-                            <button class="btn btn-success btn-circle" type="button">
-                                <i class="fa fa-check"></i>
-                            </button>
-                            Esta solicitud fue aprobada.
-                        </div>
-                    {% elseif entity.aprobada == false %}
-                        <div class="alert alert-danger">
-                            <button class="btn btn-danger btn-circle" type="button">
                                 <i class="fa fa-times"></i>
                             </button>
-                            Esta solicitud no fue aprobada.
+                            Esta solicitud no ha sido enviada.
                         </div>
                     {% endif %}
 
-                {% else %}
-                    <div class="alert alert-warning">
-                        <button class="btn btn-warning btn-circle" type="button">
-                            <i class="fa fa-times"></i>
-                        </button>
-                        Esta solicitud no ha sido enviada.
-                    </div>
-                {% endif %}
+                    {% block footer %}
 
-                {% block footer %}
+                    <div class="panel-footer">
+                        <div class="row">
+                            <div class="col-lg-8">
+                                <div class="col-lg-12">
+                                    {% if entity.enviada is not null   %}
 
-                <div class="panel-footer">
-                    <div class="row">
-                        <div class="col-lg-8">
-                            <div class="col-lg-12">
-                                {% if entity.enviada is not null   %}
+                                        {% if true == is_granted('ROLE_ADMIN')  %}
 
-                                    {% if true == is_granted('ROLE_ADMIN')  %}
+                                            <a href="{{ path('solicitud_edit', { 'id': entity.id }) }}"
+                                               type="button"
+                                               class="btn btn-primary">Modificar
+                                            </a>
+                                            <a href="{{ path('solicitud') }}"
+                                               type="button"
+                                               class="btn btn-danger">Regresar
+                                            </a>
+                                            <button href="{{ path('solicitud_delete', { 'id': entity.id }) }}"
+                                                    type="submit"
+                                                    class="btn btn-primary">Eliminar
+                                            </button>
+
+                                            {% if entity.notificada is null and entity.aprobada is not null %}
+                                                <a href="{{ path('solicitud_notify', { 'id': entity.id }) }}"
+                                                   type="button"
+                                                   class="btn btn-primary">Notificar al solicitante
+                                                </a>
+
+                                            {% elseif entity.notificada is defined and entity.aprobada is not null%}
+                                                <a href="{{ path('solicitud_notify', { 'id': entity.id }) }}"
+                                                   type="button"
+                                                   class="btn btn-primary disabled">Notificación enviada
+                                                </a>
+                                            {% endif %}
+
+                                        {% else %}
+                                            <a href="{{ path('solicitud') }}"
+                                               type="button"
+                                               class="btn btn-danger">Regresar
+                                            </a>
+                                        {% endif %}
+
+                                    {% else %}
+                                        <a href="{{ path('solicitud_send', { 'id': entity.id }) }}" type="button" class="btn btn-success">Enviar solicitud</a>
 
                                         <a href="{{ path('solicitud_edit', { 'id': entity.id }) }}"
                                            type="button"
@@ -208,50 +266,15 @@
                                            type="button"
                                            class="btn btn-danger">Regresar
                                         </a>
-                                        <button href="{{ path('solicitud_delete', { 'id': entity.id }) }}"
-                                                type="submit"
-                                                class="btn btn-primary">Eliminar
-                                        </button>
-
-                                        {% if entity.notificada is null and entity.aprobada is not null %}
-                                            <a href="{{ path('solicitud_notify', { 'id': entity.id }) }}"
-                                               type="button"
-                                               class="btn btn-primary">Notificar al solicitante
-                                            </a>
-
-                                        {% elseif entity.notificada is defined and entity.aprobada is not null%}
-                                            <a href="{{ path('solicitud_notify', { 'id': entity.id }) }}"
-                                               type="button"
-                                               class="btn btn-primary disabled">Notificación enviada
-                                            </a>
-                                        {% endif %}
-
-                                    {% else %}
-                                        <a href="{{ path('solicitud') }}"
-                                           type="button"
-                                           class="btn btn-danger">Regresar
-                                        </a>
                                     {% endif %}
 
-
-                                {% else %}
-                                    <a href="{{ path('solicitud_send', { 'id': entity.id }) }}" type="button" class="btn btn-success">Enviar solicitud</a>
-
-                                    <a href="{{ path('solicitud_edit', { 'id': entity.id }) }}"
-                                       type="button"
-                                       class="btn btn-primary">Modificar
-                                    </a>
-                                    <a href="{{ path('solicitud') }}"
-                                       type="button"
-                                       class="btn btn-danger">Regresar
-                                    </a>
-                                {% endif %}
-
+                                </div>
                             </div>
                         </div>
+                        {% endblock %}
                     </div>
-                    {% endblock %}
                 </div>
             </div>
         </div>
-        {% endblock %}
+    </div>
+{% endblock %}

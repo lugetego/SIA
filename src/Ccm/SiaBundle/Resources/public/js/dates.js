@@ -10,10 +10,9 @@ fin.onfocus = function(){
         var days = b.diff(a,'days') + 1 ;
 
         if( days > 45 ){
-            document.getElementById('days').innerHTML= ' no se pueden solicitar más de 45 días ' + days + ' días solicitados';
-            fin.value = '';
+            document.getElementById('days').innerHTML= ' <i class="fa fa-exclamation-triangle"></i> solicita más de 45 días!';
+/*            fin.value = '';*/
         }
-
         else{//alert( days );
 
             if ( (inicio.value == '') && (fin.value == '')  ){
@@ -38,11 +37,6 @@ fin.onfocus = function(){
         inicio.value = '';
         fin.value = '';
 
-
-
     }
-
-
-
 
 }

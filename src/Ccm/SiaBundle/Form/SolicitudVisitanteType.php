@@ -59,9 +59,9 @@ class SolicitudVisitanteType extends AbstractType
                             ->leftjoin('r.user','a')
                             ->where('a.id = :id')
                             ->setParameter('id', $user->getId())
-                            ;}, 'data' => ($user->getAcademico())))
+                            ;}, 'data' => ($user->getAcademico())));
 
-                ->add('proyecto', null, array(
+/*                ->add('proyecto', null, array(
                     'class' => 'Ccm\SiaBundle\Entity\Proyecto',
                     'empty_value' => 'Seleccionar',
                     'required'=>false,
@@ -72,16 +72,15 @@ class SolicitudVisitanteType extends AbstractType
                                 ->leftjoin('r.academico','a')
                                 ->where('a.id = :id')
                                 ->setParameter('id', $user->getAcademico())
-                                ;}, ));
+                                ;}, ));*/
         }
-
         else {
 
             $builder
                 ->add('academico',null,array(
                     'required'=>true,
-                    'empty_value' => 'Seleccionar',))
-                ->add('proyecto', 'entity', array(
+                    'empty_value' => 'Seleccionar',));
+                /*->add('proyecto', 'entity', array(
                     'required'=>false,
                     'empty_value' => 'Seleccionar',
                     'class' => 'Ccm\SiaBundle\Entity\Proyecto',
@@ -89,7 +88,7 @@ class SolicitudVisitanteType extends AbstractType
                          return $er->createQueryBuilder('q')
                                  ->select('r')
                                  ->from('Ccm\SiaBundle\Entity\Proyecto', 'r')
-                                 ;}, ));
+                                 ;}, ));*/
         }
 
             $builder
@@ -102,7 +101,8 @@ class SolicitudVisitanteType extends AbstractType
                         ->select('r')
                         ->from('Ccm\SiaBundle\Entity\Sesiones', 'r')
                         ->where('r.fecha >= :now')
-                        ->setParameter('now', new \DateTime("now"));
+//                        ->setParameter('now', new \DateTime("now"))
+                        ->setParameter('now', new \DateTime("01-01-2016"));
                 }
 
             ))
@@ -126,8 +126,7 @@ class SolicitudVisitanteType extends AbstractType
                         'required'=>false,
                         'label'=>'Nombre del invitado'
                     ))
-
-                    ->add('proposito','textarea',array(
+                    ->add('actividad','textarea',array(
                         'required'=>false,
                         'label'=>'Objeto de la visita'
                     ))
@@ -168,7 +167,12 @@ class SolicitudVisitanteType extends AbstractType
                   }
 
                   $builder
-
+                        ->add('cartaInvitacionFile', 'vich_file', array(
+                            'required'      => false, 'label' => 'PDF Carta de Invitación'
+                        ))
+                        ->add('planTrabajoFile', 'vich_file', array(
+                            'required'      => false, 'label' => 'PDF Plan de Trabajo'
+                        ))
                       ->add('save', 'submit', array(
                         'label' => 'Guardar',
                         'validation_groups' => false,

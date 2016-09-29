@@ -33,30 +33,23 @@ class SiaController extends Controller
      */
     public function indexAction()
     {
+        // Usuario autenticado?
+        if (!$this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
+            throw $this->createAccessDeniedException();
+        }
+
         $em = $this->getDoctrine()->getManager();
 
-        if ($this->get('security.context')->isGranted('ROLE_ADMIN'))
+        if ($this->get('security.authorization_checker')->isGranted('ROLE_ADMIN'))
         {
-            // $entities = $em->getRepository('CcmSiaBundle:Solicitud')->findAll();
-            // $entities = $em->getRepository('CcmSiaBundle:Solicitud')->findUltimasSolicitudes();
             $solicitudes = $em->getRepository('CcmSiaBundle:Solicitud')->findUltimasSolicitudes();
             $academicos = $em->getRepository('CcmSiaBundle:Academico')->findAll();
             $proyectos = $em->getRepository('CcmSiaBundle:Proyecto')->findAll();
-
-
-
         }
-        else{
-            $user = $this->get('security.context')->getToken()->getUser();
-            //$solicitudes = $user->getAcademico()->getSolicitudes();
+        else {
+
+            $user = $this->get('security.authorization_checker')->getToken()->getUser();
             $academico = $user->getAcademico()->getId();
-            //$proyectos = $academico->getProyectos();
-
-            //$solicitudes = $em->getRepository('CcmSiaBundle:Solicitud')->findSolicitudesByAcademico($academico->getId());
-            //$academico = $user->getId();
-            //$academicos = $em->getRepository('CcmSiaBundle:Academico')->findByUser($academico);
-           // $proyectos = $em->getRepository('CcmSiaBundle:Proyecto')->findByAcademico($academico);
-
 
             return $this->redirect(
                 $this->generateUrl('academico_show',array('id' => $academico)
@@ -69,8 +62,5 @@ class SiaController extends Controller
         return array(
             'solicitudes' => $solicitudes, 'sesiones' => $sesiones, 'academicos' => $academicos, 'proyectos' => $proyectos
         );
-
-
     }
-
 }

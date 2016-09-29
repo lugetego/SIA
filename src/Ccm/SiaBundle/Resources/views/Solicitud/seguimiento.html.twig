@@ -15,7 +15,6 @@
         <table class="table table-striped table-bordered table-hover table-condensed" id="example">
             <thead>
             <tr>
-                <th>Id</th>
                 <th>Académico</th>
                 <th>Tipo</th>
                 <th>Propósito</th>
@@ -29,19 +28,28 @@
 
         {% for entity in entities %}
             <tr>
-                <td><a href="{{ path('solicitud_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
                 {% if entity.academico.id is defined %}
                     <td><a href="{{ path('academico_show', { 'id': entity.academico.id }) }}">{{ entity.academico }}</a></td>
                 {% else %}
                     <td>{{ entity.academico }}</td>
                 {% endif %}
-                <td>{{ entity.tipo }}</td>
+                <td>{{ entity.tipo | capitalize }}</td>
                 <td>{{ entity.proposito }}</td>
-                <td>{{ entity.actividad }}</td>
-                <td {% if entity.enviada is not null %}class="success"{% else %} class="danger" {% endif %}>
+                <td>{{ entity.actividad | truncate(80) }}</td>
+{#                <td {% if entity.enviada is not null %}class="success"{% else %} class="danger" {% endif %}>
+                </td>#}
+                <td class="text-center"> {% if entity.enviada is not null %}
+                        {#<span class="label label-success"><i class="fa fa-check"></i></span> #}<h4><i class="fa fa-check solicitud-success"></i></h4>
+                     {% else %}{#<span class="label label-danger"><i class="fa fa-times"></i></span>#}<h4><i class="fa fa-times-circle solicitud-danger"></i></h4>{% endif %}
                 </td>
-                <td {% if entity.aprobada == 1 %} class="success"{% elseif entity.aprobada is null %} class="warning" {% else %} class="danger" {% endif %}>
-
+                <td class="text-center">
+                    {% if entity.aprobada == 1 %}
+                        {#<span class="label label-success"><i class="fa fa-check"></i></span>#}<h4><i class="fa fa-check solicitud-success"></i></h4>
+                    {% elseif entity.aprobada is null %}
+                        {#<span class="label label-warning"><i class="fa fa-minus"></i></span>#}<h4><i class="fa fa-minus-circle solicitud-warning"></i></h4>
+                    {% else %}
+                        {#<span class="label label-danger"><i class="fa fa-times"></i></span>#}<h4><i class="fa fa-times-circle solicitud-danger"></i></h4>
+                    {% endif %}
                 </td>
                 <td><div  class="text-center">
                             <a href="{{ path('solicitud_show', { 'id': entity.id }) }}" class="btn btn-default btn-xs"><i class="fa fa-search"></i>  Ver</a>

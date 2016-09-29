@@ -83,8 +83,12 @@ vich_uploader:
             uri_prefix:         /SIA/web/solicitudes/planes
             upload_destination: %kernel.root_dir%/../web/solicitudes/planes
             namer:              vich_uploader.namer_uniqid
+        acta_sesion_consejo:
+            uri_prefix:         /SIA/web/solicitudes/actas
+            upload_destination: %kernel.root_dir%/../web/actas
+            namer:              vich_uploader.namer_uniqid
 
 parameters:
     sia.asignacion_anual: 30000
-    sia.dias_licencia: 15
-    sia.dias_comision: 15
+    sia.dias_licencia: 45
+    sia.dias_comision: 45

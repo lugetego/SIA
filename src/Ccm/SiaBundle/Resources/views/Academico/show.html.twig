@@ -30,7 +30,7 @@
         <div class="col-lg-8">
             <div class="panel panel-info">
                 <div class="panel-heading">
-                    {{ entity.name | title}}
+                    <strong>{{ entity.name | title}} {{ entity.apellido | title}}</strong>
                     <span class="pull-right text-muted small">
                 </span>
                 </div>
@@ -128,31 +128,43 @@
 
 
     <div class="row">
-        <div class="col-lg-8">
+        <div class="col-lg-10">
             <h3 class="page-header"><small>Solicitudes</small></h3>
             <table class="table table-striped">
                 <thead>
-                <tr><th>Tipo de Solicitud</th><th>Actividad a realizar</th><th>Erogaciones</th><th>Enviada</th><th>Aprobada</th><th>Fecha</th></tr>
+                <tr><th>Tipo</th><th>Actividad a realizar</th><th>Erogaciones</th><th>Enviada</th><th>Aprobada</th><th>Fecha</th></tr>
                 </thead>
                 <tbody>
                 {% for solicitud in entity.solicitudes %}
                     <tr>
                         <td>
-                            <a href="{{ path('solicitud_show', { 'id': solicitud.id }) }}">{{ solicitud.tipo }}</a>
+                            {{ solicitud.tipo }}
                         </td>
-                        <td> {{ solicitud.actividad }}</td>
-
-                        {% set ccm = 0 %}
-                        {% for fin in solicitud.financiamiento %}
-                            {% set ccm = fin.ccm + ccm %}
-                        {% endfor %}
-
+                        <td> <a href="{{ path('solicitud_show', { 'id': solicitud.id }) }}">{{ solicitud.actividad | truncate(80) }}</a></td>
+                            {% set ccm = 0 %}
+                            {% for fin in solicitud.financiamiento %}
+                                {% set ccm = fin.ccm + ccm %}
+                            {% endfor %}
                         <td> ${{ ccm | number_format(2)}}</td>
-                        <td {% if solicitud.enviada is not null %}class="success"{% else %} class="danger" {% endif %}>
+                        {#                        <td {% if solicitud.enviada is not null %}class="success"{% else %} class="danger" {% endif %}>
+                                                </td>#}
+                        <td style="text-align: center"> {% if solicitud.enviada is not null %}
+                                <span class="label label-success"><i class="fa fa-check"></i></span>
+                            {% else %}<span class="label label-danger"><i class="fa fa-times"></i></span>{% endif %}
                         </td>
+                        <td class="text-center">
+                            {% if solicitud.aprobada == 1 %}
+                                <span class="label label-success"><i class="fa fa-check"></i></span>
+                            {% elseif solicitud.aprobada is null %}
+                                <span class="label label-warning"><i class="fa fa-minus"></i></span>
+                            {% else %}
+                                <span class="label label-danger"><i class="fa fa-times"></i></span>
+                            {% endif %}
+                        </td>
+{#
                         <td {% if solicitud.aprobada == 1 %} class="success"{% elseif solicitud.aprobada is null %} class="warning" {% else %} class="danger" {% endif %}>
-
                         </td>
+#}
                         <td>
                             <em>{{ solicitud.modified|date('d-m-Y') }}</em>
                         </td>

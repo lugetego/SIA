@@ -19,7 +19,6 @@
         </div>
     </div>
 
-
     {% if (entity.enviada) and ( false == is_granted('ROLE_ADMIN')) %}
 
         <div class="row">
@@ -33,191 +32,188 @@
         </div>
     {% else %}
 
+        {{ form_start(edit_form) }}
 
-    {{ form_start(edit_form) }}
-
-
-
-    <div class="row">
-        <div class="col-lg-8">
-            <div class="col-lg-4">
-                <div ng-controller="DatepickerDemoCtrl" class="form-group input-group" ng-init="inicio='{{ entity.inicio|date("d-m-Y") }}';">
-                    <div>{{ form_label(edit_form.inicio) }}</div>
-                    <div>{{ form_errors(edit_form.inicio) }}
-                    {{ form_widget(edit_form.inicio, { 'attr': {
-                    'class': 'form-control input-sm',
-                    'datepicker-popup': 'dd-MM-yyyy',
-                    'ng-model':'inicio',
-                    'is-open':'opened',
-                    'min-date':'minDate',
-                    'max-date':"'2015-06-22'",
-                    'datepicker-options':'dateOptions',
-                    'ng-required':'true',
-                    'close-text':'Close' } } ) }}
-                        <span class="input-group-btn">
-                            <button type="button" class="btn btn-default input-sm" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
-                        </span>
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="col-lg-4">
+                    <div ng-controller="DatepickerDemoCtrl" ng-init="inicio='{{ entity.inicio|date("d-m-Y") }}';">
+                        {{ form_label(edit_form.inicio) }}
+                        <div class="form-group input-group">{{ form_errors(edit_form.inicio) }}
+                            {{ form_widget(edit_form.inicio, { 'attr': {
+                                'class': 'form-control input',
+                                'datepicker-popup': 'dd-MM-yyyy',
+                                'ng-model':'inicio',
+                                'is-open':'opened',
+                                'min-date':'minDate',
+                                'max-date':"'2015-06-22'",
+                                'datepicker-options':'dateOptions',
+                                'ng-required':'true',
+                                'close-text':'Close' } } ) }}
+                            <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="col-lg-4">
-                <div ng-controller="DatepickerDemoCtrl" class="form-group input-group" ng-init="fin='{{ entity.fin|date("d-m-Y") }}';">
-                    <div>{{ form_label(edit_form.fin) }}</div>
-                    <div>{{ form_errors(edit_form.fin) }}
-                    {{ form_widget(edit_form.fin, { 'attr': {
-                    'class': 'form-control input-sm',
-                    'datepicker-popup': 'dd-MM-yyyy',
-                    'ng-model':'fin',
-                    'is-open':'opened',
-                    'min-date':'minDate',
-                    'max-date':"'2015-06-22'",
-                    'datepicker-options':'dateOptions',
-                    'ng-required':'true',
-                    'close-text':'Close' } } ) }}
-                        <span class="input-group-btn">
-                            <button type="button" class="btn btn-default input-sm" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
-                        </span>
+                <div class="col-lg-4">
+                    <div ng-controller="DatepickerDemoCtrl" ng-init="fin='{{ entity.fin|date("d-m-Y") }}';">
+                        <div>{{ form_label(edit_form.fin) }}</div>
+                        <div class="form-group input-group"  >{{ form_errors(edit_form.fin) }}
+                            {{ form_widget(edit_form.fin, { 'attr': {
+                                'class': 'form-control input',
+                                'datepicker-popup': 'dd-MM-yyyy',
+                                'ng-model':'fin',
+                                'is-open':'opened',
+                                'min-date':'minDate',
+                                'max-date':"'2015-06-22'",
+                                'datepicker-options':'dateOptions',
+                                'ng-required':'true',
+                                'close-text':'Close' } } ) }}
+                            <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                        </div>
+                    </div>
                     <b id='days'> </b>
                 </div>
-                </div>
-
             </div>
         </div>
-    </div>
 
-    <div class="row">
-        <div class="col-lg-8">
-            <div class="col-lg-4">
-                <div class="form-group">
-                    <div>
-                        {{ form_label(edit_form.tipo) }}
-                    </div>
-                    <div>
-                        {{ form_widget(edit_form.tipo, {'attr': {'class': 'form-control input-sm'} } ) }}
-                    </div>
-                    <div>{{ form_errors(edit_form.tipo) }}</div>
-                </div>
-            </div>
-{#            <div class="col-lg-4">
-                <div class="form-group">
-                    <div>
-                        {{ form_label(edit_form.proyecto) }}
-                    </div>
-                    <div>
-                        {{ form_widget(edit_form.proyecto, {'attr': {'class': 'form-control input-sm'} } ) }}
-                    </div>
-                    <div>{{ form_errors(edit_form.proyecto) }}</div>
-                </div>
-            </div>#}
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-lg-8">
-            <div class="col-lg-4">
-                <div class="form-group">
-                    <div>
-                        {{ form_label(edit_form.academico) }}
-                    </div>
-                    <div>
-                        {{ form_widget(edit_form.academico, {'attr': {'class': 'form-control input-sm'} } ) }}
-                    </div>
-                    <div>{{ form_errors(edit_form.academico) }}</div>
-                </div>
-            </div>
-
-            <div class="col-lg-4">
-                <div class="form-group">
-                    <div>
-                        {{ form_label(edit_form.sesion) }}
-                    </div>
-                    <div>
-                        {{ form_widget(edit_form.sesion, {'attr': {'class': 'form-control input-sm'} } ) }}
-                    </div>
-                    <div>{{ form_errors(edit_form.sesion) }}</div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-     <div class="page-header">
-        <h1><small>Dirección</small></h1>
-    </div>
-
-    <div class="row">
-        <div class="col-lg-8">
+        <div class="row">
             <div class="col-lg-8">
-                <div class="form-group">
-                    <div id="locationField">
-                        <input class="form-control" id="autocomplete" placeholder="Dirección a buscar" onFocus="geolocate()" type="text"></input>
-                        <span class="help-block">Escriba una dirección para autocompletar los campos correspondientes.</span>
+                <div class="col-lg-4">
+                    <div class="form-group">
+                        <div>
+                            {{ form_label(edit_form.tipo) }}
+                        </div>
+                        <div>
+                            {{ form_widget(edit_form.tipo, {'attr': {'class': 'form-control input-sm'} } ) }}
+                        </div>
+                        <div>{{ form_errors(edit_form.tipo) }}</div>
                     </div>
                 </div>
+                {#            <div class="col-lg-4">
+                                <div class="form-group">
+                                    <div>
+                                        {{ form_label(edit_form.proyecto) }}
+                                    </div>
+                                    <div>
+                                        {{ form_widget(edit_form.proyecto, {'attr': {'class': 'form-control input-sm'} } ) }}
+                                    </div>
+                                    <div>{{ form_errors(edit_form.proyecto) }}</div>
+                                </div>
+                            </div>#}
             </div>
         </div>
-    </div>
 
-    <div class="row">
-        <div class="col-lg-8">
+        <div class="row">
             <div class="col-lg-8">
-                <div class="form-group">
-                    <div>
-                        {{ form_label(edit_form.pais) }}
+                <div class="col-lg-4">
+                    <div class="form-group">
+                        <div>
+                            {{ form_label(edit_form.academico) }}
+                        </div>
+                        <div>
+                            {{ form_widget(edit_form.academico, {'attr': {'class': 'form-control input-sm'} } ) }}
+                        </div>
+                        <div>{{ form_errors(edit_form.academico) }}</div>
                     </div>
-                    <div>
-                        {{ form_widget(edit_form.pais, {'id': 'country', 'attr': {'class': 'form-control input-sm'}} ) }}
+                </div>
+
+                <div class="col-lg-4">
+                    <div class="form-group">
+                        <div>
+                            {{ form_label(edit_form.sesion) }}
+                        </div>
+                        <div>
+                            {{ form_widget(edit_form.sesion, {'attr': {'class': 'form-control input-sm'} } ) }}
+                        </div>
+                        <div>{{ form_errors(edit_form.sesion) }}</div>
                     </div>
-                    <div>{{ form_errors(edit_form.pais) }}</div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <div class="row">
-        <div class="col-lg-8">
-            <div class="col-lg-4">
-                <div class="form-group">
-                    {#<input class="field" id="locality" disabled="true"></input>#}
-                    <div>
-                        {{ form_label(edit_form.ciudad) }}
-                    </div>
-                    <div>
-                        {{ form_widget(edit_form.ciudad, {'id': 'locality', 'attr': {'class': 'form-control input-sm'} } ) }}
-                    </div>
-                    <div>{{ form_errors(edit_form.ciudad) }}</div>
-                </div>
-            </div>
-            <div class="col-lg-4">
-                <div class="form-group">
-                    <div>
-                        {{ form_label(edit_form.estado) }}
-                    </div>
-                    <div>
-                        {{ form_widget(edit_form.estado, {'id': 'administrative_area_level_1', 'attr': {'class': 'form-control input-sm'} } ) }}
-                    </div>
-                    <div>{{ form_errors(edit_form.estado) }}</div>
-                </div>
-            </div>
+        <div class="page-header">
+            <h1><small>Dirección</small></h1>
         </div>
-    </div>
 
-    <div class="page-header">
-        <h1><small>Actividad</small></h1>
-    </div>
-    <div class="row">
-        <div class="col-lg-8">
+        <div class="row">
             <div class="col-lg-8">
-                <div class="form-group">
-                    <div>
-                        {{ form_label(edit_form.universidad) }}
+                <div class="col-lg-8">
+                    <div class="form-group">
+                        <div id="locationField">
+                            <input class="form-control" id="autocomplete" placeholder="Dirección a buscar" onFocus="geolocate()" type="text"></input>
+                            <span class="help-block">Escriba una dirección para autocompletar los campos correspondientes.</span>
+                        </div>
                     </div>
-                    <div>
-                        {{ form_widget(edit_form.universidad, {'attr': {'class': 'form-control input-sm'} } ) }}
-                    </div>
-                    <div>{{ form_errors(edit_form.universidad) }}</div>
                 </div>
             </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="col-lg-8">
+                    <div class="form-group">
+                        <div>
+                            {{ form_label(edit_form.pais) }}
+                        </div>
+                        <div>
+                            {{ form_widget(edit_form.pais, {'id': 'country', 'attr': {'class': 'form-control input-sm'}} ) }}
+                        </div>
+                        <div>{{ form_errors(edit_form.pais) }}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="col-lg-4">
+                    <div class="form-group">
+                        {#<input class="field" id="locality" disabled="true"></input>#}
+                        <div>
+                            {{ form_label(edit_form.ciudad) }}
+                        </div>
+                        <div>
+                            {{ form_widget(edit_form.ciudad, {'id': 'locality', 'attr': {'class': 'form-control input-sm'} } ) }}
+                        </div>
+                        <div>{{ form_errors(edit_form.ciudad) }}</div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="form-group">
+                        <div>
+                            {{ form_label(edit_form.estado) }}
+                        </div>
+                        <div>
+                            {{ form_widget(edit_form.estado, {'id': 'administrative_area_level_1', 'attr': {'class': 'form-control input-sm'} } ) }}
+                        </div>
+                        <div>{{ form_errors(edit_form.estado) }}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-header">
+            <h1><small>Actividad</small></h1>
+        </div>
+        <div class="row">
+        <div class="col-lg-8">
+        <div class="col-lg-8">
+            <div class="form-group">
+                <div>
+                    {{ form_label(edit_form.universidad) }}
+                </div>
+                <div>
+                    {{ form_widget(edit_form.universidad, {'attr': {'class': 'form-control input-sm'} } ) }}
+                </div>
+                <div>{{ form_errors(edit_form.universidad) }}</div>
+            </div>
+        </div>
+        {%  if edit_form.proposito is defined %}
             <div class="col-lg-8">
                 <div class="form-group">
                     <div>
@@ -231,6 +227,7 @@
             </div>
             </div>
         </div>
+    {%  endif %}
 
     {%  if edit_form.actividad is defined %}
     <div class="row">

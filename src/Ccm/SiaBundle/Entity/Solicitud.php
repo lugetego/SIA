@@ -77,7 +77,7 @@ class Solicitud
     /**
      * @var string $universidad
      *
-     * @ORM\Column(name="universidad", type="string", length=60, nullable=true)
+     * @ORM\Column(name="universidad", type="string", length=150, nullable=true)
      * @Assert\NotBlank(groups={"solicitud","visitante"})
      */
     private $universidad;
@@ -86,7 +86,7 @@ class Solicitud
      * @var string $profesor
      *
      * @ORM\Column(name="profesor", type="string", length=50, nullable=true)
-     * @Assert\NotBlank(groups={"solicitud","visitante"})
+     * @Assert\NotBlank(groups={"visitante"})
      */
     private $profesor;
 
@@ -264,6 +264,7 @@ class Solicitud
         return $this->created;
 
     }
+
     /**
      * Set modified
      *
@@ -284,7 +285,6 @@ class Solicitud
         return $this->modified;
 
     }
-
 
     /**
      * Constructor

@@ -22,9 +22,11 @@ class SesionesType extends AbstractType
                 'required'=>false,
                 'empty_value' => array('year' => 'Year', 'month' => 'Month', 'day' => 'Day')))
             ->add('name','text',array('label'=>'Nombre de la sesión'))
+            ->add('actaConsejoFile', 'vich_file', array(
+                'required'      => false, 'label' => 'Acta de Consejo'
+            ))
 //            ->add('solicitudes')
             ->add('save', 'submit', array('label' => 'Guardar'))
-
         ;
     }
     

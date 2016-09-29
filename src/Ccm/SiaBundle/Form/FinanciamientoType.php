@@ -17,10 +17,10 @@ class FinanciamientoType extends AbstractType
     {
         $builder
             ->add('nombre')
-            ->add('ccm')
-            ->add('conacyt')
-            ->add('papiit')
-            ->add('otro')
+            ->add('ccm', 'integer')
+            ->add('conacyt', 'integer')
+            ->add('papiit', 'integer')
+            ->add('otro', 'integer')
         ;
     }
 

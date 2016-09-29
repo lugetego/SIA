@@ -15,8 +15,6 @@ use Ccm\SiaBundle\Form\SolicitudType;
 use Ccm\SiaBundle\Form\SolicitudVisitanteType;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
-
-
 /**
  * Solicitud controller.
  *
@@ -102,11 +100,11 @@ class SolicitudController extends Controller
         $securityContext = $this->container->get('security.context');
 
         if( $tipo == 'licencia-comision'){
-        $form = $this->createForm(new SolicitudType($securityContext),$entity, array(
-            'action' => $this->generateUrl('solicitud_create'),
-            'method' => 'POST',
+            $form = $this->createForm(new SolicitudType($securityContext),$entity, array(
+                'action' => $this->generateUrl('solicitud_create'),
+                'method' => 'POST',
 
-        ));
+            ));
             $form->add('tipo-form','hidden', array('data' => 'licencia-comision', 'mapped'=>false));
         }
         elseif( $tipo == 'visitante'){
@@ -117,6 +115,8 @@ class SolicitudController extends Controller
             ));
             $form->add('tipo-form', 'hidden', array('data' => 'visitante', 'mapped'=>false));
         }
+
+        // Validar otro parámetro /solicitud/new/xxxxx
 
         //$form->add('submit', 'submit', array('label' => 'Create'));
 

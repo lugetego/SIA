@@ -18,11 +18,11 @@ security:
                     provider: fos_userbundle
                     login_path: /login
                     check_path: /login_check
+                    use_forward: false
                     #csrf_provider: form.csrf_provider
                     default_target_path: /
                     always_use_default_target_path: true
                     csrf_provider: form.csrf_provider
-
                 logout:
                     path: /logout
                     target: /login

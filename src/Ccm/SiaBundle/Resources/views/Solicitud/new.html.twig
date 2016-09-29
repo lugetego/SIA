@@ -22,64 +22,54 @@
     </div>
 
     <div class="row">
-        <div class="col-lg-10">
+        <div class="col-lg-8">
             <div class="col-lg-4">
-
                 {% if entity.inicio is null %}
-                    <div ng-controller="DatepickerDemoCtrl" class="form-group input-group" >
+                    <div ng-controller="DatepickerDemoCtrl">
                 {% else %}
-                    <div ng-controller="DatepickerDemoCtrl" class="form-group input-group" ng-init="inicio='{{ entity.inicio|date("d-m-Y") }}';">
+                    <div ng-controller="DatepickerDemoCtrl" ng-init="inicio='{{ entity.inicio|date("d-m-Y") }}';">
                 {% endif %}
-                    <div>{{ form_label(form.inicio) }}</div>
-                    <div>
-                        {{ form_widget(form.inicio, { 'attr': {
-                        'class': 'form-control input-sm',
-                        'datepicker-popup': 'dd-MM-yyyy',
-                        'ng-model':'inicio',
-                        'is-open':'opened',
-                        'datepicker-options':'dateOptions',
-                        'ng-required':'false',
-                        'close-text':'Close'  }} )  }}
-                        <span class="input-group-btn">
-                            <button type="button" class="btn btn-default input-sm" ng-click="open($event)" ><i class="glyphicon glyphicon-calendar"></i></button>
-                        </span>
-                        <p class="text-danger">
+                        {{ form_label(form.inicio) }}
+                        <div class="form-group input-group">{{ form_errors(form.inicio) }}
+                            {{ form_widget(form.inicio, { 'attr': {
+                                'class': 'form-control input',
+                                'datepicker-popup': 'dd-MM-yyyy',
+                                'ng-model':'inicio',
+                                'is-open':'opened',
+                                'datepicker-options':'dateOptions',
+                                'ng-required':'false',
+                                'close-text':'Close'  }} )  }}
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-default" ng-click="open($event)" ><i class="glyphicon glyphicon-calendar"></i></button>
+                            </span>
+                        </div>
                     </div>
-                    {{ form_errors(form.inicio) }}
-                </div>
             </div>
-
             <div class="col-lg-4">
-
                 {% if entity.inicio is null %}
-                      <div ng-controller="DatepickerDemoCtrl" class="form-group input-group">
+                    <div ng-controller="DatepickerDemoCtrl">
                 {% else %}
-                    <div ng-controller="DatepickerDemoCtrl" class="form-group input-group" ng-init="fin='{{ entity.fin|date("d-m-Y") }}';">
+                    <div ng-controller="DatepickerDemoCtrl" ng-init="fin='{{ entity.fin|date("d-m-Y") }}';">
                 {% endif %}
-
-                <div>{{ form_label(form.fin) }}</div>
-                    <div>
-                        {{ form_widget(form.fin, { 'attr': {
-                        'class': 'form-control input-sm',
-                        'datepicker-popup': 'dd-MM-yyyy',
-                        'ng-model':'fin',
-                        'is-open':'opened',
-                        'datepicker-options':'dateOptions',
-                        'ng-required':'false',
-                        'close-text':'Close'  }}) }}
-                        <span class="input-group-btn">
-                            <button type="button" class="btn btn-default input-sm" ng-click="open($event)">
-                                <i class="glyphicon glyphicon-calendar"></i>
-                            </button>
-                        </span>
-
+                        {{ form_label(form.fin) }}
+                        <div class="form-group input-group">{{ form_errors(form.fin) }}
+                            {{ form_widget(form.fin, { 'attr': {
+                                'class': 'form-control input',
+                                'datepicker-popup': 'dd-MM-yyyy',
+                                'ng-model':'fin',
+                                'is-open':'opened',
+                                'datepicker-options':'dateOptions',
+                                'ng-required':'false',
+                                'close-text':'Close'  }}) }}
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                            </span>
+                        </div>
                     </div>
-                    <div>{{ form_errors(form.fin) }}</div>
-                </div>
             </div>
             <div class="col-lg-4">
                 <h3><span class="label label-primary" id="days"></span></h3>
-                {#<p class="text-info" id="days"></p>#}
+                <p class="text-info" id="days"></p>
             </div>
         </div>
     </div>
@@ -216,6 +206,7 @@
                     <div>{{ form_errors(form.universidad) }}</div>
                 </div>
             </div>
+            {%  if form.proposito is defined %}
             <div class="col-lg-8">
                 <div class="form-group">
                     <div>
@@ -227,6 +218,7 @@
                     <div>{{ form_errors(form.proposito) }}</div>
                 </div>
             </div>
+            {% endif %}
             {%  if form.actividad is defined %}
                 <div class="col-lg-8">
                     <div class="form-group">
@@ -328,6 +320,7 @@
 
                                     <td>
                                         {{ form_widget(fin.papiit, { 'attr':{
+                                            'type': 'number',
                                             'class': 'form-control input-sm text-right',
                                             'ng-model': papiitid, 'ng-init': papiitid ~ ' = ' ~ entity.financiamiento[i].papiit,
                                         } }) }}
@@ -371,6 +364,8 @@
             </div>
         </div>
     </div>
+
+    {# Los archivos dependen del tipo de solicitud #}
     <div class="row">
         <div class="col-lg-8">
             <div class="col-lg-6">
