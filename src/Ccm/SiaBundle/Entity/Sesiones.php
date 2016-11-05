@@ -48,17 +48,11 @@ class Sesiones
      * @Vich\UploadableField(mapping="acta_sesion_consejo", fileNameProperty="actaConsejoName")
      *
      * @var File
-     * @Assert\File(
-     *     maxSize = "6M",
-     *     mimeTypes = {"application/pdf", "application/x-pdf"},
-     *     mimeTypesMessage = "Please upload a valid PDF"
-     * )
-     * @Assert\NotBlank(message = "Acta de Consejo", groups={"comision"})
      */
     private $actaConsejoFile;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="string", length=255)
      *
      * @var string
      *
@@ -204,18 +198,18 @@ class Sesiones
     }
 
     // -----------------------------------------------------------------------------------------------------------------
-    // File upload Carta Invitacion
+    // File upload Acta Consejo
     /**
      * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile $actaConsejo
      */
     public function setActaConsejoFile(File $actaConsejo = null)
     {
-        $this->cartaActaConsejoFile = $actaConsejo;
+        $this->actaConsejoFile = $actaConsejo;
 
         if ($actaConsejo) {
             // It is required that at least one field changes if you are using doctrine
             // otherwise the event listeners won't be called and the file is lost
-            $this->modified = new \DateTime('now');
+            $this->updatedAt = new \DateTime('now');
         }
     }
 

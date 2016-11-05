@@ -4,6 +4,9 @@
 
     {{ parent() }}
 
+	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css">
+    <link rel="stylesheet" href="{{ asset('bundles/ccmsia/css/select2-bootstrap.min.css') }}" type="text/css"/>
+
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&language=es"></script>
     <script src="{{ asset('bundles/ccmsia/js/address.js') }}" type="text/javascript"></script>
 
@@ -206,16 +209,16 @@
                     <div>{{ form_errors(form.universidad) }}</div>
                 </div>
             </div>
-            {%  if form.proposito is defined %}
+            {%  if form.propositos is defined %}
             <div class="col-lg-8">
                 <div class="form-group">
                     <div>
-                        {{ form_label(form.proposito) }}
+                        {{ form_label(form.propositos) }}
                     </div>
                     <div>
-                        {{ form_widget(form.proposito, {'attr': {'class': 'form-control input-sm'} } ) }}
+                        {{ form_widget(form.propositos, {'attr': {'class': 'form-control input-sm select2-multiple'} } ) }}
                     </div>
-                    <div>{{ form_errors(form.proposito) }}</div>
+                    <div>{{ form_errors(form.propositos) }}</div>
                 </div>
             </div>
             {% endif %}
@@ -447,4 +450,23 @@
     </div>
 
 
+{% endblock %}
+
+{% block javascript %}
+    {{ parent() }}
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.full.js"></script>
+
+    <script type="text/javascript">
+        $('.select2-multiple').select2( {
+            theme: "bootstrap",
+            placeholder: "Select a State",
+            maximumSelectionSize: 3,
+            containerCssClass: ':all:'
+        } );
+
+        $( ":checkbox" ).on( "click", function() {
+            $( this ).parent().nextAll( "select" ).prop( "disabled", !this.checked );
+        });
+    </script>
 {% endblock %}

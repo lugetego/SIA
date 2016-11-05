@@ -16,7 +16,7 @@ Universidad y departamento que vistará: {{ entity.universidad }}
 Actividad: {{ entity.actividad }}
 
 Profesor a quién visitará: {{ entity.profesor }}
-Propósito del viaje y/o nombre del proyecto de investigación: {{ entity.proposito }}
+Propósito del viaje y/o nombre del proyecto de investigación: {% for prop in entity.propositos %}{{ prop }}{% endfor %}
 Título del trabajo que presentará (en su caso) : {{ entity.trabajo }}
 
 Observaciones: {{ entity.observaciones }}

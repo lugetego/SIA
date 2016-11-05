@@ -102,7 +102,7 @@ class SolicitudVisitanteType extends AbstractType
                         ->from('Ccm\SiaBundle\Entity\Sesiones', 'r')
                         ->where('r.fecha >= :now')
 //                        ->setParameter('now', new \DateTime("now"))
-                        ->setParameter('now', new \DateTime("01-01-2016"));
+                        ->setParameter('now', new \DateTime("01-09-2015"));
                 }
 
             ))

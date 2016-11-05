@@ -33,7 +33,8 @@
                 </div>
                 <div class="panel-body">
                     <p><label><i class="fa fa-calendar"></i> Fecha:</label> {{ entity.fecha | localizeddate('long', 'none') }}</p>
-                    <p><label><i class="fa fa-file-text-o"></i> Acta:</label> <a href="{{ vich_uploader_asset(entity, 'actaConsejoFile') }}">Acta de Consejo</a></p>
+                    <h2>{{  entity.actaConsejoName }}</h2>
+                    <p><label><i class="fa fa-file-text-o"></i> Acta:</label> <a href="{{ vich_uploader_asset(entity, 'actaConsejoFile') }}">{{ entity.actaConsejoName }}</a></p>
 
                 </div>
                 <div class="panel-footer">
@@ -71,7 +72,12 @@
                     <td>{{ solicitud.academico }}</td>
                 {% endif %}
                 <td>{{ solicitud.tipo | capitalize }}</td>
-                <td>{{ solicitud.proposito }}</td>
+                <td>
+                {% for prop in solicitud.propositos %}
+                    {{ prop }}
+                {% endfor %}
+
+                </td>
                 <td>{{ solicitud.actividad | truncate(80) }}</td>
                 <td class="text-center">
                     {% if solicitud.enviada is not null %}

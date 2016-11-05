@@ -104,21 +104,23 @@
                                 {% endif %}
                                 <tr>
                                     <td>
-                                        <label><i class="fa fa-book"></i> Propósito:</label>
-                                        {{ entity.proposito}}
+                                        <label><i class="fa fa-book"></i> Propósitos:</label>
+                                        {% for prop in entity.propositos %}
+                                            {{ prop }}
+                                        {% endfor %}
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
                                         <label><i class="fa fa-book"></i> Sesión:</label>
-                                        {{ entity.sesion }}
+                                        <a href="{{ path('sesiones_show', { 'id': entity.sesion.id }) }}">{{ entity.sesion }}</a>
                                     </td>
                                 </tr>
                                 {% if entity.trabajo is not null%}
                                     <tr>
                                         <td>
                                             <label><i class="fa fa-folder-open"></i> Trabajo a presentar:</label>
-                                            <a href="{{ path('sesiones_show', { 'id': entity.sesion.id }) }}">{{ entity.trabajo}}</a>
+                                            {{ entity.trabajo}}
                                         </td>
                                     </tr>
                                 {% endif %}

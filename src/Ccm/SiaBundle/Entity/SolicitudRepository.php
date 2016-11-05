@@ -15,7 +15,7 @@ class SolicitudRepository extends EntityRepository
                 AND p.aprobada is null
                 AND p.modified <= :fecha
                 ORDER BY p.modified DESC');
-        $consulta->setMaxResults(10);
+        $consulta->setMaxResults(15);
         $consulta->setParameter('fecha', new \DateTime('now'));
         return $consulta->getResult();
     }

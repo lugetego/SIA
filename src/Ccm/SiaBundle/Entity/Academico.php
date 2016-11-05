@@ -2,9 +2,9 @@
 
 namespace Ccm\SiaBundle\Entity;
 
+use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
-
 
 /**
  * @ORM\Entity(repositoryClass="Ccm\SiaBundle\Entity\AcademicoRepository")
@@ -80,6 +80,12 @@ class Academico
      * @Assert\NotBlank()
      */
     private $asignacion;
+
+    /**
+     * @Gedmo\Slug(fields={"apellido", "name"}, )
+     * @ORM\Column(length=128, nullable=true)
+     */
+    private $slug;
 
     /**
      * @ORM\Column(type="string", length=10)
@@ -341,6 +347,9 @@ class Academico
         return $this->proyectos;
     }
 
-
+    public function getSlug()
+    {
+        return $this->slug;
+    }
 
 }

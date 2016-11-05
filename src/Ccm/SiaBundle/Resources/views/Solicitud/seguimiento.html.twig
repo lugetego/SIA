@@ -34,7 +34,12 @@
                     <td>{{ entity.academico }}</td>
                 {% endif %}
                 <td>{{ entity.tipo | capitalize }}</td>
-                <td>{{ entity.proposito }}</td>
+                <td>
+
+                    {% for prop in entity.propositos %}
+                        {{ prop }}
+                    {% endfor %}
+                </td>
                 <td>{{ entity.actividad | truncate(80) }}</td>
 {#                <td {% if entity.enviada is not null %}class="success"{% else %} class="danger" {% endif %}>
                 </td>#}

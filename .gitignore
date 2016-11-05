@@ -13,3 +13,4 @@
 /app/config/config.yml
 /composer.lock
 /web/solicitudes/
+/web/actas

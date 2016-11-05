@@ -108,7 +108,7 @@ class SolicitudType extends AbstractType
                         ->select('r')
                         ->from('Ccm\SiaBundle\Entity\Sesiones', 'r')
                         ->where('r.fecha >= :now')
-                        ->setParameter('now', new \DateTime("01-01-2016"));
+                        ->setParameter('now', new \DateTime("01-09-2015"));
                 }
             ))
             ->add('pais','text',array(
@@ -131,10 +131,11 @@ class SolicitudType extends AbstractType
                 'required'=>false,
                 'label'=>'Actividad a desarrollar'
             ))
-            ->add('proposito','choice',array(
+            ->add('propositos','choice',array(
                 'choices'   =>  $this->getPropositoChoice(),
+                'multiple'=>true,
                 'required'=>false,
-                'label'=>'Propósito del viaje'
+                'label'=>'Propósitos del viaje'
             ))
             ->add('profesor','text',array(
                 'required'=>false,

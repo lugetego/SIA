@@ -76,17 +76,30 @@ vich_uploader:
     db_driver: orm
     mappings:
         solicitud_carta_invitacion:
-            uri_prefix:         /SIA/web/solicitudes/invitacion
-            upload_destination: %kernel.root_dir%/../web/solicitudes/invitacion
+            uri_prefix:         /solicitudes/invitacion
+            upload_destination: '%kernel.root_dir%/../web/solicitudes/invitacion'
             namer:              vich_uploader.namer_uniqid
         solicitud_plan_trabajo:
-            uri_prefix:         /SIA/web/solicitudes/planes
-            upload_destination: %kernel.root_dir%/../web/solicitudes/planes
+            uri_prefix:         /solicitudes/planes
+            upload_destination: '%kernel.root_dir%/../web/solicitudes/planes'
             namer:              vich_uploader.namer_uniqid
         acta_sesion_consejo:
-            uri_prefix:         /SIA/web/solicitudes/actas
-            upload_destination: %kernel.root_dir%/../web/actas
+            uri_prefix:         /SIA/web/actas
+            upload_destination: '%kernel.root_dir%/../web/actas'
             namer:              vich_uploader.namer_uniqid
+
+stof_doctrine_extensions:
+    default_locale: en_US
+    orm:
+        default:
+            timestampable: true
+            sluggable: true
+
+services:
+    twig.extension.text:
+        class: Twig_Extensions_Extension_Text
+        tags:
+             - { name: twig.extension }
 
 parameters:
     sia.asignacion_anual: 30000

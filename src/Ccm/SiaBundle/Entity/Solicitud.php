@@ -99,12 +99,12 @@ class Solicitud
     private $actividad;
 
     /**
-     * @var string $proposito
+     * @var array $propositos
      *
-     * @ORM\Column(name="proposito", type="string", length=250, nullable=true)
-     * @Assert\NotBlank(groups={"solicitud","visitante"})
+     * @ORM\Column(name="propositos", type="simple_array", nullable=true)
+     * @Assert\NotBlank(groups={"solicitud"})
      */
-    private $proposito;
+    private $propositos;
 
      /**
      * @var proyecto
@@ -490,33 +490,33 @@ class Solicitud
     }
 
     /**
-     * Set proposito
+     * Set propositos
      *
-     * @param string $proposito
-     * @return Solicitud
+     * @param array $propositos
+     * @return Propositos
      */
-    public function setProposito($proposito)
+    public function setPropositos(array $propositos)
     {
-        $this->proposito = $proposito;
+        $this->propositos = $propositos;
 
         return $this;
     }
 
     /**
-     * Get proposito
+     * Get propositos
      *
-     * @return string 
+     * @return array
      */
-    public function getProposito()
+    public function getPropositos()
     {
-        return $this->proposito;
+        return $this->propositos;
     }
 
 
    /**
      * Set proyecto
      *
-     * @param string $proyecto
+     * @param array $proyecto
      * @return Solicitud
      */
     /*    public function setProyecto($proyecto)

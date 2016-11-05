@@ -6,9 +6,26 @@
 {% block wrapper %}
     <div class="row">
         <div class="col-lg-12">
-            <div class="page-header"><h2>Modificar Sesión</h2></div>
+            <div class="page-header"><h2>Editar sesión de consejo</h2></div>
         </div>
     </div>
+
+    {% for flashMessage in app.session.flashbag.get('info') %}
+        <div class="col-lg-8">
+            <div class="alert alert-success alert-dismissable">
+                <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+                <i class="fa fa-check fa-lg"></i> {{ flashMessage }}
+            </div>
+        </div>
+    {% endfor %}
+    {% for flashMessage in app.session.flashbag.get('error') %}
+        <div class="col-lg-8">
+            <div class="alert alert-error alert-dismissable">
+                <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+                <i class="fa fa-plus-circle fa-lg"></i> {{ flashMessage }}
+            </div>
+        </div>
+    {% endfor %}
 
     {{ form_start(edit_form) }}
 
@@ -51,6 +68,7 @@
                 <div class="form-group">
                     <div class="text-danger">{{ form_errors(edit_form.actaConsejoFile) }}</div>
                     {{ form_widget(edit_form.actaConsejoFile) }}
+                    <div>{{ form_errors(edit_form.actaConsejoFile) }}</div>
                 </div>
             </div>
         </div>
