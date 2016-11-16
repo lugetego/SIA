@@ -46,37 +46,13 @@
                                 <tr>
                                     <td>
                                         <label><i class="fa fa-calendar"></i></label> del <strong>{{ entity.inicio | localizeddate('medium', 'none', null, null, "d LLLL") }}</strong> al <strong>{{ entity.fin| localizeddate('long', 'none') }}</strong> -
-                                    <span class="text-info">
-                                        {%  set dias = entity.fin|date("U") - entity.inicio|date("U") %}
-                                        <label> {{ ((dias/3600) / 24) + 1}} días solicitados</label></span>
-                                        {#                                    <span class="badge alert-info">{{ ((dias/3600) / 24) + 1}}</span></span>#}
+                                        <span class="text-info">
+                                            {%  set dias = entity.fin|date("U") - entity.inicio|date("U") %}
+                                            <label> {{ (((dias/3600) / 24) + 1) |round }} días solicitados</label>
+                                        </span>
                                     </td>
-                                    {#                                <td>{%  set dias = entity.fin|date("U") - entity.inicio|date("U") %}
-                                                                        <label>Días solicitados:</label>
-                                                                        <span class="badge alert-info">{{ ((dias/3600) / 24) + 1}}</span>
-                                                                    </td>#}
                                 </tr>
-                                {#                            <tr>
-                                                                <td>
-                                                                    <label><i class="fa fa-calendar"></i> Fechas:</label> del
-                                                                    <strong><span class="text-primary">{{ entity.inicio |date('d/m/Y') }}</span></strong> al
-                                                                    <strong><span class="text-primary">{{ entity.fin |date('d/m/Y')}}</span></strong>
-                                                                </td>
-                                                                <td>{%  set dias = entity.fin|date("U") - entity.inicio|date("U") %}
-                                                                    <label>Días solicitados:</label>
-                                                                    <span class="badge alert-info">{{ ((dias/3600) / 24) + 1}}</span>
-                                                                </td>
-                                                            </tr>#}
-                                {#
-                                                            <tr>
-                                                                <td>
-                                                                    <label><i class="fa fa-file-text-o"></i> Proyecto:</label>
-                                                                    {{ entity.proyecto}}
-                                                                </td>
-                                                                <td>
-                                                                </td>
-                                                            </tr>
-                                #}                            <tr>
+                                <tr>
                                     <td>
                                         <label><i class="fa fa-globe"></i> {{ entity.tipo != 'visitante' ? 'Destino: ' : 'Origen: '}}</label>
                                         {{ entity.ciudad}}, {{ entity.Estado}}, {{ entity.pais}}
@@ -113,7 +89,7 @@
                                 <tr>
                                     <td>
                                         <label><i class="fa fa-book"></i> Sesión:</label>
-                                        <a href="{{ path('sesiones_show', { 'id': entity.sesion.id }) }}">{{ entity.sesion }}</a>
+                                        <a href="{{ path('sesiones_show', { 'id': entity.sesion.id}) }}">{{ entity.sesion.name }}</a> | <a href="{{ vich_uploader_asset(entity.sesion, 'actaConsejoFile') }}"><i class="fa fa-download"></i>  {{ entity.sesion.actaConsejoName }}</a>
                                     </td>
                                 </tr>
                                 {% if entity.trabajo is not null%}

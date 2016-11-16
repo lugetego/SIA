@@ -14,7 +14,7 @@
         </p>
     </div>
     <div class="table-responsive">
-        <table class="table table-striped table-bordered table-hover" id="example">
+        <table class="table table-striped table-bordered table-hover" id="datatable">
             <thead>
             <tr>
                 <th>Nombre(s)</th>
@@ -44,7 +44,7 @@
         <a href="{{ path('academico', {'_switch_user': '_exit'}) }}">Exit impersonation</a>
     {% endif %}
 
-    {% endblock %}
+{% endblock %}
 
 {% block javascript %}
     {{ parent() }}
@@ -53,7 +53,7 @@
     <script type="text/javascript" class="init">
 
         $(document).ready(function() {
-            $('#example').dataTable( {
+            $('#datatable').dataTable( {
                 "pagingType": "full_numbers",
                 "language": {
                     url: '//cdn.datatables.net/plug-ins/380cb78f450/i18n/Spanish.json'

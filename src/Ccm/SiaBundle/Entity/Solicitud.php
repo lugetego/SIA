@@ -136,14 +136,14 @@ class Solicitud
     /**
      * @var string $trabajo
      *
-     * @ORM\Column(name="trabajo", type="string", length=250, nullable=true)
+     * @ORM\Column(name="trabajo", type="string", length=500, nullable=true)
      */
     private $trabajo;
 
     /**
      * @var string $observaciones
      *
-     * @ORM\Column(name="observaciones", type="string", length=250, nullable=true)
+     * @ORM\Column(name="observaciones", type="string", length=1000, nullable=true)
      */
     private $observaciones;
 

@@ -1,5 +1,27 @@
 {% extends 'CcmSiaBundle::layout.html.twig' %}
 
+{% set numLicencias = 0 %}
+{% set numComisiones = 0 %}
+{% set numVisitantes = 0 %}
+{% set totalErogado = 0 %}
+
+{% for solicitud in entity.solicitudes %}
+    {% if solicitud.tipo == 'licencia' %}
+        {% set numLicencias = numLicencias + 1 %}
+    {% endif %}
+    {% if solicitud.tipo == 'comision' %}
+        {% set numComisiones = numComisiones + 1 %}
+    {% endif %}
+    {% if solicitud.tipo == 'visitante' %}
+        {% set numVisitantes = numVisitantes + 1 %}
+    {% endif %}
+
+    {% for f in solicitud.financiamiento %}
+        {% set totalErogado = totalErogado + f.ccm %}
+    {% endfor %}
+
+{% endfor %}
+
 {% block wrapper %}
 
     <div class="row">
@@ -48,7 +70,51 @@
             </div>
         </div>
     </div>
-
+    <div>
+        <a href="{{ path('solicitud') }}"><button type="button" class="btn btn-success"><i class="fa fa-plus"></i> Nueva solicitud</button></a>
+    </div>
+    <div class="row">
+        <div class="col col-md-2">
+            <div class="metric-container">
+                <h3 class="metric-header">
+                    ${{ totalErogado|number_format(2) }}
+                </h3>
+                <span class="metric-label">Erogado</span>
+            </div>
+        </div>
+        <div class="col col-md-2">
+            <div class="metric-container">
+                <h3 class="metric-header">
+                    {{ entity.solicitudes| length }}
+                </h3>
+                <span class="metric-label">Solicitudes</span>
+            </div>
+        </div>
+        <div class="col col-md-2">
+            <div class="metric-container">
+                <h3 class="metric-header">
+                    {{ numLicencias }}
+                </h3>
+                <span class="metric-label">Licencias</span>
+            </div>
+        </div>
+        <div class="col col-md-2">
+            <div class="metric-container">
+                <h3 class="metric-header">
+                    {{ numComisiones }}
+                </h3>
+                <span class="metric-label">Comisiones</span>
+            </div>
+        </div>
+        <div class="col col-md-2">
+            <div class="metric-container">
+                <h3 class="metric-header">
+                    {{ numVisitantes }}
+                </h3>
+                <span class="metric-label">Visitantes</span>
+            </div>
+        </div>
+    </div>
     <div class="table-responsive">
         <table class="table table-striped table-bordered table-hover table-condensed" id="example">
             <thead>

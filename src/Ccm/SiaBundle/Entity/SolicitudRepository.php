@@ -36,6 +36,4 @@ class SolicitudRepository extends EntityRepository
         return $consulta->getResult();
     }
 
-
-
 }
