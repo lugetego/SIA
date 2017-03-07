@@ -256,7 +256,7 @@ class SolicitudController extends Controller
     {
         $securityContext = $this->container->get('security.context');
 
-        if( $tipo == 'licencia' || $tipo == 'comision'){
+        if( $tipo == 'licencia' || $tipo == 'comisión' || $tipo == 'comision'|| $tipo == 'Licencia'){
             $form = $this->createForm(new SolicitudType($securityContext),$entity, array(
                 'action' => $this->generateUrl('solicitud_update', array('id' => $entity->getId())),
                 'method' => 'PUT',

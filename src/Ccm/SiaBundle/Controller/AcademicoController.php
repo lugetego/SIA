@@ -125,6 +125,7 @@ class AcademicoController extends Controller
         $asignacionAnual = $this->container->getParameter('sia.asignacion_anual');
         $dLic = $this->container->getParameter('sia.dias_licencia');
         $dCom = $this->container->getParameter('sia.dias_comision');
+        $year = $this->container->getParameter('sia.year');
 
         $totalDias = $dLic + $dCom;
 

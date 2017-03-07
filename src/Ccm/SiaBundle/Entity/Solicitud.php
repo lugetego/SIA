@@ -93,7 +93,7 @@ class Solicitud
     /**
      * @var string $actividad
      *
-     * @ORM\Column(name="actividad", type="string", length=250, nullable=true)
+     * @ORM\Column(name="actividad", type="string", length=1000, nullable=true)
      * @Assert\NotBlank(groups={"solicitud"})
      */
     private $actividad;
@@ -142,7 +142,7 @@ class Solicitud
 
     /**
      * @var string $observaciones
-     *
+     *q
      * @ORM\Column(name="observaciones", type="string", length=1000, nullable=true)
      */
     private $observaciones;

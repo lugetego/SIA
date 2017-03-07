@@ -40,7 +40,7 @@ class SolicitudType extends AbstractType
                 'required'=>true,
                 'choices'=>array(
                     'licencia'=>'Licencia',
-                    'comision'=>'Comision',
+                    'comisión'=>'Comisión',
                 )));
 
         if ( false === $this->securityContext->isGranted('ROLE_ADMIN') ) {
@@ -58,6 +58,7 @@ class SolicitudType extends AbstractType
                             ->from('Ccm\SiaBundle\Entity\Academico', 'r')
                             ->leftjoin('r.user','a')
                             ->where('a.id = :id')
+                            ->orderBy('r.name', 'ASC')
                             ->setParameter('id', $user->getId())
                             ;}, 'data' => ($user->getAcademico())));
 
@@ -75,9 +76,7 @@ class SolicitudType extends AbstractType
                                             ->setParameter('id', $user->getAcademico())
                                             ;}, ));*/
         }
-
         else {
-
             $builder
                 ->add('academico',null,array(
                     'required'=>true,
@@ -93,7 +92,6 @@ class SolicitudType extends AbstractType
                                              ->from('Ccm\SiaBundle\Entity\Proyecto', 'r')
                                              ;}, ));*/
         }
-
         $builder
             /*    ->add('sesion',null,array(
                     'required'=>false,
@@ -108,6 +106,7 @@ class SolicitudType extends AbstractType
                         ->select('r')
                         ->from('Ccm\SiaBundle\Entity\Sesiones', 'r')
                         ->where('r.fecha >= :now')
+                        ->orderBy('r.fecha', 'DESC')
                         ->setParameter('now', new \DateTime("01-09-2015"));
                 }
             ))

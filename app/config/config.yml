@@ -105,3 +105,4 @@ parameters:
     sia.asignacion_anual: 30000
     sia.dias_licencia: 45
     sia.dias_comision: 45
+    sia.year: 2016

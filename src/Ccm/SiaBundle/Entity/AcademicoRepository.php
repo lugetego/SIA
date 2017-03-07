@@ -26,7 +26,7 @@ class AcademicoRepository extends EntityRepository
 
         // Se calcula el año date("Y");
         foreach ($academico->getSolicitudes() as $solicitud) {
-            if(date('Y') == $solicitud->getCreated()->format('Y') && $solicitud->getAprobada() && $solicitud->getTipo() == 'licencia')
+            if(date('Y') == $solicitud->getInicio()->format('Y') && $solicitud->getAprobada() && $solicitud->getTipo() == 'licencia')
                 $erogadoLic += $solicitud->getTotalAsignación();
         }
 
@@ -44,7 +44,7 @@ class AcademicoRepository extends EntityRepository
 
         // Se calcula el año date("Y");
         foreach ($academico->getSolicitudes() as $solicitud) {
-            if(date('Y') == $solicitud->getCreated()->format('Y') && $solicitud->getAprobada() && $solicitud->getTipo() == 'comision')
+            if(date('Y') == $solicitud->getInicio()->format('Y') && $solicitud->getAprobada() && $solicitud->getTipo() == 'comision')
                 $erogadoCom += $solicitud->getTotalAsignación();
         }
 
@@ -62,7 +62,7 @@ class AcademicoRepository extends EntityRepository
 
         // Se calcula el año date("Y");
         foreach ($academico->getSolicitudes() as $solicitud) {
-            if(date('Y') == $solicitud->getCreated()->format('Y') && $solicitud->getAprobada() && $solicitud->getTipo() == 'visitante')
+            if(date('Y') == $solicitud->getInicio()->format('Y') && $solicitud->getAprobada() && $solicitud->getTipo() == 'visitante')
                 $erogadoVis += $solicitud->getTotalAsignación();
         }
 
@@ -79,7 +79,7 @@ class AcademicoRepository extends EntityRepository
         $dias = 0;
 
         foreach ($academico->getSolicitudes() as $solicitud) {
-            if(date('Y') == $solicitud->getCreated()->format('Y') && $solicitud->getAprobada() && $solicitud->getTipo() == 'licencia')
+            if(date('Y') == $solicitud->getInicio()->format('Y') && $solicitud->getAprobada() && $solicitud->getTipo() == 'licencia')
                 $dias += $solicitud->getDias();
         }
 
@@ -96,7 +96,7 @@ class AcademicoRepository extends EntityRepository
         $dias = 0;
 
         foreach ($academico->getSolicitudes() as $solicitud) {
-            if(date('Y') == $solicitud->getCreated()->format('Y') && $solicitud->getAprobada() && $solicitud->getTipo() == 'comision')
+            if(date('Y') == $solicitud->getInicio()->format('Y') && $solicitud->getAprobada() && $solicitud->getTipo() == 'comision')
                 $dias += $solicitud->getDias();
         }
 

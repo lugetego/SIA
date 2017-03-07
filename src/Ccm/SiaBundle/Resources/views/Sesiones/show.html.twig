@@ -16,9 +16,11 @@
         {% set numVisitantes = numVisitantes + 1 %}
     {% endif %}
 
-    {% for f in solicitud.financiamiento %}
-        {% set totalErogado = totalErogado + f.ccm %}
-    {% endfor %}
+     {% if solicitud.aprobada == 1 %}
+        {% for f in solicitud.financiamiento %}
+            {% set totalErogado = totalErogado + f.ccm %}
+        {% endfor %}
+     {% endif %}
 
 {% endfor %}
 
@@ -137,7 +139,7 @@
                 {% else %}
                     <td>{{ solicitud.academico }}</td>
                 {% endif %}
-                <td>{{ solicitud.tipo | capitalize }}</td>
+                <td>{{ solicitud.tipo }}</td>
                 <td>
                 {% for prop in solicitud.propositos %}
                     {{ prop }}
